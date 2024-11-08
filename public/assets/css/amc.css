@@ -1,0 +1,138 @@
+.org-btn {
+  background-color: #ff5f13;
+  color: white;
+  border: 1px solid #ff5f13;
+  padding: 6px 15px;
+  transition: all 130ms ease-in;
+  cursor: pointer;
+  font-weight: 500;
+  align-items: end;
+  &:hover {
+    background-color: white;
+    color: #ff5f13;
+  }
+}
+.btn2 {
+  width: 30%;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+  background-color: rgb(37, 37, 37);
+  padding: 8px;
+  border: 1px solid black;
+  transition: all 140ms ease-in;
+  &:hover {
+    background-color: white;
+    color: #ff5f13;
+    border: 1px solid #ff5f13;
+    cursor: pointer;
+  }
+}
+
+#amcForm .form-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 2%;
+}
+
+.add-button {
+  display: flex;
+  justify-content: end;
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.amc-label {
+  color: #000000;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.amc-label1{
+    color: #ff5f13;
+    text-transform: uppercase;
+}
+.form-group .bdrn {
+  border-radius: 0 !important;
+}
+
+.offer-text {
+  font-weight: 700;
+}
+
+.amc_title {
+  display: flex;
+  align-items: center;
+  gap: 2%;
+  padding: 5px;
+}
+
+.amc_ul {
+  padding: 15px;
+}
+.amc_ul .amc_li .amc_p {
+  font-weight: 500;
+}
+
+.row-inner-main {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+  padding: 3px;
+
+  .amc_bg img {
+    width: 260px;
+  }
+}
+
+#amc_hr {
+  border-bottom: 2px solid #000000;
+  border-top: 0 none;
+  margin: 30px auto;
+  padding: 0;
+  width: 50%;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  #amcForm .form-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    align-items: center;
+    gap: 2%;
+  }
+  .amc_bg img {
+    width: 230px !important;
+  }
+}
+@media (max-width: 750px) {
+  #amcForm .form-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr !important;
+    align-items: center;
+    gap: 2%;
+  }
+
+  .org-btn {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .btn2 {
+    width: 100%;
+  }
+
+  .row-inner-main {
+    display: block !important;
+  }
+  .amc_bg img {
+    width: 300px !important;
+  }
+}
