@@ -17,7 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 
@@ -29,81 +29,81 @@ require __DIR__.'/auth.php';
 
 // ADMIN ROUTES =========================================================================================================================>
 
-Route::get('/admin-home-banner', function(){
+Route::get('/admin-home-banner', function () {
     return view('admin.admin-home-banner');
 })->middleware(['auth', 'verified'])->name('admin-home-banner');
 
 
-Route::get('/admin-other-banner', function(){
+Route::get('/admin-other-banner', function () {
     return view('admin.admin-other-banner');
 })->middleware(['auth', 'verified'])->name('admin-other-banner');
 
 
-Route::get('/admin-about', function(){
+Route::get('/admin-about', function () {
     return view('admin.admin-about-company');
 })->middleware(['auth', 'verified'])->name('admin-about-company');
 
 
-Route::get('/admin-numbers', function(){
+Route::get('/admin-numbers', function () {
     return view('admin.admin-about-numbers');
 })->middleware(['auth', 'verified'])->name('admin-about-numbers');
 
 
-Route::get('/product-main-category', function(){
+Route::get('/product-main-category', function () {
     return view('admin.admin-main-category');
 })->middleware(['auth', 'verified'])->name('admin-main-category');
 
 
-Route::get('/product-sub-category', function(){
+Route::get('/product-sub-category', function () {
     return view('admin.admin-sub-category');
 })->middleware(['auth', 'verified'])->name('admin-sub-category');
 
 
-Route::get('/product-details', function(){
+Route::get('/product-details', function () {
     return view('admin.admin-product-details');
 })->middleware(['auth', 'verified'])->name('admin-product-details');
 
 
-Route::get('/window-service', function(){
+Route::get('/window-service', function () {
     return view('admin.admin-service-details');
 })->middleware(['auth', 'verified'])->name('admin-service-details');
 
 
-Route::get('/amc-request', function(){
+Route::get('/amc-request', function () {
     return view('admin.admin-amc-requests');
 })->middleware(['auth', 'verified'])->name('admin-amc-requests');
 
 
-Route::get('/amc-print', function(){
+Route::get('/amc-print', function () {
     return view('admin.admin-amc-print');
 })->middleware(['auth', 'verified'])->name('admin-amc-print');
 
 
-Route::get('/window-inquiry', function(){
+Route::get('/window-inquiry', function () {
     return view('admin.admin-window-inquiry');
 })->middleware(['auth', 'verified'])->name('admin-window-inquiry');
 
 
-Route::get('/inquiry-print', function(){
+Route::get('/inquiry-print', function () {
     return view('admin.admin-inquiry-print');
 })->middleware(['auth', 'verified'])->name('admin-inquiry-print');
 
 
-Route::get('/admin-blogs', function(){
+Route::get('/admin-blogs', function () {
     return view('admin.admin-blogs');
 })->middleware(['auth', 'verified'])->name('admin-blogs');
 
 
-Route::get('/admin-testimonial', function(){
+Route::get('/admin-testimonial', function () {
     return view('admin.admin-testimonials');
 })->middleware(['auth', 'verified'])->name('admin-testimonials');
 
 
-Route::get('/teams', function(){
+Route::get('/teams', function () {
     return view('admin.admin-teams');
 })->middleware(['auth', 'verified'])->name('admin-teams');
 
 
-Route::get('/customer-support', function(){
+Route::get('/customer-support', function () {
     return view('admin.admin-customer-support');
 })->middleware(['auth', 'verified'])->name('admin-customer-support');
