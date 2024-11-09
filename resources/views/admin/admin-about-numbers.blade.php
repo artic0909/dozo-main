@@ -347,16 +347,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach($numbers as $number)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td>Products</td>
-                                                            <td><b>38</b></td>
-                                                            <td>Tools</td>
-
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$number->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$number->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td>{{$number->an_t}}</td>
+                                                            <td><b>{{$number->an_number}}</b></td>
+                                                            <td>{{$number->an_define}}</td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -449,10 +448,8 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('addAboutNumbers')}}" method="POST" enctype="multipart/form-data">
                             @csrf
-
-                            
 
                             <div class="form-group">
                                 <label for="an_t">Title</label>
@@ -489,8 +486,8 @@
 
 
         <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
+        @foreach($numbers as $number)
+        <div class="modal" id="myEditModal{{$number->id}}">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
@@ -501,7 +498,7 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('editAboutNumbers', $number->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -509,18 +506,18 @@
 
                             <div class="form-group">
                                 <label for="an_t">Title</label>
-                                <input type="text" class="form-control" id="an_t" name="an_t">
+                                <input type="text" class="form-control" id="an_t" name="an_t" value="{{$number->an_t}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="an_number">Numbers</label>
-                                <input type="number" class="form-control" id="an_number" name="an_number">
+                                <input type="number" class="form-control" id="an_number" name="an_number" value="{{$number->an_number}}">
                             </div>
 
 
                             <div class="form-group">
                                 <label for="an_define">Define</label>
-                                <input type="text" class="form-control" id="an_define" name="an_define" placeholder="Tools">
+                                <input type="text" class="form-control" id="an_define" name="an_define" placeholder="Tools" value="{{$number->an_define}}">
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -532,15 +529,15 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
 
 
 
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($numbers as $number)
+        <div class="modal fade" id="myDeleteModal{{$number->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -550,7 +547,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deleteAboutNumbers', $number->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -561,7 +558,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
-
+        @endforeach
 
 
 

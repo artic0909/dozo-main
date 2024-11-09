@@ -351,19 +351,18 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach($homebanners as $homebanner)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="assets/img/logo/logo.png" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
-                                                            <td>short desc</td>
-                                                            <td style="text-transform: uppercase;">House</td>
-                                                            <td style="text-transform: uppercase;">OF WINDOWS</td>
-                                                            <td style="text-transform: uppercase;">Our Service</td>
-                                                            <td style="text-transform: uppercase;"><a href=""><i class="fa-solid fa-paperclip" style="font-size: 1.3rem;"></i></a></td>
-
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$homebanner->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$homebanner->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td><img src="{{ asset('storage/' . $homebanner->home_banner) }}" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
+                                                            <td>{{$homebanner->h_s_desc}}</td>
+                                                            <td style="text-transform: uppercase;">{{$homebanner->h_title}}</td>
+                                                            <td style="text-transform: uppercase;">{{$homebanner->h_a_title}}</td>
+                                                            <td style="text-transform: uppercase;">{{$homebanner->h_p_name}}</td>
+                                                            <td style="text-transform: uppercase;"><a href="{{$homebanner->h_p_url}}"><i class="fa-solid fa-paperclip" style="font-size: 1.3rem;"></i></a></td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -446,7 +445,7 @@
 
         <!-- add modal -->
         <div class="modal" id="myAddModal">
-            <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -456,7 +455,7 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('addHomeBanner')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="home_banner">Home Banner</label>
@@ -527,9 +526,9 @@
 
 
         <!-- edit modal -->
-        
-        <div class="modal" id="myEditModal">
-            <div class="modal-dialog modal-dialog-scrollable">
+        @foreach($homebanners as $homebanner)
+        <div class="modal" id="myEditModal{{$homebanner->id}}">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -539,14 +538,14 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('editHomeBanner', $homebanner->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
 
 
                             <div class="form-group" style="display: flex; justify-content: center;">
-                                <img src="" style="width: 100%; height:150px; border-radius: 10px;" alt="">
+                                <img src="{{ asset('storage/' . $homebanner->home_banner) }}" style="width: 100%; height:150px; border-radius: 10px;" alt="">
                             </div>
 
 
@@ -560,7 +559,7 @@
 
                             <div class="form-group">
                                 <label for="h_s_desc">Short Description</label>
-                                <input type="text" class="form-control" id="h_s_desc" name="h_s_desc">
+                                <input type="text" class="form-control" id="h_s_desc" name="h_s_desc" value="{{$homebanner->h_s_desc}}">
                             </div>
 
 
@@ -568,7 +567,7 @@
 
                             <div class="form-group">
                                 <label for="h_title">Title</label>
-                                <input type="text" class="form-control" id="h_title" name="h_title">
+                                <input type="text" class="form-control" id="h_title" name="h_title" value="{{$homebanner->h_title}}">
                             </div>
 
 
@@ -576,14 +575,14 @@
 
                             <div class="form-group">
                                 <label for="h_a_title">Animated Title</label>
-                                <input type="text" class="form-control" id="h_a_title" name="h_a_title">
+                                <input type="text" class="form-control" id="h_a_title" name="h_a_title" value="{{$homebanner->h_a_title}}">
                             </div>
 
 
 
                             <div class="form-group">
                                 <label for="h_p_name">Page Name</label>
-                                <input type="text" class="form-control" id="h_p_name" name="h_p_name">
+                                <input type="text" class="form-control" id="h_p_name" name="h_p_name" value="{{$homebanner->h_p_name}}">
                             </div>
 
 
@@ -594,7 +593,7 @@
 
                             <div class="form-group">
                                 <label for="h_p_url">Page URL</label>
-                                <input type="text" class="form-control" id="h_p_url" name="h_p_url">
+                                <input type="text" class="form-control" id="h_p_url" name="h_p_url" value="{{$homebanner->h_p_url}}">
                             </div>
 
 
@@ -607,25 +606,25 @@
                 </div>
             </div>
         </div>
-        
+        @endforeach
 
 
 
 
 
         <!-- delete modal -->
-        
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($homebanners as $homebanner)
+        <div class="modal fade" id="myDeleteModal{{$homebanner->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myDeleteModal">Confirm Delete</h5>
+                        <h5 class="modal-title" id="myDeleteModal{{$homebanner->id}}">Confirm Delete</h5>
                     </div>
                     <div class="modal-body">
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deleteHomeBanner', $homebanner->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -636,7 +635,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
-        
+        @endforeach
 
 
 

@@ -341,6 +341,8 @@
                                                         <tr>
                                                             <th>Edit</th>
                                                             <th>Delete</th>
+                                                            <th>Main Category</th>
+                                                            <th>Sub Category</th>
                                                             <th>Product Image</th>
                                                             <th>Title</th>
                                                             <th>Description</th>
@@ -353,6 +355,8 @@
                                                             <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                                             <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
                                                             <td><img src="assets/img/logo/logo.png" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
+                                                            <td>main</td>
+                                                            <td>sub</td>
                                                             <td>title</td>
                                                             <td>desc</td>
 
@@ -459,6 +463,22 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="main_cat">Main Category</label>
+                                <select class="form-control" name="main_cat" id="main_cat">
+                                    <option value="">Main1</option>
+                                    <option value="">Main2</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sub_cat">Sub Category</label>
+                                <select class="form-control" name="sub_cat" id="sub_cat">
+                                    <option value="">Sub1</option>
+                                    <option value="">Sub2</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="pr_title">Product Title</label>
                                 <input type="text" class="form-control" name="pr_title" id="pr_title">
                             </div>
@@ -512,6 +532,25 @@
                                 <label for="pr_image">Product Image</label>
                                 <input type="file" class="form-control" name="pr_image" id="pr_image">
                             </div>
+
+
+                            <div class="form-group">
+                                <label for="main_cat">Main Category</label>
+                                <select class="form-control" name="main_cat" id="main_cat">
+                                    <option value="">Main1</option>
+                                    <option value="">Main2</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sub_cat">Sub Category</label>
+                                <select class="form-control" name="sub_cat" id="sub_cat">
+                                    <option value="">Sub1</option>
+                                    <option value="">Sub2</option>
+                                </select>
+                            </div>
+
+
 
                             <div class="form-group">
                                 <label for="pr_title">Product Title</label>

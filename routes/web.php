@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminAboutCompanyController;
+use App\Http\Controllers\AdminAboutNumbersController;
+use App\Http\Controllers\AdminHomeBannerController;
+use App\Http\Controllers\AdminOtherBannerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -107,3 +111,46 @@ Route::get('/teams', function () {
 Route::get('/customer-support', function () {
     return view('admin.admin-customer-support');
 })->middleware(['auth', 'verified'])->name('admin-customer-support');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// API Routes =========================================================================================================================>
+Route::get('/admin-home-banner', [AdminHomeBannerController::class, 'getHomeBanner'])->name('getHomeBanner');
+Route::post('/admin-home-banner/add', [AdminHomeBannerController::class, 'addHomeBanner'])->name('addHomeBanner');
+Route::put('/admin-home-banner/edit/{id}', [AdminHomeBannerController::class, 'editHomeBanner'])->name('editHomeBanner');
+Route::delete('/admin-home-banner/delete/{id}', [AdminHomeBannerController::class, 'deleteHomeBanner'])->name('deleteHomeBanner');
+
+
+Route::get('/admin-other-banner', [AdminOtherBannerController::class, 'getOtherBanner'])->name('getOtherBanner');
+Route::post('/admin-other-banner/add', [AdminOtherBannerController::class, 'addOtherBanner'])->name('addOtherBanner');
+Route::put('/admin-other-banner/edit/{id}', [AdminOtherBannerController::class, 'editOtherBanner'])->name('editOtherBanner');
+Route::delete('/admin-other-banner/delete/{id}', [AdminOtherBannerController::class, 'deleteOtherBanner'])->name('deleteOtherBanner');
+
+
+Route::get('/admin-about', [AdminAboutCompanyController::class, 'getAboutCompany'])->name('getAboutCompany');
+Route::post('/admin-about/add', [AdminAboutCompanyController::class, 'addAboutCompany'])->name('addAboutCompany');
+Route::put('/admin-about/edit/{id}', [AdminAboutCompanyController::class, 'editAboutCompany'])->name('editAboutCompany');
+Route::delete('/admin-about/delete/{id}', [AdminAboutCompanyController::class, 'deleteAboutCompany'])->name('deleteAboutCompany');
+
+
+Route::get('/admin-numbers', [AdminAboutNumbersController::class, 'getAboutNumbers'])->name('getAboutNumbers');
+Route::post('/admin-numbers/add', [AdminAboutNumbersController::class, 'addAboutNumbers'])->name('addAboutNumbers');
+Route::put('/admin-numbers/edit/{id}', [AdminAboutNumbersController::class, 'editAboutNumbers'])->name('editAboutNumbers');
+Route::delete('/admin-numbers/delete/{id}', [AdminAboutNumbersController::class, 'deleteAboutNumbers'])->name('deleteAboutNumbers');
