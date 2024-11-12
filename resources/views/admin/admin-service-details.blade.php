@@ -222,7 +222,7 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="/product-main-category">Main Category</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="/product-sub-category">Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-details">Service Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/product-details">Product Details</a></li>
                             </ul>
                         </div>
                     </li>
@@ -348,16 +348,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach ($services as $item)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="assets/img/logo/logo.png" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
-                                                            <td>title</td>
-                                                            <td>desc</td>
-
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$item->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$item->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td><img src="{{ asset('storage/' . $item->sr_img) }}" alt="" style="width: 100px; height: 100px; border-radius: 10px;"></td>
+                                                            <td>{{$item->sr_title}}</td>
+                                                            <td>{{$item->sr_desc}}</td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -450,21 +449,21 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('addService') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label for="sr_image">Service Image</label>
-                                <input type="file" class="form-control" name="sr_image" id="sr_image">
+                                <label for="sr_img">Service Image</label>
+                                <input type="file" class="form-control" name="sr_img" id="sr_img">
                             </div>
 
                             <div class="form-group">
-                                <label for="sr_title">Product Title</label>
+                                <label for="sr_title">Service Title</label>
                                 <input type="text" class="form-control" name="sr_title" id="sr_title">
                             </div>
 
                             <div class="form-group">
-                                <label for="sr_desc">Product Description</label>
+                                <label for="sr_desc">Service Description</label>
                                 <textarea class="form-control" name="sr_desc" id="sr_desc" cols="30" rows="10"></textarea>
                             </div>
 
@@ -484,8 +483,8 @@
 
 
         <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
+        @foreach ($services as $item)
+        <div class="modal" id="myEditModal{{$item->id}}">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
@@ -496,31 +495,31 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('editService', $item->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
 
 
                             <div class="form-group" style="display: flex; justify-content: center;">
-                                <img src="" style="width: 100%; height:150px; border-radius: 10px;" alt="">
+                                <img src="{{ asset('storage/' . $item->sr_img) }}" style="width: 100%; height:250px; border-radius: 10px;" alt="">
                             </div>
 
 
 
                             <div class="form-group">
-                                <label for="sr_image">Service Image</label>
-                                <input type="file" class="form-control" name="sr_image" id="sr_image">
+                                <label for="sr_img">Service Image</label>
+                                <input type="file" class="form-control" name="sr_img" id="sr_img">
                             </div>
 
                             <div class="form-group">
-                                <label for="sr_title">Product Title</label>
-                                <input type="text" class="form-control" name="sr_title" id="sr_title">
+                                <label for="sr_title">Service Title</label>
+                                <input type="text" class="form-control" name="sr_title" id="sr_title" value="{{ $item->sr_title }}">
                             </div>
 
                             <div class="form-group">
-                                <label for="sr_desc">Product Description</label>
-                                <textarea class="form-control" name="sr_desc" id="sr_desc" cols="30" rows="10"></textarea>
+                                <label for="sr_desc">Service Description</label>
+                                <textarea class="form-control" name="sr_desc" id="sr_desc" cols="30" rows="10">{{ $item->sr_desc }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -532,15 +531,15 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
 
 
 
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach ($services as $item)
+        <div class="modal fade" id="myDeleteModal{{$item->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -550,7 +549,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{ route('deleteService', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -561,6 +560,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
+        @endforeach
 
 
 

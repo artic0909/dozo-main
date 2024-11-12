@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminAboutCompanyController;
 use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminHomeBannerController;
 use App\Http\Controllers\AdminOtherBannerController;
+use App\Http\Controllers\AdminServiceDetailsController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -177,3 +178,8 @@ Route::put('/product-details/edit/{id}', [ProductController::class, 'editProduct
 Route::delete('/product-details/delete/{id}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
 Route::get('/get-subcategories/{mainCategoryId}', [ProductController::class, 'getSubCategories']);
 
+
+Route::get('/window-service', [AdminServiceDetailsController::class, 'getService'])->name('getService');
+Route::post('/window-service/add', [AdminServiceDetailsController::class, 'addService'])->name('addService');
+Route::put('/window-service/edit/{id}', [AdminServiceDetailsController::class, 'editService'])->name('editService');
+Route::delete('/window-service/delete/{id}', [AdminServiceDetailsController::class, 'deleteService'])->name('deleteService');
