@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminHomeBannerController;
 use App\Http\Controllers\AdminOtherBannerController;
 use App\Http\Controllers\AdminServiceDetailsController;
+use App\Http\Controllers\AMCInquiryController;
 use App\Http\Controllers\AMCRequestController;
 use App\Http\Controllers\FrontAMCRequestController;
 use App\Http\Controllers\FrontHomeController;
@@ -165,9 +166,9 @@ Route::get('/service-details', function () {
     return view('service-details');
 });
 
-Route::get('/amc', function () {
-    return view('amc');
-});
+// Route::get('/amc', function () {
+//     return view('amc');
+// });
 
 Route::get('/blog', function () {
     return view('blog');
@@ -179,8 +180,8 @@ Route::get('/inquiry', function () {
 
 
 // Client Routes =========================================================================================================================>
-
-
+Route::get('/amc', [AMCInquiryController::class, 'amcView'])->name('amc');
+Route::post('/amc', [AMCInquiryController::class, 'store'])->name('amc.store');
 
 
 
