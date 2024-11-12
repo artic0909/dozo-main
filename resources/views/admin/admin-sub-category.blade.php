@@ -347,13 +347,30 @@
                                                     </thead>
                                                     <tbody>
 
+                                                        @foreach($subcategories as $subcategory)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td style="text-transform: uppercase;"><b>main</b></td>
-                                                            <td style="text-transform: uppercase;"><b>sub</b></td>
 
+                                                            <td>
+                                                                <a href="#" class="text-success" style="font-size: 1.4rem;"
+                                                                    data-toggle="modal" data-target="#myEditModal{{ $subcategory->id }}">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                </a>
+                                                            </td>
+
+
+                                                            <td>
+                                                                <a href="#" class="text-danger" style="font-size: 1.4rem;"
+                                                                    data-toggle="modal" data-target="#myDeleteModal{{ $subcategory->id }}">
+                                                                    <i class="fa-solid fa-trash-can"></i>
+                                                                </a>
+                                                            </td>
+
+
+                                                            <td style="text-transform: uppercase;"><b>{{ $subcategory->mainCategory->main_category }}</b></td>
+                                                            <td style="text-transform: uppercase;"><b>{{ $subcategory->sub_category }}</b></td>
                                                         </tr>
+                                                        @endforeach
+
 
                                                     </tbody>
                                                 </table>
@@ -445,30 +462,34 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
-
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <!-- Form action points to the route that handles adding a subcategory -->
+                        <form action="{{ route('addSubC') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-
-
                             <div class="form-group">
-                                <label for="sub_c">Sub Category</label>
-                                <input type="text" class="form-control" id="sub_c" name="sub_c">
+                                <label for="main_category_id">Main Category</label>
+                                <select name="main_category_id" id="main_category_id" class="form-control" required>
+                                    <option value="">Select a Main Category</option>
+                                    @foreach ($mainCategories as $mainCategory)
+                                    <option value="{{ $mainCategory->id }}">{{ $mainCategory->main_category }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
-
-
+                            <div class="form-group">
+                                <label for="sub_category">Sub Category</label>
+                                <input type="text" class="form-control" id="sub_category" name="sub_category" required>
+                            </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>
                     </div>
 
-
-
                 </div>
             </div>
         </div>
+
 
 
 
@@ -477,7 +498,8 @@
 
         <!-- edit modal -->
 
-        <div class="modal" id="myEditModal">
+        @foreach($subcategories as $subcategory)
+        <div class="modal fade" id="myEditModal{{ $subcategory->id }}" tabindex="-1" role="dialog" aria-labelledby="myEditModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
@@ -486,28 +508,36 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
-
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('editSubC', $subcategory->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
-
+                            <div class="form-group">
+                                <label for="main_category_id">Main Category</label>
+                                <select name="main_category_id" id="main_category_id" class="form-control" required>
+                                    @foreach($mainCategories as $mainCategory)
+                                    <option value="{{ $mainCategory->id }}"
+                                        {{ $subcategory->main_category_id == $mainCategory->id ? 'selected' : '' }}>
+                                        {{ $mainCategory->main_category }}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <div class="form-group">
-                                <label for="sub_c">Sub Category</label>
-                                <input type="text" class="form-control" id="sub_c" name="sub_c">
+                                <label for="sub_category">Sub Category</label>
+                                <input type="text" class="form-control" id="sub_category" name="sub_category" value="{{ $subcategory->sub_category }}" required>
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>
                     </div>
 
-
-
                 </div>
             </div>
         </div>
+        @endforeach
 
 
 
@@ -515,8 +545,8 @@
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($subcategories as $subcategory)
+        <div class="modal fade" id="myDeleteModal{{ $subcategory->id }}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -526,7 +556,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{ route('deleteSubC', $subcategory->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -537,7 +567,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
-
+        @endforeach
 
 
 

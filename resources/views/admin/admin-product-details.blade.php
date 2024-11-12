@@ -339,11 +339,11 @@
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Edit</th>
+                                                            <!-- <th>Edit</th> -->
                                                             <th>Delete</th>
+                                                            <th>Product Image</th>
                                                             <th>Main Category</th>
                                                             <th>Sub Category</th>
-                                                            <th>Product Image</th>
                                                             <th>Title</th>
                                                             <th>Description</th>
 
@@ -351,16 +351,29 @@
                                                     </thead>
                                                     <tbody>
 
+                                                        @foreach($products as $product)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="assets/img/logo/logo.png" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
-                                                            <td>main</td>
-                                                            <td>sub</td>
-                                                            <td>title</td>
-                                                            <td>desc</td>
-
+                                                            <!-- <td>
+                                                                <a href="#" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{ $product->id }}">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                                </a>
+                                                            </td> -->
+                                                            <td>
+                                                                <a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{ $product->id }}">
+                                                                    <i class="fa-solid fa-trash-can"></i>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <img src="{{ asset('storage/' . $product->pr_image) }}" alt="Product Image" style="width: 100px; height: 100px; border-radius: 10px;">
+                                                            </td>
+                                                            <td>{{ $product->mainCategory->main_category }}</td>
+                                                            <td>{{ $product->subCategory->sub_category }}</td>
+                                                            
+                                                            <td>{{ $product->pr_title }}</td>
+                                                            <td>{{ Str::limit($product->pr_desc, 50) }}</td>
                                                         </tr>
+                                                        @endforeach
+
 
                                                     </tbody>
                                                 </table>
@@ -444,7 +457,7 @@
 
         <!-- add modal -->
         <div class="modal" id="myAddModal">
-            <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
 
                     <div class="modal-header">
@@ -454,7 +467,7 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('addProduct') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -465,18 +478,20 @@
                             <div class="form-group">
                                 <label for="main_cat">Main Category</label>
                                 <select class="form-control" name="main_cat" id="main_cat">
-                                    <option value="">Main1</option>
-                                    <option value="">Main2</option>
+                                    <option value="">Select Main Category</option>
+                                    @foreach($mainCategories as $mainCategory)
+                                    <option value="{{ $mainCategory->id }}">{{ $mainCategory->main_category }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sub_cat">Sub Category</label>
                                 <select class="form-control" name="sub_cat" id="sub_cat">
-                                    <option value="">Sub1</option>
-                                    <option value="">Sub2</option>
+                                    <option value="">Select Sub Category</option>
                                 </select>
                             </div>
+
 
                             <div class="form-group">
                                 <label for="pr_title">Product Title</label>
@@ -503,74 +518,68 @@
 
 
 
-        <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
-            <div class="modal-dialog modal-dialog-scrollable">
+        <!-- Edit modal -->
+        @foreach($products as $product)
+        <div class="modal" id="myEditModal{{ $product->id }}">
+            <div class="modal-dialog">
                 <div class="modal-content">
-
                     <div class="modal-header">
                         <h4 class="modal-title">Edit Product Details</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
-
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('editProduct', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
-
-
-                            <div class="form-group" style="display: flex; justify-content: center;">
-                                <img src="" style="width: 100%; height:150px; border-radius: 10px;" alt="">
+                            <div class="form-group text-center">
+                                <img src="{{ asset('storage/' . $product->pr_image) }}" style="width: 100%; height:150px; border-radius: 10px;" alt="Product Image">
                             </div>
-
-
 
                             <div class="form-group">
                                 <label for="pr_image">Product Image</label>
                                 <input type="file" class="form-control" name="pr_image" id="pr_image">
                             </div>
 
-
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="main_cat">Main Category</label>
-                                <select class="form-control" name="main_cat" id="main_cat">
-                                    <option value="">Main1</option>
-                                    <option value="">Main2</option>
+                                <select class="form-control main-cat-select" name="main_cat" id="main_cat{{ $product->id }}">
+                                    <option value="">Select Main Category</option>
+                                    @foreach($mainCategories as $mainCategory)
+                                    <option value="{{ $mainCategory->id }}" {{ $mainCategory->id == $product->main_cat_id ? 'selected' : '' }}>
+                                        {{ $mainCategory->main_category }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="sub_cat">Sub Category</label>
-                                <select class="form-control" name="sub_cat" id="sub_cat">
-                                    <option value="">Sub1</option>
-                                    <option value="">Sub2</option>
+                                <select class="form-control sub-cat-select" name="sub_cat" id="sub_cat{{ $product->id }}">
+                                    <option value="{{ $product->sub_cat_id }}">{{ $product->sub_category->sub_cat ?? 'Select Sub Category' }}</option>
                                 </select>
-                            </div>
-
-
+                            </div> -->
 
                             <div class="form-group">
                                 <label for="pr_title">Product Title</label>
-                                <input type="text" class="form-control" name="pr_title" id="pr_title">
+                                <input type="text" class="form-control" name="pr_title" id="pr_title" value="{{ $product->pr_title }}">
                             </div>
 
                             <div class="form-group">
                                 <label for="pr_desc">Product Description</label>
-                                <textarea class="form-control" name="pr_desc" id="pr_desc" cols="30" rows="10"></textarea>
+                                <textarea class="form-control" name="pr_desc" id="pr_desc" cols="30" rows="10">{{ $product->pr_desc }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
+        @endforeach
+
+
 
 
 
@@ -578,8 +587,8 @@
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($products as $product)
+        <div class="modal fade" id="myDeleteModal{{ $product->id }}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -589,7 +598,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deleteProduct', $product->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -600,7 +609,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
-
+        @endforeach
 
 
 
@@ -648,6 +657,60 @@
     <script src="Admin/js/dashboard.js"></script>
     <script src="Admin/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
+
+
+
+
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            // When main category is selected
+            $('#main_cat').change(function() {
+                var mainCategoryId = $(this).val(); // Get selected main category ID
+
+                if (mainCategoryId) {
+                    // Send AJAX request to fetch subcategories
+                    $.ajax({
+                        url: '/get-subcategories/' + mainCategoryId, // Update this URL as per your route
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(response) {
+                            // Clear the subcategory dropdown
+                            $('#sub_cat').empty();
+                            $('#sub_cat').append('<option value="">Select Sub Category</option>');
+
+                            // Check if subcategories were returned
+                            if (response.length > 0) {
+                                $.each(response, function(index, subCategory) {
+                                    $('#sub_cat').append('<option value="' + subCategory.id + '">' + subCategory.sub_category + '</option>');
+                                });
+                            } else {
+                                $('#sub_cat').append('<option value="">No subcategories available</option>');
+                            }
+                        },
+                        error: function() {
+                            alert('Failed to load subcategories');
+                        }
+                    });
+                } else {
+                    // If no main category is selected, reset the subcategory dropdown
+                    $('#sub_cat').empty();
+                    $('#sub_cat').append('<option value="">Select Sub Category</option>');
+                }
+            });
+        });
+    </script>
+
+
+
+
+
+
+
 </body>
 
 </html>

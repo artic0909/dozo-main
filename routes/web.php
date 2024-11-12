@@ -4,7 +4,10 @@ use App\Http\Controllers\AdminAboutCompanyController;
 use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminHomeBannerController;
 use App\Http\Controllers\AdminOtherBannerController;
+use App\Http\Controllers\MainCategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -154,3 +157,23 @@ Route::get('/admin-numbers', [AdminAboutNumbersController::class, 'getAboutNumbe
 Route::post('/admin-numbers/add', [AdminAboutNumbersController::class, 'addAboutNumbers'])->name('addAboutNumbers');
 Route::put('/admin-numbers/edit/{id}', [AdminAboutNumbersController::class, 'editAboutNumbers'])->name('editAboutNumbers');
 Route::delete('/admin-numbers/delete/{id}', [AdminAboutNumbersController::class, 'deleteAboutNumbers'])->name('deleteAboutNumbers');
+
+
+Route::get('/product-main-category', [MainCategoryController::class, 'getMainC'])->name('getMainC');
+Route::post('/product-main-category/add', [MainCategoryController::class, 'addMainC'])->name('addMainC');
+Route::put('/product-main-category/edit/{id}', [MainCategoryController::class, 'editMainC'])->name('editMainC');
+Route::delete('/product-main-category/delete/{id}', [MainCategoryController::class, 'deleteMainC'])->name('deleteMainC');
+
+
+Route::get('/product-sub-category', [SubCategoryController::class, 'getSubC'])->name('getSubC');
+Route::post('/product-sub-category/add', [SubCategoryController::class, 'addSubC'])->name('addSubC');
+Route::put('/product-sub-category/edit/{id}', [SubCategoryController::class, 'editSubC'])->name('editSubC');
+Route::delete('/product-sub-category/delete/{id}', [SubCategoryController::class, 'deleteSubC'])->name('deleteSubC');
+
+
+Route::get('/product-details', [ProductController::class, 'getProduct'])->name('getProduct');
+Route::post('/product-details/add', [ProductController::class, 'addProduct'])->name('addProduct');
+Route::put('/product-details/edit/{id}', [ProductController::class, 'editProduct'])->name('editProduct');
+Route::delete('/product-details/delete/{id}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+Route::get('/get-subcategories/{mainCategoryId}', [ProductController::class, 'getSubCategories']);
+

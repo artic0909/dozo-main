@@ -345,14 +345,13 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach($maincategories as $maincategory)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td style="text-transform: uppercase;"><b>main</b></td>
-
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$maincategory->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$maincategory->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td style="text-transform: uppercase;"><b>{{$maincategory->main_category}}</b></td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -445,14 +444,14 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('addMainC')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
 
 
                             <div class="form-group">
-                                <label for="main_c">Main Category</label>
-                                <input type="text" class="form-control" id="main_c" name="main_c">
+                                <label for="main_category">Main Category</label>
+                                <input type="text" class="form-control" id="main_category" name="main_category">
                             </div>
 
 
@@ -474,8 +473,8 @@
 
 
         <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
+        @foreach($maincategories as $maincategory)
+        <div class="modal" id="myEditModal{{$maincategory->id}}">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
@@ -486,15 +485,13 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('editMainC', $maincategory->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
-
-
                             <div class="form-group">
-                                <label for="main_c">Main Category</label>
-                                <input type="text" class="form-control" id="main_c" name="main_c">
+                                <label for="main_category">Main Category</label>
+                                <input type="text" class="form-control" id="main_category" name="main_category" value="{{$maincategory->main_category}}">
                             </div>
 
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -506,15 +503,15 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
 
 
 
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($maincategories as $maincategory)
+        <div class="modal fade" id="myDeleteModal{{$maincategory->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -524,7 +521,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deleteMainC', $maincategory->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -535,7 +532,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
-
+        @endforeach
 
 
 
