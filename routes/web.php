@@ -5,15 +5,26 @@ use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminHomeBannerController;
 use App\Http\Controllers\AdminOtherBannerController;
 use App\Http\Controllers\AdminServiceDetailsController;
+use App\Http\Controllers\AMCRequestController;
+use App\Http\Controllers\FrontAMCRequestController;
+use App\Http\Controllers\FrontHomeController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+// Fallback route to handle 404 errors
+Route::fallback(function () {
+    return response()->view('error-page', [], 404);
 });
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('admin.index');
@@ -123,6 +134,51 @@ Route::get('/customer-support', function () {
 
 
 
+
+
+// Client View Routes ========================================================================================================================>
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/product-upvc', function () {
+    return view('product-upvc');
+});
+
+Route::get('/product-aluminium', function () {
+    return view('product-aluminium');
+});
+
+Route::get('/product-view', function () {
+    return view('product-view');
+});
+
+Route::get('/service', function () {
+    return view('service');
+});
+
+Route::get('/service-details', function () {
+    return view('service-details');
+});
+
+Route::get('/amc', function () {
+    return view('amc');
+});
+
+Route::get('/blog', function () {
+    return view('blog');
+});
+
+Route::get('/inquiry', function () {
+    return view('inquiry');
+});
+
+
+// Client Routes =========================================================================================================================>
 
 
 

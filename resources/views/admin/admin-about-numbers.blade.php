@@ -23,6 +23,7 @@
     <!-- icon -->
     <link rel="icon" href="assets/img/logo/dlogo.ico" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .floating-btn-div {
             position: fixed;
@@ -606,6 +607,11 @@
     <script src="Admin/js/dashboard.js"></script>
     <script src="Admin/js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
+
+
+
+
+
 </body>
 
 </html>
