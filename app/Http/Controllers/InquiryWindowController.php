@@ -63,7 +63,7 @@ class InquiryWindowController extends Controller
 
         // Send email confirmation
         $to = $validatedData['cus_email'];
-        $msg = "Dear Sir, Thanks for Window Inquiry with DOZO | House of Windows. We will process your inquiry soon!";
+        $msg = "Thanks for Window Inquiry with DOZO | House of Windows. We will process your inquiry soon!";
         $subject = "Window Inquiry Confirmation";
         Mail::to($to)->send(new InquiryWindowMail($msg, $subject));
 

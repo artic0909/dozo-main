@@ -524,11 +524,11 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email"
-                                aria-describedby="emailHelp" required>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                             </div>
                         </div>
@@ -538,8 +538,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-check-label" for="inquiry">Message</label>
-                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control"
-                                required></textarea>
+                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn22 w-100">Get Ticket</button>
 
@@ -620,7 +619,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
                 </div>
             </div>
         </div>
@@ -659,7 +658,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -738,6 +737,57 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Create FormData object from the form
+            let formData = new FormData(this);
+
+            // Send the form data using Fetch or Ajax
+            fetch("{{ route('support') }}", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Check if the form submission was successful
+                    if (data.success) {
+                        // Show success modal
+                        $('#myInquirySuccessModal').modal('show');
+                    } else {
+                        // Show error modal
+                        $('#myInquiryErrorModal').modal('show');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Show error modal if there's an issue with the submission
+                    $('#myInquiryErrorModal').modal('show');
+                });
+        });
+    </script>
 
 </body>
 

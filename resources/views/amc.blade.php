@@ -216,8 +216,8 @@
 
 
                                             <li><a href="/blog">Blog</a></li>
-                                            <li><a href="#" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i
-                                                        class="fa-solid fa-headset"></i>&nbsp; Contact Us</a></li>
+                                            <!-- <li><a href="#" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i
+                                                        class="fa-solid fa-headset"></i>&nbsp; Contact Us</a></li> -->
                                             <li><a href="/amc" class="h-btnn">AMC Inquiry</a></li>
 
 
@@ -796,11 +796,11 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email"
-                                aria-describedby="emailHelp" required>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                             </div>
                         </div>
@@ -810,8 +810,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-check-label" for="inquiry">Message</label>
-                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control"
-                                required></textarea>
+                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn22 w-100">Get Ticket</button>
 
@@ -862,6 +861,58 @@
 
 
 
+    <!-- Inquiry Send Success Modal Start -->
+    <div class="modal fade" id="myInquirySuccessModall" tabindex="-1" role="dialog" aria-labelledby="myInquirySuccessModallLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="assets/img/icon/upp.gif" width="180" alt="">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="section-tittle section-tittle7">
+                                <div class="front-text">
+                                    <h2 style="text-align: center;">Your AMC Inquiry Is Send Successfully!</h2>
+                                    <p style="text-align: right; font-weight: 700;">Please Check The Mail →</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Inquiry Send Success Modal End -->
+
+
+
+
+    <!-- Inquiry Send Unsuccess Modal Start -->
+    <div class="modal fade" id="myInquiryErrorModall" tabindex="-1" role="dialog" aria-labelledby="myInquiryErrorModallLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="assets/img/icon/unn.gif" width="180" alt="">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="section-tittle section-tittle7">
+                                <div class="front-text">
+                                    <h2 style="text-align: center;">Your AMC Inquiry Is Not SEND!</h2>
+                                    <p style="text-align: right; font-weight: 700;">Please Fill The Form Correctly →</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Inquiry Send Unsuccess Modal End -->
 
 
 
@@ -955,6 +1006,12 @@
 
     <script src="assets/js/function.js"></script>
     <script src="assets/js/amc.js"></script>
+
+
+
+
+
+
 
 
 
@@ -1080,7 +1137,43 @@
 
 
 
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
 
+            // Create FormData object from the form
+            let formData = new FormData(this);
+
+            // Send the form data using Fetch or Ajax
+            fetch("{{ route('support') }}", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Check if the form submission was successful
+                    if (data.success) {
+                        // Show success modal
+                        $('#myInquirySuccessModall').modal('show');
+                    } else {
+                        // Show error modal
+                        $('#myInquiryErrorModall').modal('show');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Show error modal if there's an issue with the submission
+                    $('#myInquiryErrorModal').modal('show');
+                });
+        });
+    </script>
 
 
 

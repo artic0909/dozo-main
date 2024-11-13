@@ -63,7 +63,7 @@ class AMCInquiryController extends Controller
 
         // Send email confirmation
         $to = $validatedData['email'];
-        $msg = "Dear Sir, Thanks for your AMC Inquiry with DOZO | House of Windows. We will process your inquiry soon!";
+        $msg = "Thanks for your AMC Inquiry with DOZO | House of Windows. We will process your inquiry soon!";
         $subject = "Annual Maintenance Contract";
         Mail::to($to)->send(new AMCRequest($msg, $subject));
 

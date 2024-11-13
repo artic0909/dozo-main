@@ -1181,7 +1181,8 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
                             <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
@@ -1444,7 +1445,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
                 </div>
             </div>
         </div>
@@ -1483,7 +1484,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1567,6 +1568,44 @@
     <script src="assets/js/blog-create.js"></script>
 
 
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Create FormData object from the form
+            let formData = new FormData(this);
+
+            // Send the form data using Fetch or Ajax
+            fetch("{{ route('support') }}", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Check if the form submission was successful
+                    if (data.success) {
+                        // Show success modal
+                        $('#myInquirySuccessModal').modal('show');
+                    } else {
+                        // Show error modal
+                        $('#myInquiryErrorModal').modal('show');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Show error modal if there's an issue with the submission
+                    $('#myInquiryErrorModal').modal('show');
+                });
+        });
+    </script>
 
 
 </body>

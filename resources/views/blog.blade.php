@@ -621,11 +621,11 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email"
-                                aria-describedby="emailHelp" required>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                             </div>
                         </div>
@@ -635,8 +635,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-check-label" for="inquiry">Message</label>
-                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control"
-                                required></textarea>
+                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn22 w-100">Get Ticket</button>
 
@@ -778,35 +777,6 @@
     <!-- Blog Create Modal End -->
 
 
-    <!-- <button type="button" class="btn22" data-toggle="modal" data-target="#myInquirySuccessModal">
-        Inquiry Success
-    </button>
-
-    <button type="button" class="btn22" data-toggle="modal" data-target="#myInquiryErrorModal">
-        Inquiry Error
-    </button>
-
-    <button type="button" class="btn22" data-toggle="modal" data-target="#myBlogSuccessModal">
-        Blog Success
-    </button>
-
-    <button type="button" class="btn22" data-toggle="modal" data-target="#myBlogErrorModal">
-        Blog Error
-    </button> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -892,21 +862,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Inquiry Send Success Modal Start -->
     <div class="modal fade" id="myInquirySuccessModal" tabindex="-1" role="dialog"
         aria-labelledby="myInquirySuccessModalLabel" aria-hidden="true">
@@ -934,7 +889,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
                 </div>
             </div>
         </div>
@@ -954,7 +909,7 @@
                 <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
 
 
-                    <img src="assets/img/icon/unn.gif" width="160" alt="">
+                    <img src="assets/img/icon/unn.gif" width="180" alt="">
 
 
 
@@ -973,7 +928,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1057,6 +1012,53 @@
 
     <!-- blog-validation -->
     <script src="assets/js/blog-create.js"></script>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Create FormData object from the form
+            let formData = new FormData(this);
+
+            // Send the form data using Fetch or Ajax
+            fetch("{{ route('support') }}", {
+                    method: "POST",
+                    body: formData,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Check if the form submission was successful
+                    if (data.success) {
+                        // Show success modal
+                        $('#myInquirySuccessModal').modal('show');
+                    } else {
+                        // Show error modal
+                        $('#myInquiryErrorModal').modal('show');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    // Hide the contact form modal
+                    $('#myInquiryModal').modal('hide');
+
+                    // Show error modal if there's an issue with the submission
+                    $('#myInquiryErrorModal').modal('show');
+                });
+        });
+    </script>
 
 </body>
 

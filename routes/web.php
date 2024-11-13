@@ -9,9 +9,7 @@ use App\Http\Controllers\AdminOfferController;
 use App\Http\Controllers\AdminOtherBannerController;
 use App\Http\Controllers\AdminServiceDetailsController;
 use App\Http\Controllers\AMCInquiryController;
-use App\Http\Controllers\AMCRequestController;
-use App\Http\Controllers\FrontAMCRequestController;
-use App\Http\Controllers\FrontHomeController;
+use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\InquiryWindowController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\ProductController;
@@ -176,17 +174,12 @@ Route::get('/service-details', function () {
     return view('service-details');
 });
 
-// Route::get('/amc', function () {
-//     return view('amc');
-// });
-
 Route::get('/blog', function () {
     return view('blog');
 });
 
-// Route::get('/inquiry', function () {
-//     return view('inquiry');
-// });
+
+
 
 
 // Client Routes =========================================================================================================================>
@@ -197,6 +190,10 @@ Route::post('/amc', [AMCInquiryController::class, 'store'])->name('amc.store');
 
 Route::get('/inquiry', [InquiryWindowController::class, 'inquiryView'])->name('inquiry');
 Route::post('/inquiry', [InquiryWindowController::class, 'store'])->name('inquiry.store');
+
+
+Route::post('/support', [ContactusController::class, 'support'])->name('support');
+
 
 
 
