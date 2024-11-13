@@ -2,13 +2,17 @@
 
 use App\Http\Controllers\AdminAboutCompanyController;
 use App\Http\Controllers\AdminAboutNumbersController;
+use App\Http\Controllers\AdminAMCController;
 use App\Http\Controllers\AdminHomeBannerController;
+use App\Http\Controllers\AdminInquiryWindowController;
+use App\Http\Controllers\AdminOfferController;
 use App\Http\Controllers\AdminOtherBannerController;
 use App\Http\Controllers\AdminServiceDetailsController;
 use App\Http\Controllers\AMCInquiryController;
 use App\Http\Controllers\AMCRequestController;
 use App\Http\Controllers\FrontAMCRequestController;
 use App\Http\Controllers\FrontHomeController;
+use App\Http\Controllers\InquiryWindowController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -89,6 +93,11 @@ Route::get('/window-service', function () {
 })->middleware(['auth', 'verified'])->name('admin-service-details');
 
 
+Route::get('/amc-offers', function () {
+    return view('admin.admin-amc-offer');
+})->middleware(['auth', 'verified'])->name('admin-amc-offer');
+
+
 Route::get('/amc-request', function () {
     return view('admin.admin-amc-requests');
 })->middleware(['auth', 'verified'])->name('admin-amc-requests');
@@ -137,6 +146,7 @@ Route::get('/customer-support', function () {
 
 
 
+
 // Client View Routes ========================================================================================================================>
 Route::get('/', function () {
     return view('home');
@@ -174,14 +184,20 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
-Route::get('/inquiry', function () {
-    return view('inquiry');
-});
+// Route::get('/inquiry', function () {
+//     return view('inquiry');
+// });
 
 
 // Client Routes =========================================================================================================================>
 Route::get('/amc', [AMCInquiryController::class, 'amcView'])->name('amc');
 Route::post('/amc', [AMCInquiryController::class, 'store'])->name('amc.store');
+
+
+
+Route::get('/inquiry', [InquiryWindowController::class, 'inquiryView'])->name('inquiry');
+Route::post('/inquiry', [InquiryWindowController::class, 'store'])->name('inquiry.store');
+
 
 
 
@@ -240,3 +256,19 @@ Route::get('/window-service', [AdminServiceDetailsController::class, 'getService
 Route::post('/window-service/add', [AdminServiceDetailsController::class, 'addService'])->name('addService');
 Route::put('/window-service/edit/{id}', [AdminServiceDetailsController::class, 'editService'])->name('editService');
 Route::delete('/window-service/delete/{id}', [AdminServiceDetailsController::class, 'deleteService'])->name('deleteService');
+
+
+Route::get('/amc-request', [AdminAMCController::class, 'getAMC'])->name('getAMC');
+Route::get('/download-pdf/{id}', [AdminAMCController::class, 'pdf_create'])->name('pdf_create');
+Route::delete('/amc/delete/{id}', [AdminAMCController::class, 'deleteRequest'])->name('deleteRequest');
+
+
+Route::get('/window-inquiry', [AdminInquiryWindowController::class, 'getInquiry'])->name('getInquiry');
+Route::get('/download-inquiry/{id}', [AdminInquiryWindowController::class, 'download_inquiry'])->name('download_inquiry');
+Route::delete('/inquiry/delete/{id}', [AdminInquiryWindowController::class, 'deleteInquiry'])->name('deleteInquiry');
+
+
+Route::get('/amc-offers', [AdminOfferController::class, 'getoffer'])->name('getoffer');
+Route::post('/amc-offers/add', [AdminOfferController::class, 'addoffer'])->name('addoffer');
+Route::put('/amc-offers/edit/{id}', [AdminOfferController::class, 'editoffer'])->name('editoffer');
+Route::delete('/amc-offers/delete/{id}', [AdminOfferController::class, 'deleteoffer'])->name('deleteoffer');

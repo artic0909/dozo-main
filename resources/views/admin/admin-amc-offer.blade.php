@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Team | DOZO Admin</title>
+    <title>AMC Offer | DOZO Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="Admin/vendors/feather/feather.css">
     <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
@@ -325,7 +325,7 @@
                         <div class="col-md-12 grid-margin">
                             <div class="row">
                                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Expert Team</h3>
+                                    <h3 class="font-weight-bold">AMC Offers</h3>
                                 </div>
 
 
@@ -335,29 +335,24 @@
                                 <div class="col-lg-12 grid-margin stretch-card mt-3">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Ratio: 370x406</h4>
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
                                                             <th>Edit</th>
                                                             <th>Delete</th>
-                                                            <th>Member Image</th>
-                                                            <th>Name</th>
-                                                            <th>Profession</th>
+                                                            <th>Offers</th>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach($offers as $offer)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="assets/img/logo/logo.png" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
-                                                            <td>sfhgjf</td>
-                                                            <td>sfhgjf</td>
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$offer->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$offer->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td style="text-transform: uppercase;"><b>{{$offer->offer}}</b></td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -440,41 +435,25 @@
 
         <!-- add modal -->
         <div class="modal" id="myAddModal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Member</h4>
+                        <h4 class="modal-title">Add AMC Offers</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('addoffer')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="form-group">
-                                <label for="m_img">Member Image</label>
-                                <input type="file" class="form-control" id="m_img" name="m_img">
-                                <small id="emailHelp" class="form-text text-muted">Upload banner less than 1.5 MB</small>
-                            </div>
-
 
 
                             <div class="form-group">
-                                <label for="m_name" class="form-label">Member Name<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="m_name" id="m_name">
+                                <label for="offer">Offer</label>
+                                <input type="text" class="form-control" id="offer" name="offer">
                             </div>
-
-                            
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="m_prof">Member Profession<span
-                                        style="color: red;">*</span></label>
-                                <input type="text" name="m_prof" id="m_prof" class="form-control">
-                            </div>
-
-
 
 
 
@@ -495,51 +474,26 @@
 
 
         <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
-            <div class="modal-dialog">
+        @foreach($offers as $offer)
+        <div class="modal" id="myEditModal{{$offer->id}}">
+            <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h4 class="modal-title">Edit Member</h4>
+                        <h4 class="modal-title">Edit AMC Offers</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('editoffer', $offer->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
-
-
-                            <div class="form-group" style="display: flex; justify-content: center;">
-                                <img src="" style="width: 100%; height:150px; border-radius: 10px;" alt="">
-                            </div>
-
-
-
                             <div class="form-group">
-                                <label for="m_img">Member Image</label>
-                                <input type="file" class="form-control" id="m_img" name="m_img">
-                                <small id="emailHelp" class="form-text text-muted">Upload banner less than 1.5 MB</small>
+                                <label for="offer">Main Category</label>
+                                <input type="text" class="form-control" id="offer" name="offer" value="{{$offer->offer}}">
                             </div>
-
-
-
-                            <div class="form-group">
-                                <label for="m_name" class="form-label">Member Name<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="m_name" id="m_name">
-                            </div>
-
-                            
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="m_prof">Member Profession<span
-                                        style="color: red;">*</span></label>
-                                <input type="text" name="m_prof" id="m_prof" class="form-control">
-                            </div>
-
 
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>
@@ -550,15 +504,15 @@
                 </div>
             </div>
         </div>
-
+        @endforeach
 
 
 
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($offers as $offer)
+        <div class="modal fade" id="myDeleteModal{{$offer->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -568,7 +522,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deleteoffer', $offer->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -579,7 +533,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
-
+        @endforeach
 
 
 

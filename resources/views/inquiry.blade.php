@@ -236,9 +236,9 @@
 
                             </div>
 
-                            <!-- Mobile Menu -->
+                            <!-- cus_mobile Menu -->
                             <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
+                                <div class="cus_mobile_menu d-block d-lg-none"></div>
                             </div>
                         </div>
                     </div>
@@ -345,8 +345,8 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-12 col-lg-8 m-auto">
-                                                <form class="multisteps-form__form">
-
+                                                <form class="multisteps-form__form" action="{{ route('inquiry.store') }}" method="POST" enctype="multipart/form-data">
+                                                    @csrf
 
 
 
@@ -378,16 +378,16 @@
 
 
                                                             <div class="mb-3">
-                                                                <label for="fname" class="form-label">Full Name<span class="text-danger">*</span></label>
-                                                                <input type="text" name="fname" class="form-control"
-                                                                    id="fname" required>
+                                                                <label for="cus_name" class="form-label">Full Name<span class="text-danger">*</span></label>
+                                                                <input type="text" name="cus_name" class="form-control"
+                                                                    id="cus_name" required>
                                                             </div>
 
                                                             <div class="mb-3">
-                                                                <label for="email" class="form-label">Email
+                                                                <label for="cus_email" class="form-label">Email
                                                                     address<span class="text-danger">*</span></label>
-                                                                <input type="email" name="email" class="form-control"
-                                                                    id="email" aria-describedby="emailHelp" required>
+                                                                <input type="email" name="cus_email" class="form-control"
+                                                                    id="cus_email" aria-describedby="emailHelp" required>
                                                                 <div id="emailHelp" class="form-text">We'll never share
                                                                     your email with
                                                                     anyone else.
@@ -396,9 +396,9 @@
 
 
                                                             <div class="mb-3">
-                                                                <label for="mob" class="form-label">Mobile No<span class="text-danger">*</span></label>
-                                                                <input type="text" name="mob" id="mob"
-                                                                    class="form-control" id="mob" required>
+                                                                <label for="cus_mob" class="form-label">Mobile No<span class="text-danger">*</span></label>
+                                                                <input type="text" name="cus_mob" id="cus_mob"
+                                                                    class="form-control" id="cus_mob" required>
                                                             </div>
 
                                                             <div class="button-row d-flex mt-4">
@@ -446,17 +446,17 @@
 
                                                             <div class="mb-3">
                                                                 <label class="form-check-label"
-                                                                    for="add">Address<span class="text-danger">*</span></label>
-                                                                <textarea name="add" id="add" class="form-control"
+                                                                    for="cus_add">Address<span class="text-danger">*</span></label>
+                                                                <textarea name="cus_add" id="cus_add" class="form-control"
                                                                     required rows="5"></textarea>
                                                             </div>
 
 
 
                                                             <div class="mb-3">
-                                                                <label class="form-check-label" for="add">PIN CODE<span class="text-danger">*</span></label>
-                                                                <input type="number" class="form-control" id="pin"
-                                                                    name="pin">
+                                                                <label class="form-check-label" for="cus_pin">PIN CODE<span class="text-danger">*</span></label>
+                                                                <input type="number" class="form-control" id="cus_pin"
+                                                                    name="cus_pin">
                                                             </div>
 
 
@@ -511,9 +511,8 @@
                                                             <div id="amcForm">
                                                                 <div class="form-inner" id="windowGroup_1">
                                                                     <div class="form-group">
-                                                                        <p class="amc-label">Window</p>
-                                                                        <p class="amc-label amc-label1"
-                                                                            id="windowLabel_1">Window 1</p>
+                                                                        <label for="window_name" class="amc-label">Window1<span class="text-danger">*</span></label>
+                                                                        <input type="text" class="form-control bdrn" name="window_name[]" placeholder="Hall Room" required>
                                                                     </div>
 
                                                                     <div class="form-group">
@@ -616,7 +615,7 @@
                                                                 <div class="section-tittle section-tittle7">
                                                                     <div class="front-text">
                                                                         <h2 class="" id="myInquiryMultiModalLabel">
-                                                                            Expert Opinion</h2>
+                                                                            Explain Requirements</h2>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -633,10 +632,10 @@
 
 
                                                             <div class="mb-3">
-                                                                <label class="form-check-label" for="d_op"
+                                                                <label class="form-check-label" for="cus_d_op"
                                                                     style="font-size: 1.2rem; font-weight: 600;">Detail
                                                                     of Your Requirements<span class="text-danger">*</span></label>
-                                                                <textarea name="d_op" id="d_op" class="form-control"
+                                                                <textarea name="cus_d_op" id="cus_d_op" class="form-control"
                                                                     required rows="7"></textarea>
                                                             </div>
 
@@ -947,7 +946,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" onclick="window.location.reload();">Close</button>
                 </div>
             </div>
         </div>
@@ -986,7 +985,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1030,7 +1029,7 @@
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="./assets/js/popper.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
-    <!-- Jquery Mobile Menu -->
+    <!-- Jquery cus_mobile Menu -->
     <script src="./assets/js/jquery.slicknav.min.js"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
@@ -1161,6 +1160,40 @@
                 button.addEventListener("click", () => {
                     steps[index + 1].classList.remove("js-active");
                     steps[index].classList.add("js-active");
+                });
+            });
+        });
+    </script>
+
+
+
+
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $(".multisteps-form__form").submit(function(event) {
+                event.preventDefault(); // Prevent form from submitting normally
+
+                var formData = new FormData(this); // Get the form data
+
+                $.ajax({
+                    url: "{{ route('inquiry.store') }}", // Your route to handle the form data
+                    type: 'POST',
+                    data: formData,
+                    processData: false, // Don't process the data
+                    contentType: false, // Don't set content type
+                    success: function(response) {
+                        // Log the response to the console
+                        console.log("Success:", response);
+                        // Show success modal if the response is successful
+                        $('#myInquirySuccessModal').modal('show'); // Assuming you have a modal with id 'myInquirySuccessModal'
+                    },
+                    error: function(xhr, status, error) {
+                        // Log the error to the console
+                        console.log("Error:", error);
+                        // Show error modal if the request fails
+                        $('#myInquiryErrorModal').modal('show'); // Assuming you have a modal with id 'myInquiryErrorModal'
+                    }
                 });
             });
         });

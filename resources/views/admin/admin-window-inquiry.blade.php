@@ -240,7 +240,8 @@
                         <div class="collapse" id="ui-basic1111">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="/window-service">Window Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-request">AMC Request</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/amc-offers">AMC Offers</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/inquiry-request">inquiry Request</a></li>
                             </ul>
                         </div>
                     </li>
@@ -338,7 +339,7 @@
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Edit</th>
+                                                            <!-- <th>Edit</th> -->
                                                             <th>Delete</th>
                                                             <th>Print</th>
 
@@ -354,19 +355,21 @@
                                                     </thead>
                                                     <tbody>
 
+                                                        @foreach($inquiries as $inquiry)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><a target="_blank" href="/inquiry-print" style="font-size: 1.4rem;"><i class="fa-solid fa-file-pdf"></i></a></td>
-                                                            <td>fname</td>
-                                                            <td><a href="mailto:" style="color: blue;">email@123</a></td>
-                                                            <td><a href="tel:" style="color: red;">2236376273</a></td>
-                                                            <td>ranihati, howrah, 711302</td>
-                                                            <td>711302</td>
-                                                            <td><a href="" data-toggle="modal" data-target="#myWindowInfoModal"><i class="fa-solid fa-diamond-turn-right" style="color: #ff5f13; font-size: 2rem;"></i></a></td>
-                                                            <td>hddjkfjkdk jksdkjfhd</td>
+                                                            <!-- <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td> -->
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$inquiry->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td><a target="_blank" href="{{ route('download_inquiry', ['id' => $inquiry->id]) }}" style="font-size: 1.4rem;"><i class="fa-solid fa-file-pdf"></i></a></td>
+                                                            <td>{{$inquiry->cus_name}}</td>
+                                                            <td><a href="mailto:{{$inquiry->cus_email}}" style="color: blue;">{{$inquiry->cus_email}}</a></td>
+                                                            <td><a href="tel:{{$inquiry->cus_mob}}" style="color: red;">{{$inquiry->cus_mob}}</a></td>
+                                                            <td>{{$inquiry->cus_add}}</td>
+                                                            <td>{{$inquiry->cus_pin}}</td>
+                                                            <td><a href="" data-toggle="modal" data-target="#myWindowInfoModal{{$inquiry->id}}"><i class="fa-solid fa-diamond-turn-right" style="color: #ff5f13; font-size: 2rem;"></i></a></td>
+                                                            <td>{{$inquiry->cus_d_op}}</td>
 
                                                         </tr>
+                                                        @endforeach
 
                                                     </tbody>
                                                 </table>
@@ -455,59 +458,7 @@
 
 
 
-        <!-- edit modal -->
 
-        <div class="modal" id="myEditModal">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Inquiry For Window</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="form-group">
-                                <label for="inquiry_f_name">Full Name</label>
-                                <input type="text" class="form-control" name="inquiry_f_name" id="inquiry_f_name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inquiry_email">Email ID</label>
-                                <input type="text" class="form-control" name="inquiry_email" id="inquiry_email">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inquiry_mobile">Mobile Number</label>
-                                <input type="text" class="form-control" name="inquiry_mobile" id="inquiry_mobile">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inquiry_add">Address</label>
-                                <textarea name="inquiry_add" id="inquiry_add" class="form-control" rows="5"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inquiry_pin">PIN CODE</label>
-                                <input type="number" class="form-control" name="inquiry_pin" id="inquiry_pin">
-                            </div>
-
-
-
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
 
 
 
@@ -515,18 +466,18 @@
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($inquiries as $inquiry)
+        <div class="modal fade" id="myDeleteModal{{$inquiry->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myDeleteModal">Confirm Delete</h5>
+                        <h5 class="modal-title" id="myDeleteModal{{$inquiry->id}}">Confirm Delete</h5>
                     </div>
                     <div class="modal-body">
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deleteInquiry' , $inquiry->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -537,6 +488,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
+        @endforeach
 
 
 
@@ -544,11 +496,12 @@
 
         <!-- window details modal -->
 
-        <div class="modal fade" id="myWindowInfoModal" tabindex="-1" aria-labelledby="myWindowInfoModal" aria-hidden="true">
+        @foreach($inquiries as $inquiry)
+        <div class="modal fade" id="myWindowInfoModal{{$inquiry->id}}" tabindex="-1" aria-labelledby="myWindowInfoModal{{$inquiry->id}}" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myWindowInfoModal">Window Info (Fullname/ Email_ID)</h5>
+                        <h5 class="modal-title" id="myWindowInfoModal{{$inquiry->id}}">Window Info {{$inquiry->cus_name}} / {{ $inquiry->cus_email}}</h5>
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
@@ -564,16 +517,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @if(is_array($inquiry->cus_window_info))
+                                    @foreach($inquiry->cus_window_info as $window)
                                     <tr>
-                                        <td>Window 1</td>
-                                        <td>12 FT</td>
-                                        <td>12 FT</td>
-                                        <td>Typ1</td>
-                                        <td>12</td>
-
+                                        <td>{{ $window['window_name'] }}</td>
+                                        <td>{{ $window['w_length'] }}</td>
+                                        <td>{{ $window['w_breadth'] }}</td>
+                                        <td>{{ $window['w_type'] }}</td>
+                                        <td>{{ $window['w_unit'] }}</td>
                                     </tr>
-
+                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -584,6 +538,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
 
 
 
