@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAboutCompanyController;
 use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminAMCController;
+use App\Http\Controllers\AdminContactusController;
 use App\Http\Controllers\AdminHomeBannerController;
 use App\Http\Controllers\AdminInquiryWindowController;
 use App\Http\Controllers\AdminOfferController;
@@ -269,3 +270,7 @@ Route::get('/amc-offers', [AdminOfferController::class, 'getoffer'])->name('geto
 Route::post('/amc-offers/add', [AdminOfferController::class, 'addoffer'])->name('addoffer');
 Route::put('/amc-offers/edit/{id}', [AdminOfferController::class, 'editoffer'])->name('editoffer');
 Route::delete('/amc-offers/delete/{id}', [AdminOfferController::class, 'deleteoffer'])->name('deleteoffer');
+
+
+Route::get('/customer-support', [AdminContactusController::class, 'getsupport'])->name('getsupport');
+Route::delete('/customer-support/delete/{id}', [AdminContactusController::class, 'deletesupport'])->name('deletesupport');

@@ -339,7 +339,7 @@
                                                 <table class="table table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>Edit</th>
+                                                            <!-- <th>Edit</th> -->
                                                             <th>Delete</th>
                                                             <th>Customer Email</th>
                                                             <th>Subject</th>
@@ -348,15 +348,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach($supports as $support)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><a href="mailto:">sfhgjf@123</a></td>
-                                                            <td>sfhgjf</td>
-                                                            <td>dsfsdfdsf dsfdf dfsfsdfsdfds sfdf dffsdfsdfsdf</td>
+                                                            <!-- <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td> -->
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$support->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td><a href="mailto:{{$support->email}}">{{$support->email}}</a></td>
+                                                            <td>{{$support->subject}}</td>
+                                                            <td>{{$support->inquiry}}</td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -498,8 +498,8 @@
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($supports as $support)
+        <div class="modal fade" id="myDeleteModal{{$support->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -509,7 +509,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('deletesupport', $support->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -520,6 +520,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
+        @endforeach
 
 
 
