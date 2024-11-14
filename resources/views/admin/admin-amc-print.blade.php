@@ -7492,6 +7492,7 @@
                 <p>ID- <strong>{{$amc->email}}</strong></p>
                 <p>MOB- <strong>+91-{{$amc->mob}}</strong></p>
                 <p>ADD- <strong>{{$amc->add}}</strong></p>
+                <p>PIN- <strong>{{$amc->pin}}</strong></p>
             </div>
         </div>
     </div>

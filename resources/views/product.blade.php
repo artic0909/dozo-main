@@ -4,28 +4,28 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>UPVC Products Page</title>
+    <title>Our Products Page</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/dlogo.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/logo/dlogo.ico')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/gijgo.css">
-    <link rel="stylesheet" href="assets/css/slicknav.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/gijgo.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slicknav.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <style>
         .inquiry-img {
             animation: scale1 1s ease-in-out infinite;
@@ -90,7 +90,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo-loader33.png" alt="" />
+                    <img src="{{asset('assets/img/logo/dlogo.ico')}}" alt="" />
                 </div>
             </div>
         </div>
@@ -116,11 +116,13 @@
                         <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
+                                    @foreach($aboutDetails as $abItem)
                                     <ul>
-                                        <li>+(123) 1234-567-8901</li>
-                                        <li>info@domain.com</li>
-                                        <li>Mon - Sat 8:00 - 17:30, Sunday - CLOSED</li>
+                                        <li><a href="tel:{{$abItem->ab_num}}" style="color:white">+(91)-{{$abItem->ab_num}}</a></li>
+                                        <li><a href="mailto:{{$abItem->ab_email}}" style="color:white">{{$abItem->ab_email}}</a></li>
+                                        <li>Mon - Sat 9:00 - 19:30, Sunday - CLOSED</li>
                                     </ul>
+                                    @endforeach
                                 </div>
                                 <div class="header-info-right">
                                     <ul class="header-social">
@@ -150,13 +152,13 @@
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
                                     <!-- logo-1 -->
-                                    <a href="index.html" class="big-logo"><img src="assets/img/logo/logo.png" alt="" style="
+                                    <a href="index.html" class="big-logo"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" style="
                           filter: drop-shadow(
                             3px 3px 2px rgba(15, 15, 15, 0.616)
                           );
                         " /></a>
                                     <!-- logo-2 -->
-                                    <a href="index.html" class="small-logo"><img src="assets/img/logo/l.png" alt="" style="
+                                    <a href="index.html" class="small-logo"><img src="{{asset('assets/img/logo/l.png')}}" alt="" style="
                           filter: drop-shadow(
                             3px 3px 2px rgba(15, 15, 15, 0.616)
                           );
@@ -174,8 +176,9 @@
                                             <li>
                                                 <a href="#">Product</a>
                                                 <ul class="submenu">
-                                                    <li><a href="/product-upvc">UPVC Window</a></li>
-                                                    <li><a href="/product-aluminium">Aluminium Window</a></li>
+                                                    @foreach($maincategories as $maincategory)
+                                                    <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
 
@@ -245,15 +248,15 @@
         <!-- slider Area Start-->
         <div class="slider-area ">
             <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
-                data-background="assets/img/hero/about.jpg">
+                data-background="{{asset('assets/img/hero/about.jpg')}}">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap pt-100">
-                                <h2>UPVC Window</h2>
+                                <h2>Our Products</h2>
                                 <nav aria-label="breadcrumb ">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
                                         <li class="breadcrumb-item"><a href="#">Products</a></li>
                                     </ol>
                                 </nav>
@@ -287,35 +290,9 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle3">
                                 <div class="front-text">
-                                    <h2 class="">UPVC Window</h2>
+                                    <h2 class="">Our Products</h2>
                                 </div>
-                                <span class="back-text">Products</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="properties__button">
-                                <!--Nav Button  -->
-                                <nav>
-                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a class="nav-item nav-link active" id="nav-all-tab" data-toggle="tab"
-                                            href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="false">
-                                            Show all
-                                        </a>
-                                        <a class="nav-item nav-link" id="nav-upvc-tab" data-toggle="tab"
-                                            href="#nav-upvc" role="tab" aria-controls="nav-upvc"
-                                            aria-selected="false">ctg1</a>
-                                        <a class="nav-item nav-link" id="nav-aluminium-tab" data-toggle="tab"
-                                            href="#nav-aluminium" role="tab" aria-controls="nav-aluminium"
-                                            aria-selected="false">ctg2</a>
-                                        <a class="nav-item nav-link" id="nav-sliding-tab" data-toggle="tab"
-                                            href="#nav-sliding" role="tab" aria-controls="nav-aluminium"
-                                            aria-selected="false">ctg3</a>
-                                        <a class="nav-item nav-link" id="nav-toughlogy" data-toggle="tab"
-                                            href="#nav-tough" role="tab" aria-controls="nav-aluminium"
-                                            aria-selected="false">ctg4</a>
-                                    </div>
-                                </nav>
-                                <!--End Nav Button  -->
+                                <span class="back-text">Gellary</span>
                             </div>
                         </div>
                     </div>
@@ -326,220 +303,37 @@
                         <!-- Nav Card -->
 
                         <div class="tab-content active" id="nav-tabContent">
+
+
+
                             <!-- card ONE -->
-                            <div class="tab-pane fade active show" id="nav-all" role="tabpanel"
-                                aria-labelledby="nav-all-tab">
+                            <div class="tab-pane fade active show" id="nav-all">
                                 <div class="project-caption">
                                     <div class="row">
+
+                                        @foreach($products as $product)
                                         <div class="col-lg-4 col-md-6">
                                             <div class="single-project mb-30">
                                                 <div class="project-img">
-                                                    <img src="assets/img/gallery/g1.jpg" alt="" />
+                                                    <img src="{{ asset('storage/' . $product->pr_image) }}" alt="" />
                                                 </div>
                                                 <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
+                                                    <a href="{{ url('/product-view/' . $product->id) }}" class="plus-btn"><i class="ti-plus"></i></a>
+                                                    <h4 class="mb-3">
+                                                        <a href="{{ url('/product-view/' . $product->id) }}" style="text-transform: capitalize;">{{$product->pr_title}}</a>
                                                     </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
+                                                    <h4><i class="fa-solid fa-circle-dot" style="color: #ff5f13;"></i> <a href="{{ url('/product-view/' . $product->id) }}">{{ $product->mainCategory->main_category }}</a></h4>
+                                                    <h4><i class="fa-solid fa-circle-dot" style="color: #ff5f13;"></i> <a href="{{ url('/product-view/' . $product->id) }}">{{ $product->subCategory->sub_category }}</a></h4>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g2.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g3.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Card TWO -->
-                            <div class="tab-pane fade" id="nav-upvc" role="tabpanel" aria-labelledby="nav-upvc-tab">
-                                <div class="project-caption">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g3.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g4.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g1.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Card THREE -->
-                            <div class="tab-pane fade" id="nav-aluminium" role="tabpanel"
-                                aria-labelledby="nav-aluminium-tab">
-                                <div class="project-caption">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g1.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g4.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g1.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- card FOUR -->
-                            <div class="tab-pane fade" id="nav-sliding" role="tabpanel"
-                                aria-labelledby="nav-sliding-tab">
-                                <div class="project-caption">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g1.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g2.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="assets/img/gallery/g3.jpg" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="/product-view" class="plus-btn"><i
-                                                            class="ti-plus"></i></a>
-                                                    <h4>
-                                                        <a href="/product-view">Floride Chemicals</a>
-                                                    </h4>
-                                                    <h4><a href="/product-view">Factory</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- End Nav Card -->
                     </div>
@@ -587,7 +381,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="" /></a>
+                                    <a href="index.html"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" /></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -607,11 +401,11 @@
                                 <div class="footer-tittle">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Products</a></li>
-                                        <li><a href="#">Projects</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a href="/service">Services</a></li>
+                                        <li><a href="/product-upvc">UPVC Windows</a></li>
+                                        <li><a href="/product-aluminium">Aluminium Windows</a></li>
+                                        <li><a href="/inquiry">For Inquiry</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -626,13 +420,16 @@
                                     <h4>Contact Us</h4>
                                     <div class="footer-pera">
                                         <p class="info1">
-                                            Sankrail Industrial Park, Dhulagarh,
-                                            P.S- Sankrail, Howrah, W.B - 711302 (Near Hanuman Mandir)
+                                            <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" style="color: #767b7c;">
+                                                H5CM+4XX, Poly Park, Dhulagori, Howrah, Jala Dhulagiri, West Bengal, 711302
+                                            </a>
                                         </p>
                                     </div>
                                     <ul>
-                                        <li><a href="#">Phone: +91 (0) 123 456 789</a></li>
-                                        <li><a href="#">WP: +91 (0) 123 456 789</a></li>
+                                        @foreach($aboutDetails as $abItem)
+                                        <li><a href="tel:{{$abItem->ab_num}}">Phone: +91 {{$abItem->ab_num}}</a></li>
+                                        <li><a href="https://wa.me/{{$abItem->ab_num}}">WhatsApp: +91 {{$abItem->ab_num}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -645,10 +442,10 @@
                             <div class="single-footer-caption mb-50">
 
                                 <!-- Map -->
-                                <div class="map-footer">
-                                    <img src="assets/img/gallery/map.png" alt=""
+                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="map-footer">
+                                    <img src="{{asset('assets/img/gallery/map.png')}}" alt=""
                                         style="filter: drop-shadow( -5px 5px 0.3px rgba(161, 160, 160, 0.74));" />
-                                </div>
+                                </a>
 
 
                             </div>
@@ -870,43 +667,44 @@
     <!-- JS here -->
 
     <!-- All JS Custom Plugins Link Here here -->
-    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="{{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <!-- Jquery Mobile Menu -->
-    <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <script src="{{asset('assets/js/jquery.slicknav.min.js')}}"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/slick.min.js"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/slick.min.js')}}"></script>
     <!-- Date Picker -->
-    <script src="./assets/js/gijgo.min.js"></script>
+    <script src="{{asset('assets/js/gijgo.min.js')}}"></script>
     <!-- One Page, Animated-HeadLin -->
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
+    <script src="{{asset('assets/js/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/animated.headline.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
 
     <!-- Scrollup, nice-select, sticky -->
-    <script src="./assets/js/jquery.scrollUp.min.js"></script>
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
+    <script src="{{asset('assets/js/jquery.scrollUp.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>
 
     <!-- counter , waypoint -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
     <script src="./assets/js/jquery.counterup.min.js"></script>
 
     <!-- contact js -->
-    <script src="./assets/js/contact.js"></script>
-    <script src="./assets/js/jquery.form.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/mail-script.js"></script>
-    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="{{asset('assets/js/contact.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.form.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/mail-script.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.ajaxchimp.min.js')}}"></script>
 
     <!-- Jquery Plugins, main Jquery -->
-    <script src="./assets/js/plugins.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="{{asset('assets/js/plugins.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+
 
 
 

@@ -15,38 +15,76 @@ use Illuminate\Http\Request;
 
 class FrontHomeController extends Controller
 {
+
+
+
+
     public function getall()
     {
         $aboutDetails = AdminAboutCompanyModel::all();
         $homeBannners = AdminHomeBannerModel::all();
         $services = AdminServiceDetailsModel::inRandomOrder()->take(6)->get();
-        $mainCategories = MainCategory::all(); // Fetch all main categories
+        $maincategories = MainCategory::all(); // Fetch all main categories
         $products = Product::with('mainCategory', 'subCategory')->inRandomOrder()->take(3)->get();
         $aboutNumbers = AdminAboutNumbersModel::all();
         $teams = AdminTeamModel::all();
         $testimonials = AdminTestimonialModel::all();
         $blogs = AdminBlogModel::inRandomOrder()->take(2)->get();
-        return view('home', compact('aboutDetails', 'homeBannners', 'services', 'products', 'mainCategories', 'aboutNumbers', 'teams', 'testimonials', 'blogs'));
+        return view('home', compact('aboutDetails', 'homeBannners', 'services', 'products', 'maincategories', 'aboutNumbers', 'teams', 'testimonials', 'blogs'));
     }
+
+
+
+
+
+
+
+
+
 
     public function getServiceDetails($id)
     {
+        $aboutDetails = AdminAboutCompanyModel::all();
+        $maincategories = MainCategory::all();
         $service = AdminServiceDetailsModel::findOrFail($id);
-        return view('service-details', compact('service'));
+        return view('service-details', compact('service', 'maincategories', 'aboutDetails'));
     }
+
+
+
+
+
+
+
 
     public function getProductDetails($id)
     {
+        $aboutDetails = AdminAboutCompanyModel::all();
+        $maincategories = MainCategory::all();
         $product = Product::with('mainCategory', 'subCategory')->findOrFail($id);
-        return view('product-view', compact('product'));
+        return view('product-view', compact('product', 'maincategories', 'aboutDetails'));
     }
+
+
+
+
+
 
     public function getBlogDetails($id)
     {
+        $aboutDetails = AdminAboutCompanyModel::all();
+        $maincategories = MainCategory::all();
         $blogs = AdminBlogModel::inRandomOrder()->take(4)->get();
         $blog = AdminBlogModel::findOrFail($id);
-        return view('blog-details', compact('blogs', 'blog'));
+        return view('blog-details', compact('blogs', 'blog', 'maincategories', 'aboutDetails'));
     }
+
+
+
+
+
+
+
 
 
     public function addBlog(Request $request)
@@ -77,5 +115,30 @@ class FrontHomeController extends Controller
         ]);
 
         return back()->with('success', 'Added Successfully!');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    public function getProduct($id)
+    {
+
+        $aboutDetails = AdminAboutCompanyModel::all();
+        $maincategories = MainCategory::all();
+
+
+        $maincategory = MainCategory::with('products')->findOrFail($id);
+        $products = $maincategory->products;
+
+        return view('product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
     }
 }

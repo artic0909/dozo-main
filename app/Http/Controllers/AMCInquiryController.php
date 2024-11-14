@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AMCRequest;
+use App\Models\AdminAboutCompanyModel;
+use App\Models\AdminOfferModel;
 use App\Models\AMCReqModel;
+use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -12,7 +15,11 @@ class AMCInquiryController extends Controller
     // Return the view for AMC form
     public function amcView()
     {
-        return view('amc');
+        $aboutDetails = AdminAboutCompanyModel::all();
+        $maincategories = MainCategory::all();
+        $offers = AdminOfferModel::all();
+
+        return view('amc', compact('aboutDetails', 'maincategories', 'offers'));
     }
 
     // Store the AMC inquiry

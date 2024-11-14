@@ -117,11 +117,13 @@
                         <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
+                                    @foreach($aboutDetails as $abItem)
                                     <ul>
-                                        <li>+(123) 1234-567-8901</li>
-                                        <li>info@domain.com</li>
-                                        <li>Mon - Sat 8:00 - 17:30, Sunday - CLOSED</li>
+                                        <li><a href="tel:{{$abItem->ab_num}}" style="color:white">+(91)-{{$abItem->ab_num}}</a></li>
+                                        <li><a href="mailto:{{$abItem->ab_email}}" style="color:white">{{$abItem->ab_email}}</a></li>
+                                        <li>Mon - Sat 9:00 - 19:30, Sunday - CLOSED</li>
                                     </ul>
+                                    @endforeach
                                 </div>
                                 <div class="header-info-right">
                                     <ul class="header-social">
@@ -175,8 +177,9 @@
                                             <li>
                                                 <a href="#">Product</a>
                                                 <ul class="submenu">
-                                                    <li><a href="/product-upvc">UPVC Window</a></li>
-                                                    <li><a href="/product-aluminium">Aluminium Window</a></li>
+                                                    @foreach($maincategories as $maincategory)
+                                                    <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
 
@@ -248,7 +251,7 @@
                             <h2>Latest News</h2>
                             <nav aria-label="breadcrumb ">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
                                     <li class="breadcrumb-item"><a href="#">Blogs</a></li>
                                 </ol>
                             </nav>
@@ -418,7 +421,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="" /></a>
+                                    <a href="index.html"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" /></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -438,11 +441,11 @@
                                 <div class="footer-tittle">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Services</a></li>
-                                        <li><a href="#">Products</a></li>
-                                        <li><a href="#">Projects</a></li>
-                                        <li><a href="#">Contact Us</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a href="/service">Services</a></li>
+                                        <li><a href="/product-upvc">UPVC Windows</a></li>
+                                        <li><a href="/product-aluminium">Aluminium Windows</a></li>
+                                        <li><a href="/inquiry">For Inquiry</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -457,13 +460,16 @@
                                     <h4>Contact Us</h4>
                                     <div class="footer-pera">
                                         <p class="info1">
-                                            Sankrail Industrial Park, Dhulagarh,
-                                            P.S- Sankrail, Howrah, W.B - 711302 (Near Hanuman Mandir)
+                                            <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" style="color: #767b7c;">
+                                                H5CM+4XX, Poly Park, Dhulagori, Howrah, Jala Dhulagiri, West Bengal, 711302
+                                            </a>
                                         </p>
                                     </div>
                                     <ul>
-                                        <li><a href="#">Phone: +91 (0) 123 456 789</a></li>
-                                        <li><a href="#">WP: +91 (0) 123 456 789</a></li>
+                                        @foreach($aboutDetails as $abItem)
+                                        <li><a href="tel:{{$abItem->ab_num}}">Phone: +91 {{$abItem->ab_num}}</a></li>
+                                        <li><a href="https://wa.me/{{$abItem->ab_num}}">WhatsApp: +91 {{$abItem->ab_num}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -476,10 +482,10 @@
                             <div class="single-footer-caption mb-50">
 
                                 <!-- Map -->
-                                <div class="map-footer">
-                                    <img src="assets/img/gallery/map.png" alt=""
+                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="map-footer">
+                                    <img src="{{asset('assets/img/gallery/map.png')}}" alt=""
                                         style="filter: drop-shadow( -5px 5px 0.3px rgba(161, 160, 160, 0.74));" />
-                                </div>
+                                </a>
 
 
                             </div>

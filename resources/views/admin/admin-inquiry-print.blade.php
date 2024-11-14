@@ -7490,6 +7490,7 @@
                 <p>ID- <strong>{{$inquiry->cus_email}}</strong></p>
                 <p>MOB- <strong>+91-{{$inquiry->cus_mob}}</strong></p>
                 <p>ADD- <strong>{{$inquiry->cus_add}}</strong></p>
+                <p>PIN- <strong>{{$inquiry->cus_pin}}</strong></p>
             </div>
         </div>
     </div>

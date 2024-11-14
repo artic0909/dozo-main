@@ -171,8 +171,9 @@
                                             <li>
                                                 <a href="#">Product</a>
                                                 <ul class="submenu">
-                                                    <li><a href="/product-upvc">UPVC Window</a></li>
-                                                    <li><a href="/product-aluminium">Aluminium Window</a></li>
+                                                    @foreach($maincategories as $maincategory)
+                                                    <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
 

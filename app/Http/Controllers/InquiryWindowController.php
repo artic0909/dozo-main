@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\InquryWindowModel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InquiryWindowMail;
+use App\Models\AdminAboutCompanyModel;
+use App\Models\MainCategory;
 use Illuminate\Http\Request;
 
 class InquiryWindowController extends Controller
@@ -12,8 +14,15 @@ class InquiryWindowController extends Controller
 
     public function inquiryView()
     {
-        return view('inquiry');
+        $aboutDetails = AdminAboutCompanyModel::all();
+        $maincategories = MainCategory::all();
+
+        return view('inquiry', compact('aboutDetails', 'maincategories'));
     }
+
+
+
+
 
     // Store the AMC inquiry
     public function store(Request $request)

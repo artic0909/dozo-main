@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminAboutCompanyModel;
-use App\Models\AdminTeamModel;
-use App\Models\AdminTestimonialModel;
+use App\Models\AdminServiceDetailsModel;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 
-class FrontAboutController extends Controller
+class FrontServiceController extends Controller
 {
-    public function getAllAbout()
+    public function getAllService()
     {
         $aboutDetails = AdminAboutCompanyModel::all();
-        $testimonials = AdminTestimonialModel::all();
-        $teams = AdminTeamModel::all();
         $maincategories = MainCategory::all();
-        return view('about', compact('aboutDetails', 'testimonials', 'teams', 'maincategories'));
+        $services = AdminServiceDetailsModel::all();
+
+        return view('service', compact('aboutDetails', 'maincategories', 'services'));
     }
 
     public function getProduct($id)

@@ -241,7 +241,7 @@
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="/window-service">Window Service</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="/amc-offers">AMC Offers</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/inquiry-request">inquiry Request</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/amc-request">AMC Request</a></li>
                             </ul>
                         </div>
                     </li>
