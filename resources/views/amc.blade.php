@@ -806,18 +806,18 @@
                             <div class="modal-footer-inner"
                                 style="display:flex; justify-content: space-evenly; align-items: center; gap: 3px;">
 
-                                <a href="" class="find-icons">
+                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="find-icons">
                                     <img class="inquiry-img" src="assets/img/icon/location-pin.gif" width="60" alt="">
                                 </a>
-
-                                <a href="" class="find-icons">
+                                @foreach($aboutDetails as $abItem)
+                                <a href="https://wa.me/{{$abItem->ab_num}}" class="find-icons">
                                     <img class="inquiry-img" src="assets/img/icon/chat.gif" width="60" alt="">
                                 </a>
 
-                                <a href="" class="find-icons">
+                                <a href="tel:{{$abItem->ab_num}}" class="find-icons">
                                     <img class="inquiry-img" src="assets/img/icon/incoming-call.gif" width="60" alt="">
                                 </a>
-
+                                @endforeach
                             </div>
                         </div>
 

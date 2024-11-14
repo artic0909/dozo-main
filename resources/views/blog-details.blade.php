@@ -545,11 +545,11 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email"
-                                aria-describedby="emailHelp" required>
+                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                             </div>
                         </div>
@@ -559,8 +559,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-check-label" for="inquiry">Message</label>
-                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control"
-                                required></textarea>
+                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn22 w-100">Get Ticket</button>
 
@@ -575,18 +574,18 @@
                             <div class="modal-footer-inner"
                                 style="display:flex; justify-content: space-evenly; align-items: center; gap: 3px;">
 
-                                <a href="" class="find-icons">
+                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="find-icons">
                                     <img class="inquiry-img" src="assets/img/icon/location-pin.gif" width="60" alt="">
                                 </a>
-
-                                <a href="" class="find-icons">
+                                @foreach($aboutDetails as $abItem)
+                                <a href="https://wa.me/{{$abItem->ab_num}}" class="find-icons">
                                     <img class="inquiry-img" src="assets/img/icon/chat.gif" width="60" alt="">
                                 </a>
 
-                                <a href="" class="find-icons">
+                                <a href="tel:{{$abItem->ab_num}}" class="find-icons">
                                     <img class="inquiry-img" src="assets/img/icon/incoming-call.gif" width="60" alt="">
                                 </a>
-
+                                @endforeach
                             </div>
                         </div>
 
