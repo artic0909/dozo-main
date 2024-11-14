@@ -147,13 +147,13 @@
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
                                     <!-- logo-1 -->
-                                    <a href="index.html" class="big-logo"><img src="assets/img/logo/logo.png" alt="" style="
+                                    <a href="/" class="big-logo"><img src="assets/img/logo/logo.png" alt="" style="
                           filter: drop-shadow(
                             3px 3px 2px rgba(15, 15, 15, 0.616)
                           );
                         " /></a>
                                     <!-- logo-2 -->
-                                    <a href="index.html" class="small-logo"><img src="assets/img/logo/l.png" alt="" style="
+                                    <a href="/" class="small-logo"><img src="assets/img/logo/l.png" alt="" style="
                           filter: drop-shadow(
                             3px 3px 2px rgba(15, 15, 15, 0.616)
                           );
@@ -695,7 +695,7 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt="" /></a>
+                                    <a href="/"><img src="assets/img/logo/logo.png" alt="" /></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
