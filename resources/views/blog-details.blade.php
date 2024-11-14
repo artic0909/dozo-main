@@ -1,29 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Home Page</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="manifest" href="site.webmanifest" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/dlogo.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Blogs Details Page</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/logo/dlogo.ico')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/slicknav.css" />
-    <link rel="stylesheet" href="assets/css/animate.min.css" />
-    <link rel="stylesheet" href="assets/css/magnific-popup.css" />
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="assets/css/themify-icons.css" />
-    <link rel="stylesheet" href="assets/css/slick.css" />
-    <link rel="stylesheet" href="assets/css/nice-select.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/gijgo.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slicknav.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <style>
         .inquiry-img {
             animation: scale1 1s ease-in-out infinite;
@@ -65,9 +67,6 @@
         }
 
 
-
-
-
         .h-btnn {
             display: none !important;
         }
@@ -91,12 +90,19 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo-loader33.png" alt="" />
+                    <img src="{{asset('assets/img/logo/dlogo.ico')}}" alt="" />
                 </div>
             </div>
         </div>
     </div>
     <!-- Preloader Start -->
+
+
+
+
+
+
+
 
 
 
@@ -111,13 +117,11 @@
                         <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
-                                    @foreach($aboutDetails as $abItem)
                                     <ul>
-                                        <li><a href="tel:{{$abItem->ab_num}}" style="color:white">+(91)-{{$abItem->ab_num}}</a></li>
-                                        <li><a href="mailto:{{$abItem->ab_email}}" style="color:white">{{$abItem->ab_email}}</a></li>
-                                        <li>Mon - Sat 9:00 - 19:30, Sunday - CLOSED</li>
+                                        <li>+(123) 1234-567-8901</li>
+                                        <li>info@domain.com</li>
+                                        <li>Mon - Sat 8:00 - 17:30, Sunday - CLOSED</li>
                                     </ul>
-                                    @endforeach
                                 </div>
                                 <div class="header-info-right">
                                     <ul class="header-social">
@@ -147,13 +151,13 @@
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
                                     <!-- logo-1 -->
-                                    <a href="index.html" class="big-logo"><img src="assets/img/logo/logo.png" alt="" style="
+                                    <a href="index.html" class="big-logo"><img src="{{asset('assets/img/logo/logo.png')}}" alt="" style="
                           filter: drop-shadow(
                             3px 3px 2px rgba(15, 15, 15, 0.616)
                           );
                         " /></a>
                                     <!-- logo-2 -->
-                                    <a href="index.html" class="small-logo"><img src="assets/img/logo/l.png" alt="" style="
+                                    <a href="index.html" class="small-logo"><img src="{{asset('assets/img/logo/l.png')}}" alt="" style="
                           filter: drop-shadow(
                             3px 3px 2px rgba(15, 15, 15, 0.616)
                           );
@@ -233,305 +237,28 @@
 
 
 
-    <main>
-
-
-
-        <!-- slider Area Start-->
-        <div class="slider-area">
-
-            <div class="slider-active">
-
-                @foreach($homeBannners as $banner)
-                <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                    data-background="{{ asset('storage/' . $banner->home_banner) }}">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <div class="hero__caption">
-                                    <div class="hero-text1">
-                                        <span data-animation="fadeInUp" data-delay=".3s">{{$banner->h_s_desc}}</span>
-                                    </div>
-                                    <h1 data-animation="fadeInUp" data-delay=".5s">{{$banner->h_title}}</h1>
-                                    <div class="stock-text" data-animation="fadeInUp" data-delay=".8s">
-                                        <h2>{{$banner->h_a_title}}</h2>
-                                        <h2>{{$banner->h_a_title}}</h2>
-                                    </div>
-                                    <div class="hero-text2 mt-110" data-animation="fadeInUp" data-delay=".9s">
-                                        <span><a href="{{$banner->h_p_url}}">{{$banner->h_p_name}}</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-
-            </div>
-        </div>
-        <!-- slider Area End-->
-
-
-
-
-
-
-
-
-
-
-        <!-- Services Area Start -->
-        <div class="services-area1 section-padding30">
-            <div class="container">
-                <!-- section tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle mb-55">
-                            <div class="front-text">
-                                <h2 class="">Our Services</h2>
-                            </div>
-                            <span class="back-text">Services</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                    @foreach($services as $service)
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="{{ asset('storage/' . $service->sr_img) }}" alt="" />
-                            </div>
-                            <div class="service-cap">
-                                <h4><a href="{{ url('/service-details/' . $service->id) }}">{{$service->sr_title}}</a></h4>
-                                <a href="{{ url('/service-details/' . $service->id) }}" class="more-btn">Read More <i class="ti-plus"></i></a>
-                            </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-        <!-- Services Area End -->
-
-
-
-
-
-
-
-
-        <!-- Product Area Start -->
-        <section class="project-area section-padding30">
-            <div class="container">
-                <div class="project-heading mb-35">
-                    <div class="row align-items-end">
-                        <div class="col-lg-6">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle section-tittle3">
-                                <div class="front-text">
-                                    <h2 class="">Our Products</h2>
-                                </div>
-                                <span class="back-text">Gellary</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-12">
-                        <!-- Nav Card -->
-
-                        <div class="tab-content active" id="nav-tabContent">
-
-
-
-                            <!-- card ONE -->
-                            <div class="tab-pane fade active show" id="nav-all">
-                                <div class="project-caption">
-                                    <div class="row">
-
-                                        @foreach($products as $product)
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="{{ asset('storage/' . $product->pr_image) }}" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="{{ url('/product-view/' . $product->id) }}" class="plus-btn"><i class="ti-plus"></i></a>
-                                                    <h4 class="mb-3">
-                                                        <a href="{{ url('/product-view/' . $product->id) }}" style="text-transform: capitalize;">{{$product->pr_title}}</a>
-                                                    </h4>
-                                                    <h4><i class="fa-solid fa-circle-dot" style="color: #ff5f13;"></i> <a href="{{ url('/product-view/' . $product->id) }}">{{ $product->mainCategory->main_category }}</a></h4>
-                                                    <h4><i class="fa-solid fa-circle-dot" style="color: #ff5f13;"></i> <a href="{{ url('/product-view/' . $product->id) }}">{{ $product->subCategory->sub_category }}</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                        <!-- End Nav Card -->
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Product Area End -->
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- contact with us Start -->
-        <section class="contact-with-area" data-background="assets/img/gallery/contact.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-8 col-lg-9 offset-xl-1 offset-lg-1">
-                        <div class="contact-us-caption">
-                            <div class="team-info mb-30 pt-45">
-                                <!-- Section Tittle -->
-                                <div class="section-tittle section-tittle4">
-                                    <div class="front-text">
-                                        <h2 class="">Lats talk with us</h2>
-                                    </div>
-                                    <span class="back-text">Lat`s chat</span>
-                                </div>
-                                <p style="text-align: justify;">
-                                    Expert Craftsmanship: Our team brings years of expertise to each window solution, ensuring quality in every detail.
-                                    Customized Solutions: We provide tailored designs that meet your unique needs, adding beauty and functionality to your space.
-                                    Premium Materials: Using top-grade materials, we guarantee durability and elegance in every product.
-                                    Innovative Designs: Our modern and efficient designs enhance energy efficiency and elevate the aesthetics of any room.
-                                    Dedicated Support: From consultation to installation, our team is here to assist you every step of the way.
-                                    Commitment to Satisfaction: We prioritize your satisfaction, ensuring that each project is completed to perfection.
-                                </p>
-                                <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myInquiryModal">get in touch</a>
-                                &nbsp;
-                                <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myBlogCreateModal">leave your own
-                                    blog</a>
-                            </div>
-
-
-
-                            <!-- gifs -->
-                            <div class="gif-area" style="display: flex; flex-wrap: wrap; gap: 1%;">
-                                <img src="assets/img/icon/e9.gif" width="70" alt="">
-                                <img src="assets/img/icon/e2.gif" width="70" alt="">
-                                <img src="assets/img/icon/e8.gif" width="70" alt="">
-                                <img src="assets/img/icon/e10.gif" width="70" alt="">
-                                <img src="assets/img/icon/e3.gif" width="70" alt="">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- contact with us End-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- CountDown Area Start -->
-        <div class="count-area">
-            <div class="container">
-                <div class="count-wrapper count-bg" data-background="{{asset('assets/img/gallery/countt.png')}}">
-                    <div class="row justify-content-center">
-
-
-                        @foreach($aboutNumbers as $abn)
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="count-clients">
-                                <div class="single-counter">
-                                    <div class="count-number">
-                                        <span class="counter">{{$abn->an_number}}</span>
-                                    </div>
-                                    <div class="count-text">
-                                        <p>{{$abn->an_t}}</p>
-                                        <h5>{{$abn->an_define}}</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- CountDown Area End -->
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Team Start -->
-        <div class="team-area section-padding30">
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+            data-background="{{asset('assets/img/hero/about.jpg')}}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle section-tittle5 mb-50">
-                            <div class="front-text">
-                                <h2 class="">Exparts</h2>
-                            </div>
-                            <span class="back-text">our Team</span>
+                        <div class="hero-cap pt-100">
+                            <h2>Latest News</h2>
+                            <nav aria-label="breadcrumb ">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Blogs</a></li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    @foreach($teams as $team)
-                    <!-- single Tem -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
-
-
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="{{ asset('storage/' . $team->m_img) }}" alt="" />
-                            </div>
-                            <div class="team-caption">
-                                <span>{{$team->m_prof}}</span>
-                                <h3>{{$team->m_name}}</h3>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    @endforeach
                 </div>
             </div>
         </div>
-        <!-- Team End -->
+    </div>
+    <!-- slider Area End-->
 
 
 
@@ -540,117 +267,126 @@
 
 
 
+    <!--================Blog Area =================-->
+    <section class="blog_area single-post-area section-padding">
+        <div class="container">
+            <div class="row">
 
 
 
 
+                <div class="col-lg-8 posts-list">
 
-        <!-- Testimonial Start -->
-        <div class="testimonial-area t-bg testimonial-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle section-tittle6 mb-50">
-                            <div class="front-text">
-                                <h2 class="">Testimonial</h2>
+
+
+                    <div class="single-post">
+                        <div class="feature-img">
+                            <img class="img-fluid" src="{{ asset('storage/' . $blog->b_img) }}" alt="">
+                        </div>
+                        <div class="blog_details">
+                            <h2>{{$blog->b_title}}</h2>
+                            <ul class="blog-info-link mt-3 mb-4">
+                                <li><a href="#"><i class="fa fa-user"></i> {{$blog->b_tag}}</a></li>
+                                <li><a href="#"><i class="fa fa-hash"></i> {{$blog->b_qt}}</a></li>
+                            </ul>
+                            <div class="quote-wrapper">
+                                <div class="quotes" style="text-align: justify;">
+                                    {{$blog->b_desc}}
+                                </div>
                             </div>
-                            <span class="back-text">Feedback</span>
+
+
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-10 col-lg-11 col-md-10 offset-xl-1">
-                        <div class="h1-testimonial-active">
 
-                            @foreach($testimonials as $testimonial)
-                            <!-- Single Testimonial -->
-                            <div class="single-testimonial">
-                                <!-- Testimonial Content -->
-                                <div class="testimonial-caption">
-                                    <div class="testimonial-top-cap">
-                                        <!-- SVG icon -->
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="86px"
-                                            height="63px">
-                                            <path fill-rule="evenodd" stroke-width="1px" stroke="rgb(255, 95, 19)" fill-opacity="0"
-                                                fill="rgb(0, 0, 0)"
-                                                d="M82.623,59.861 L48.661,59.861 L48.661,25.988 L59.982,3.406 L76.963,3.406 L65.642,25.988 L82.623,25.988 L82.623,59.861 ZM3.377,25.988 L14.698,3.406 L31.679,3.406 L20.358,25.988 L37.340,25.988 L37.340,59.861 L3.377,59.861 L3.377,25.988 Z" />
-                                        </svg>
-                                        <p>
-                                            {{$testimonial->t_feedback}}
-                                        </p>
-                                    </div>
-                                    <!-- founder -->
-                                    <div class="testimonial-founder d-flex align-items-center">
-                                        <div class="founder-text">
-                                            <span>{{$testimonial->t_name}}</span>
-                                            <p>{{$testimonial->t_prof}}</p>
-                                        </div>
-                                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+
+
+
+
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Recent Post</h3>
+
+                            @foreach($blogs as $blog)
+                            <div class="media post_item">
+                                <img src="{{ asset('storage/' . $blog->b_img) }}" style="width: 100px; height: 80px;" alt="post">
+                                <div class="media-body">
+                                    <a href="{{ url('/blog-details/' . $blog->id) }}">
+                                        <h3>{{$blog->b_qt}}</h3>
+                                    </a>
+                                    <p>{{$blog->updated_at}}</p>
                                 </div>
                             </div>
                             @endforeach
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
 
 
-
-
-
-
-
-
-
-
-
-        <!-- Blog latest News Area start -->
-        <div class="latest-news-area section-padding30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle section-tittle7 mb-50">
-                            <div class="front-text">
-                                <h2 class="">latest news</h2>
-                            </div>
-                            <span class="back-text">Our Blogs</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-
-                    @foreach($blogs as $blog)
-                    <div class="col-xl-6 col-lg-6 col-md-6">
-                        <!-- single-news -->
-                        <div class="single-news mb-30">
-                            <div class="news-img">
-                                <img src="{{ asset('storage/' . $blog->b_img) }}" alt="" />
-                                <div class="news-date text-center">
-                                    <span>{{$blog->b_date}}</span>
+                            <div class="media post_item">
+                                <img src="{{asset('assets/img/blog/image-gallery.png')}}" style="width: 80px; height: 80px;"
+                                    alt="post">
+                                <div class="media-body" data-bs-toggle="modal" data-bs-target="#myBlogCreateModal"
+                                    style="cursor: cell;">
+                                    <a>
+                                        <h3>Make Your Own Blog →</h3>
+                                    </a>
+                                    <p>Click me</p>
                                 </div>
                             </div>
-                            <div class="news-caption">
-                                <ul class="david-info">
-                                    <li>| &nbsp; &nbsp; {{$blog->b_qt}}</li>
-                                </ul>
-                                <h2>
-                                    <a href="{{ url('/blog-details/' . $blog->id) }}">{{$blog->b_title}}</a>
-                                </h2>
-                                <a href="{{ url('/blog-details/' . $blog->id) }}" class="d-btn">Read more »</a>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
 
+
+                        </aside>
+
+
+
+                        <aside class="single_sidebar_widget tag_cloud_widget">
+                            <h4 class="widget_title">Related Tags</h4>
+                            <ul class="list">
+                                <li>
+                                    <a href="#">project</a>
+                                </li>
+                                <li>
+                                    <a href="#">love</a>
+                                </li>
+                                <li>
+                                    <a href="#">technology</a>
+                                </li>
+                                <li>
+                                    <a href="#">travel</a>
+                                </li>
+                                <li>
+                                    <a href="#">restaurant</a>
+                                </li>
+                                <li>
+                                    <a href="#">life style</a>
+                                </li>
+                                <li>
+                                    <a href="#">design</a>
+                                </li>
+                                <li>
+                                    <a href="#">illustration</a>
+                                </li>
+                            </ul>
+                        </aside>
+
+
+
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Blog latest News Area End -->
+    </section>
+    <!--================ Blog Area end =================-->
 
 
 
@@ -658,18 +394,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    </main>
 
 
 
@@ -714,11 +438,11 @@
                                 <div class="footer-tittle">
                                     <h4>Quick Links</h4>
                                     <ul>
-                                        <li><a href="/about">About</a></li>
-                                        <li><a href="/service">Services</a></li>
-                                        <li><a href="/product-upvc">UPVC Windows</a></li>
-                                        <li><a href="/product-aluminium">Aluminium Windows</a></li>
-                                        <li><a href="/inquiry">For Inquiry</a></li>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Services</a></li>
+                                        <li><a href="#">Products</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                        <li><a href="#">Contact Us</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -733,16 +457,13 @@
                                     <h4>Contact Us</h4>
                                     <div class="footer-pera">
                                         <p class="info1">
-                                            <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" style="color: #767b7c;">
-                                                H5CM+4XX, Poly Park, Dhulagori, Howrah, Jala Dhulagiri, West Bengal, 711302
-                                            </a>
+                                            Sankrail Industrial Park, Dhulagarh,
+                                            P.S- Sankrail, Howrah, W.B - 711302 (Near Hanuman Mandir)
                                         </p>
                                     </div>
                                     <ul>
-                                        @foreach($aboutDetails as $abItem)
-                                        <li><a href="tel:{{$abItem->ab_num}}">Phone: +91 {{$abItem->ab_num}}</a></li>
-                                        <li><a href="https://wa.me/{{$abItem->ab_num}}">WhatsApp: +91 {{$abItem->ab_num}}</a></li>
-                                        @endforeach
+                                        <li><a href="#">Phone: +91 (0) 123 456 789</a></li>
+                                        <li><a href="#">WP: +91 (0) 123 456 789</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -755,10 +476,10 @@
                             <div class="single-footer-caption mb-50">
 
                                 <!-- Map -->
-                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="map-footer">
+                                <div class="map-footer">
                                     <img src="assets/img/gallery/map.png" alt=""
                                         style="filter: drop-shadow( -5px 5px 0.3px rgba(161, 160, 160, 0.74));" />
-                                </a>
+                                </div>
 
 
                             </div>
@@ -818,11 +539,11 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                    <form>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                            <input type="email" name="email" class="form-control" id="email"
+                                aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                             </div>
                         </div>
@@ -832,7 +553,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-check-label" for="inquiry">Message</label>
-                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control" required></textarea>
+                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control"
+                                required></textarea>
                         </div>
                         <button type="submit" class="btn22 w-100">Get Ticket</button>
 
@@ -884,6 +606,8 @@
 
 
 
+
+
     <!-- Blog Create Modal Start -->
     <div class="modal fade" id="myBlogCreateModal" tabindex="-1" aria-labelledby="myBlogCreateModalLabel"
         aria-hidden="true">
@@ -900,7 +624,7 @@
 
                         <div class="mb-3" style="display: flex; flex-direction: column; align-items: center;">
                             <label for="b_img" class="form-label">
-                                <img src="assets/img/blog/add-image.png" style="width: 80px; cursor: pointer;" alt="">
+                                <img src="{{asset('assets/img/blog/add-image.png')}}" style="width: 80px; cursor: pointer;" alt="">
                                 <span id="requiredMark" style="color: red; font-size: 2rem;">*</span>
                                 <span id="checkMark" style="color: rgb(28, 121, 5); font-size: 2rem; display: none;">✔</span>
                             </label>
@@ -971,15 +695,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
     <!-- Inquiry Send Success Modal Start -->
     <div class="modal fade" id="myInquirySuccessModal" tabindex="-1" role="dialog"
         aria-labelledby="myInquirySuccessModalLabel" aria-hidden="true">
@@ -1007,7 +722,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
+                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1046,7 +761,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn w-100" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -1075,46 +790,49 @@
 
 
 
-    <!-- JS Start From Here -->
+    <!-- JS here -->
 
     <!-- All JS Custom Plugins Link Here here -->
-    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="{{asset('assets/js/vendor/modernizr-3.5.0.min.js')}}"></script>
     <!-- Jquery, Popper, Bootstrap -->
-    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="{{asset('assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <!-- Jquery Mobile Menu -->
-    <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <script src="{{asset('assets/js/jquery.slicknav.min.js')}}"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/slick.min.js"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/slick.min.js')}}"></script>
     <!-- Date Picker -->
-    <script src="./assets/js/gijgo.min.js"></script>
+    <script src="{{asset('assets/js/gijgo.min.js')}}"></script>
     <!-- One Page, Animated-HeadLin -->
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
+    <script src="{{asset('assets/js/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/animated.headline.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.magnific-popup.js')}}"></script>
 
     <!-- Scrollup, nice-select, sticky -->
-    <script src="./assets/js/jquery.scrollUp.min.js"></script>
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
+    <script src="{{asset('assets/js/jquery.scrollUp.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>
 
     <!-- counter , waypoint -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
     <script src="./assets/js/jquery.counterup.min.js"></script>
 
     <!-- contact js -->
-    <script src="./assets/js/contact.js"></script>
-    <script src="./assets/js/jquery.form.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/mail-script.js"></script>
-    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="{{asset('assets/js/contact.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.form.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/mail-script.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.ajaxchimp.min.js')}}"></script>
 
     <!-- Jquery Plugins, main Jquery -->
-    <script src="./assets/js/plugins.js"></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="{{asset('assets/js/plugins.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+
+
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
@@ -1126,8 +844,13 @@
 
 
 
+
+
+
     <!-- blog-validation -->
-    <script src="assets/js/blog-create.js"></script>
+    <script src="{{asset('assets/js/blog-create.js')}}"></script>
+
+
 
 
 
@@ -1168,11 +891,6 @@
                 });
         });
     </script>
-
-
-
-
-
 
 
 

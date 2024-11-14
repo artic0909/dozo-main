@@ -30,7 +30,6 @@ function toggleMarks() {
 document
   .getElementById("blogForm")
   .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission
 
     // Clear previous error messages
     const errorElements = document.querySelectorAll(".text-danger");

@@ -181,6 +181,10 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
+Route::get('/blog-details', function () {
+    return view('blog-details');
+});
+
 
 
 
@@ -200,6 +204,9 @@ Route::post('/support', [ContactusController::class, 'support'])->name('support'
 Route::get('/', [FrontHomeController::class, 'getall'])->name('getall');
 Route::get('/service-details/{id}', [FrontHomeController::class, 'getServiceDetails'])->name('service.details');
 Route::get('/product-view/{id}', [FrontHomeController::class, 'getProductDetails'])->name('product.view');
+Route::get('/blog-details/{id}', [FrontHomeController::class, 'getBlogDetails'])->name('blog.details');
+
+Route::post('/addBlog', [FrontHomeController::class, 'addBlog'])->name('addBlog');
 
 
 
