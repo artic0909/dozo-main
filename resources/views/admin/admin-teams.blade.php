@@ -349,15 +349,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach ($teams as $tm)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="assets/img/logo/logo.png" alt="" style="width: 130px; height: 40px; border-radius: 10px;"></td>
-                                                            <td>sfhgjf</td>
-                                                            <td>sfhgjf</td>
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$tm->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$tm->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                            <td><img src="{{ asset('storage/' . $tm->m_img) }}" alt="" style="width: 80px; height: 80px; border-radius: 10px;"></td>
+                                                            <td>{{$tm->m_name}}</td>
+                                                            <td>{{$tm->m_prof}}</td>
                                                         </tr>
-
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -450,7 +450,7 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('addt') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -466,7 +466,7 @@
                                 <input type="text" class="form-control" name="m_name" id="m_name">
                             </div>
 
-                            
+
 
                             <div class="form-group">
                                 <label class="form-check-label" for="m_prof">Member Profession<span
@@ -495,8 +495,8 @@
 
 
         <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
+        @foreach ($teams as $tm)
+        <div class="modal" id="myEditModal{{ $tm->id }}">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -507,14 +507,14 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('editt', $tm->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
 
 
                             <div class="form-group" style="display: flex; justify-content: center;">
-                                <img src="" style="width: 100%; height:150px; border-radius: 10px;" alt="">
+                                <img src="{{ asset('storage/' . $tm->m_img) }}" style="width: 100%; height:150px; border-radius: 10px;" alt="">
                             </div>
 
 
@@ -529,15 +529,15 @@
 
                             <div class="form-group">
                                 <label for="m_name" class="form-label">Member Name<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="m_name" id="m_name">
+                                <input type="text" class="form-control" name="m_name" id="m_name" value="{{ $tm->m_name }}">
                             </div>
 
-                            
+
 
                             <div class="form-group">
                                 <label class="form-check-label" for="m_prof">Member Profession<span
                                         style="color: red;">*</span></label>
-                                <input type="text" name="m_prof" id="m_prof" class="form-control">
+                                <input type="text" name="m_prof" id="m_prof" class="form-control" value="{{ $tm->m_prof }}">
                             </div>
 
 
@@ -550,6 +550,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
 
 
 
@@ -557,8 +558,8 @@
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach ($teams as $tm)
+        <div class="modal fade" id="myDeleteModal{{ $tm->id }}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -568,7 +569,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{ route('deletet', $tm->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -579,6 +580,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
+        @endforeach
 
 
 

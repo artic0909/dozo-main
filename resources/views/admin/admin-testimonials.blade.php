@@ -348,16 +348,16 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-
+                                                        @foreach($testimonials as $t)
                                                         <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                        
-                                                            <td>sfhgjf</td>
-                                                            <td>sfhgjf</td>
-                                                            <td>window,dfgfdgf wow</td>
-                                                        </tr>
+                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$t->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$t->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
 
+                                                            <td>{{$t->t_name}}</td>
+                                                            <td>{{$t->t_prof}}</td>
+                                                            <td>{{$t->t_feedback}}</td>
+                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -450,7 +450,7 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('add')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
 
@@ -490,8 +490,8 @@
 
 
         <!-- edit modal -->
-
-        <div class="modal" id="myEditModal">
+        @foreach($testimonials as $t)
+        <div class="modal" id="myEditModal{{$t->id}}">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -502,7 +502,7 @@
 
 
                     <div class="modal-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('edit', $t->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -510,18 +510,18 @@
 
                             <div class="form-group">
                                 <label for="t_name" class="form-label">Name<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="t_name" id="t_name">
+                                <input type="text" class="form-control" name="t_name" id="t_name" value="{{$t->t_name}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="t_prof" class="form-label">Profession<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="t_prof" id="t_prof">
+                                <input type="text" class="form-control" name="t_prof" id="t_prof" value="{{$t->t_prof}}">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-check-label" for="t_feedback">Feedback<span
                                         style="color: red;">*</span></label>
-                                <textarea name="t_feedback" id="t_feedback" class="form-control" rows="5"></textarea>
+                                <textarea name="t_feedback" id="t_feedback" class="form-control" rows="5">{{$t->t_feedback}}</textarea>
                             </div>
 
 
@@ -534,6 +534,7 @@
                 </div>
             </div>
         </div>
+        @endforeach
 
 
 
@@ -541,8 +542,8 @@
 
 
         <!-- delete modal -->
-
-        <div class="modal fade" id="myDeleteModal" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
+        @foreach($testimonials as $t)
+        <div class="modal fade" id="myDeleteModal{{$t->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -552,7 +553,7 @@
                         Are you sure you want to delete this information?
                     </div>
                     <div class="modal-footer">
-                        <form action="" method="POST">
+                        <form action="{{route('delete', $t->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
@@ -563,6 +564,7 @@
             </div>
             <!-- page-body-wrapper ends -->
         </div>
+        @endforeach
 
 
 

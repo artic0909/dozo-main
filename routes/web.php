@@ -3,12 +3,15 @@
 use App\Http\Controllers\AdminAboutCompanyController;
 use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminAMCController;
+use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminContactusController;
 use App\Http\Controllers\AdminHomeBannerController;
 use App\Http\Controllers\AdminInquiryWindowController;
 use App\Http\Controllers\AdminOfferController;
 use App\Http\Controllers\AdminOtherBannerController;
 use App\Http\Controllers\AdminServiceDetailsController;
+use App\Http\Controllers\AdminTeamController;
+use App\Http\Controllers\AdminTestimonialController;
 use App\Http\Controllers\AMCInquiryController;
 use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\InquiryWindowController;
@@ -188,7 +191,6 @@ Route::get('/amc', [AMCInquiryController::class, 'amcView'])->name('amc');
 Route::post('/amc', [AMCInquiryController::class, 'store'])->name('amc.store');
 
 
-
 Route::get('/inquiry', [InquiryWindowController::class, 'inquiryView'])->name('inquiry');
 Route::post('/inquiry', [InquiryWindowController::class, 'store'])->name('inquiry.store');
 
@@ -274,3 +276,21 @@ Route::delete('/amc-offers/delete/{id}', [AdminOfferController::class, 'deleteof
 
 Route::get('/customer-support', [AdminContactusController::class, 'getsupport'])->name('getsupport');
 Route::delete('/customer-support/delete/{id}', [AdminContactusController::class, 'deletesupport'])->name('deletesupport');
+
+
+Route::get('/admin-blogs', [AdminBlogController::class, 'getblog'])->name('getblog');
+Route::post('/admin-blogs/add', [AdminBlogController::class, 'addblog'])->name('addblog');
+Route::put('/admin-blogs/edit/{id}', [AdminBlogController::class, 'editblog'])->name('editblog');
+Route::delete('/admin-blogs/delete/{id}', [AdminBlogController::class, 'deleteblog'])->name('deleteblog');
+
+
+Route::get('/admin-testimonial', [AdminTestimonialController::class, 'get'])->name('get');
+Route::post('/admin-testimonial/add', [AdminTestimonialController::class, 'add'])->name('add');
+Route::put('/admin-testimonial/edit/{id}', [AdminTestimonialController::class, 'edit'])->name('edit');
+Route::delete('/admin-testimonial/delete/{id}', [AdminTestimonialController::class, 'delete'])->name('delete');
+
+
+Route::get('/teams', [AdminTeamController::class, 'gett'])->name('gett');
+Route::post('/teams/add', [AdminTeamController::class, 'addt'])->name('addt');
+Route::put('/teams/edit/{id}', [AdminTeamController::class, 'editt'])->name('editt');
+Route::delete('/teams/delete/{id}', [AdminTeamController::class, 'deletet'])->name('deletet');
