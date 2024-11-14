@@ -14,6 +14,7 @@ use App\Http\Controllers\AdminTeamController;
 use App\Http\Controllers\AdminTestimonialController;
 use App\Http\Controllers\AMCInquiryController;
 use App\Http\Controllers\ContactusController;
+use App\Http\Controllers\FrontHomeController;
 use App\Http\Controllers\InquiryWindowController;
 use App\Http\Controllers\MainCategoryController;
 use App\Http\Controllers\ProductController;
@@ -150,9 +151,7 @@ Route::get('/customer-support', function () {
 
 
 // Client View Routes ========================================================================================================================>
-Route::get('/', function () {
-    return view('home');
-});
+
 
 Route::get('/about', function () {
     return view('about');
@@ -196,6 +195,14 @@ Route::post('/inquiry', [InquiryWindowController::class, 'store'])->name('inquir
 
 
 Route::post('/support', [ContactusController::class, 'support'])->name('support');
+
+
+Route::get('/', [FrontHomeController::class, 'getall'])->name('getall');
+Route::get('/service-details/{id}', [FrontHomeController::class, 'getServiceDetails'])->name('service.details');
+Route::get('/product-view/{id}', [FrontHomeController::class, 'getProductDetails'])->name('product.view');
+
+
+
 
 
 

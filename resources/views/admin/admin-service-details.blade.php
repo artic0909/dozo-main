@@ -353,7 +353,7 @@
                                                         <tr>
                                                             <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$item->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
                                                             <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$item->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="{{ asset('storage/' . $item->sr_img) }}" alt="" style="width: 100px; height: 100px; border-radius: 10px;"></td>
+                                                            <td><img src="{{ asset('storage/' . $item->sr_img) }}" alt="" style="width: 80px; height: 80px; border-radius: 10px;"></td>
                                                             <td>{{$item->sr_title}}</td>
                                                             <td>{{$item->sr_desc}}</td>
                                                         </tr>
