@@ -47,6 +47,12 @@ img {
    2. Catalogue PDF Buttons Styling
    -------------------------------------------------------------------------- */
 /* Header Catalogue Button */
+.header-right-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
 .header-cat-btn {
   background: #ffffff !important;
   color: #ff5f13 !important;
@@ -82,6 +88,31 @@ img {
 
 .header-cat-btn:hover i {
   color: #ffffff;
+}
+
+.header-amc-btn {
+  background: #111111 !important;
+  color: #ffffff !important;
+  padding: 10px 22px !important;
+  font-weight: 700 !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-transform: uppercase !important;
+  font-size: 13px !important;
+  letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid #111111 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.header-amc-btn:hover {
+  background: #ffffff !important;
+  color: #ff5f13 !important;
+  border-color: #ffffff !important;
+  transform: translateY(-2px);
 }
 
 /* Hero Section Catalogue & Inquiry Buttons */

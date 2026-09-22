@@ -188,7 +188,7 @@
                         " /></a>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-8 col-md-8">
+                            <div class="col-xl-7 col-lg-7 col-md-7">
                                 <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
@@ -196,10 +196,10 @@
                                             @foreach($maincategories as $maincategory)
                                             <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
                                             @endforeach
-                                            <li><a href="/amc">Window AMC</a></li>
 
                                             {{-- Commented other pages --}}
                                             {{--
+                                             <li><a href="/amc">Window AMC</a></li>
                                             <li><a href="/">Home</a></li>
                                             <li><a href="/about">About</a></li>
                                             <li><a href="/service">DOZO Window Service</a></li>
@@ -213,10 +213,10 @@
                                 </div>
                             </div>
 
-                            <div class="col-xl-2 col-lg-2 col-md-3">
-                                <div class="header-right-btn f-right d-none d-lg-flex align-items-center gap-2">
+                            <div class="col-xl-3 col-lg-3 col-md-3">
+                                <div class="header-right-btn f-right d-none d-lg-flex align-items-center">
                                     <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="header-cat-btn" title="Download Catalogue"><i class="fa-solid fa-file-pdf"></i> Catalogue</a>
-                                    <a href="/inquiry" class="btn">Inquiry</a>
+                                    <a href="/amc" class="header-amc-btn">Window AMC</a>
                                 </div>
 
 
