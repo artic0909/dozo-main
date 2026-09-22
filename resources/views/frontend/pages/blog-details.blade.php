@@ -7,9 +7,15 @@
     /* Modern Blog Breadcrumb Header (No BG Image) */
     .blog-header-banner {
         background: linear-gradient(135deg, #111111 0%, #1a1a1a 50%, #242424 100%);
-        padding: 60px 0 50px 0;
+        padding: 175px 0 50px 0;
         position: relative;
         border-bottom: 3px solid #ff5f13;
+    }
+
+    @media (max-width: 991px) {
+        .blog-header-banner {
+            padding: 130px 0 40px 0;
+        }
     }
 
     .blog-header-banner .breadcrumb-nav {
@@ -294,23 +300,24 @@
 
     /* Sidebar Download Banner */
     .sidebar-catalogue-box {
-        background: linear-gradient(135deg, #111111, #222222);
+        background: linear-gradient(135deg, #111111, #1e1e1e);
         color: #ffffff;
         border-radius: 10px;
         padding: 25px 20px;
         text-align: center;
-        border: 1px solid #333333;
+        border: 1px solid #2d2d2d;
     }
 
-    .sidebar-catalogue-box i {
-        font-size: 38px;
+    .sidebar-catalogue-box i.pdf-icon {
+        font-size: 42px;
         color: #ff5f13;
         margin-bottom: 12px;
+        display: inline-block;
     }
 
     .sidebar-catalogue-box h4 {
         color: #ffffff;
-        font-size: 17px;
+        font-size: 18px;
         font-weight: 800;
         margin-bottom: 8px;
     }
@@ -318,25 +325,32 @@
     .sidebar-catalogue-box p {
         color: #a5a5a5;
         font-size: 13px;
-        margin-bottom: 15px;
+        line-height: 1.5;
+        margin-bottom: 18px;
     }
 
-    .sidebar-catalogue-box a {
+    .sidebar-download-btn {
         background: #ff5f13;
-        color: #ffffff;
+        color: #ffffff !important;
         font-weight: 700;
-        font-size: 13px;
-        padding: 9px 18px;
-        border-radius: 5px;
+        font-size: 14px;
+        padding: 12px 24px;
+        border-radius: 6px;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        transition: opacity 0.2s;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease-in-out;
+        width: 100%;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(255, 95, 19, 0.25);
     }
 
-    .sidebar-catalogue-box a:hover {
-        opacity: 0.9;
-        color: #ffffff;
+    .sidebar-download-btn:hover {
+        background: #e04e0a;
+        color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(255, 95, 19, 0.4);
     }
 
     /* Tag Cloud */
@@ -478,11 +492,11 @@
 
                 <!-- Download Catalogue Sidebar Banner -->
                 <div class="blog-sidebar-card sidebar-catalogue-box">
-                    <i class="fa-solid fa-file-pdf"></i>
+                    <i class="fa-solid fa-file-pdf pdf-icon"></i>
                     <h4>DOZO Product Catalogue</h4>
                     <p>Explore our complete range of High-Performance Aluminium Windows & Facade Systems.</p>
-                    <a href="{{ asset('catelogue.pdf') }}" target="_blank">
-                        <i class="fa-solid fa-download"></i> Download Catalogue (PDF)
+                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="sidebar-download-btn">
+                        <i class="fa-solid fa-file-pdf"></i> Download Catalogue (PDF)
                     </a>
                 </div>
 

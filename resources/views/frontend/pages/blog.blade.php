@@ -7,9 +7,15 @@
     /* Modern Blog Breadcrumb Header (No BG Image) */
     .blog-header-banner {
         background: linear-gradient(135deg, #111111 0%, #1a1a1a 50%, #242424 100%);
-        padding: 55px 0 45px 0;
+        padding: 175px 0 50px 0;
         position: relative;
         border-bottom: 3px solid #ff5f13;
+    }
+
+    @media (max-width: 991px) {
+        .blog-header-banner {
+            padding: 130px 0 40px 0;
+        }
     }
 
     .blog-header-banner .breadcrumb-nav {
@@ -253,23 +259,24 @@
 
     /* Sidebar Download Banner */
     .sidebar-catalogue-box {
-        background: linear-gradient(135deg, #111111, #222222);
+        background: linear-gradient(135deg, #111111, #1e1e1e);
         color: #ffffff;
         border-radius: 10px;
         padding: 25px 20px;
         text-align: center;
-        border: 1px solid #333333;
+        border: 1px solid #2d2d2d;
     }
 
-    .sidebar-catalogue-box i {
-        font-size: 38px;
+    .sidebar-catalogue-box i.pdf-icon {
+        font-size: 42px;
         color: #ff5f13;
         margin-bottom: 12px;
+        display: inline-block;
     }
 
     .sidebar-catalogue-box h4 {
         color: #ffffff;
-        font-size: 17px;
+        font-size: 18px;
         font-weight: 800;
         margin-bottom: 8px;
     }
@@ -277,25 +284,32 @@
     .sidebar-catalogue-box p {
         color: #a5a5a5;
         font-size: 13px;
-        margin-bottom: 15px;
+        line-height: 1.5;
+        margin-bottom: 18px;
     }
 
-    .sidebar-catalogue-box a {
+    .sidebar-download-btn {
         background: #ff5f13;
-        color: #ffffff;
+        color: #ffffff !important;
         font-weight: 700;
-        font-size: 13px;
-        padding: 9px 18px;
-        border-radius: 5px;
+        font-size: 14px;
+        padding: 12px 24px;
+        border-radius: 6px;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        transition: opacity 0.2s;
+        justify-content: center;
+        gap: 8px;
+        transition: all 0.2s ease-in-out;
+        width: 100%;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(255, 95, 19, 0.25);
     }
 
-    .sidebar-catalogue-box a:hover {
-        opacity: 0.9;
-        color: #ffffff;
+    .sidebar-download-btn:hover {
+        background: #e04e0a;
+        color: #ffffff !important;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(255, 95, 19, 0.4);
     }
 
     /* Tag Cloud */
@@ -320,6 +334,57 @@
         background: #ff5f13;
         color: #ffffff;
         border-color: #ff5f13;
+    }
+
+    /* Custom Pagination Styling */
+    .blog-pagination-wrapper {
+        margin-top: 35px;
+    }
+
+    .custom-pagination {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .custom-pagination .page-item .page-link {
+        color: #111111;
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        padding: 10px 18px;
+        border-radius: 6px !important;
+        font-weight: 700;
+        font-size: 14px;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    .custom-pagination .page-item.active .page-link {
+        background: #ff5f13 !important;
+        border-color: #ff5f13 !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(255, 95, 19, 0.3);
+    }
+
+    .custom-pagination .page-item .page-link:hover {
+        background: #f7f7f7;
+        border-color: #ff5f13;
+        color: #ff5f13;
+    }
+
+    .custom-pagination .page-item.disabled .page-link {
+        color: #bbbbbb;
+        background: #fcfcfc;
+        border-color: #eeeeee;
+        cursor: not-allowed;
     }
 </style>
 @endsection
@@ -385,8 +450,43 @@
 
                         <!-- Pagination -->
                         @if($blogs->hasPages())
-                        <nav class="blog-pagination justify-content-center d-flex mt-4">
-                            {{ $blogs->links() }}
+                        <nav class="blog-pagination-wrapper justify-content-center d-flex mt-4" aria-label="Blog pagination">
+                            <ul class="pagination custom-pagination">
+                                {{-- Previous Page Link --}}
+                                @if ($blogs->onFirstPage())
+                                    <li class="page-item disabled" aria-disabled="true">
+                                        <span class="page-link">&laquo; Prev</span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $blogs->previousPageUrl() }}" rel="prev">&laquo; Prev</a>
+                                    </li>
+                                @endif
+
+                                {{-- Pagination Elements --}}
+                                @foreach ($blogs->getUrlRange(1, $blogs->lastPage()) as $page => $url)
+                                    @if ($page == $blogs->currentPage())
+                                        <li class="page-item active" aria-current="page">
+                                            <span class="page-link">{{ $page }}</span>
+                                        </li>
+                                    @else
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+
+                                {{-- Next Page Link --}}
+                                @if ($blogs->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $blogs->nextPageUrl() }}" rel="next">Next &raquo;</a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled" aria-disabled="true">
+                                        <span class="page-link">Next &raquo;</span>
+                                    </li>
+                                @endif
+                            </ul>
                         </nav>
                         @endif
                     @else
@@ -422,11 +522,11 @@
 
                 <!-- Download Catalogue Sidebar Banner -->
                 <div class="blog-sidebar-card sidebar-catalogue-box">
-                    <i class="fa-solid fa-file-pdf"></i>
+                    <i class="fa-solid fa-file-pdf pdf-icon"></i>
                     <h4>DOZO Product Catalogue</h4>
                     <p>Explore our complete range of High-Performance Aluminium Windows & Facade Systems.</p>
-                    <a href="{{ asset('catelogue.pdf') }}" target="_blank">
-                        <i class="fa-solid fa-download"></i> Download Catalogue (PDF)
+                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="sidebar-download-btn">
+                        <i class="fa-solid fa-file-pdf"></i> Download Catalogue (PDF)
                     </a>
                 </div>
 
