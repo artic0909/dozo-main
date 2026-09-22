@@ -193,29 +193,16 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="/">Home</a></li>
-                                            <li><a href="/#products">Aluminium System Window & Facade</a></li>
-                                            <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf" style="color: #ff5f13;"></i> Catalogue Download</a></li>
+                                            @foreach($maincategories as $maincategory)
+                                            <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
+                                            @endforeach
                                             <li><a href="/amc">Window AMC</a></li>
 
                                             {{-- Commented other pages --}}
                                             {{--
+                                            <li><a href="/">Home</a></li>
                                             <li><a href="/about">About</a></li>
-                                            <li>
-                                                <a href="#">Product</a>
-                                                <ul class="submenu">
-                                                    @foreach($maincategories as $maincategory)
-                                                    <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="#">Service</a>
-                                                <ul class="submenu">
-                                                    <li><a href="/service">DOZO Window Service</a></li>
-                                                    <li><a href="/amc">Annual Maintenance Contract</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="/service">DOZO Window Service</a></li>
                                             <li><a href="/blog">Blog</a></li>
                                             <!-- <li><a href="#" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i
                                                         class="fa-solid fa-headset"></i>&nbsp; Contact Us</a></li> -->
