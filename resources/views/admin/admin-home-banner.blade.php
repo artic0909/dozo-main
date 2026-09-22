@@ -45,8 +45,9 @@
                                 <th style="width: 140px;">Banner Image</th>
                                 <th>Sub Heading</th>
                                 <th>Main Heading</th>
-                                <th>Action Label / Project</th>
-                                <th>Link / URL</th>
+                                <th>Stroke / Alt Text</th>
+                                <th>Button Label</th>
+                                <th>Target URL</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
                             </tr>
                         </thead>
@@ -67,8 +68,13 @@
                                     <strong class="text-dark">{{ $banner->h_title }}</strong>
                                 </td>
                                 <td>
-                                    <span class="text-muted" style="font-size: 13px;">
-                                        {{ $banner->h_a_title ? $banner->h_a_title : ($banner->h_p_name ?? '—') }}
+                                    <span class="text-muted font-italic" style="font-size: 13px;">
+                                        {{ $banner->h_a_title ?? '—' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light border text-dark font-weight-bold" style="font-size: 12px;">
+                                        {{ $banner->h_p_name ?? 'Explore' }}
                                     </span>
                                 </td>
                                 <td>
@@ -140,13 +146,18 @@
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <label for="h_a_title" class="font-weight-bold">Action Button Label</label>
-                            <input type="text" class="form-control" name="h_a_title" id="h_a_title" placeholder="e.g. Explore Systems">
+                            <label for="h_a_title" class="font-weight-bold">Stroke / Animated Secondary Title</label>
+                            <input type="text" class="form-control" name="h_a_title" id="h_a_title" placeholder="e.g. ALUMINIUM SYSTEMS">
                         </div>
 
                         <div class="col-md-6 form-group">
+                            <label for="h_p_name" class="font-weight-bold">Action Button Label</label>
+                            <input type="text" class="form-control" name="h_p_name" id="h_p_name" placeholder="e.g. Explore Systems">
+                        </div>
+
+                        <div class="col-12 form-group">
                             <label for="h_p_url" class="font-weight-bold">Button / Target URL</label>
-                            <input type="text" class="form-control" name="h_p_url" id="h_p_url" placeholder="e.g. /product-details">
+                            <input type="text" class="form-control" name="h_p_url" id="h_p_url" placeholder="e.g. https://dozo.co.in/product-details or /inquiry">
                         </div>
 
                         <div class="col-12 form-group">
@@ -194,11 +205,16 @@
                         </div>
 
                         <div class="col-md-6 form-group">
-                            <label class="font-weight-bold">Action Button Label</label>
+                            <label class="font-weight-bold">Stroke / Animated Secondary Title</label>
                             <input type="text" class="form-control" name="h_a_title" value="{{ $banner->h_a_title }}">
                         </div>
 
                         <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Action Button Label</label>
+                            <input type="text" class="form-control" name="h_p_name" value="{{ $banner->h_p_name }}">
+                        </div>
+
+                        <div class="col-12 form-group">
                             <label class="font-weight-bold">Button / Target URL</label>
                             <input type="text" class="form-control" name="h_p_url" value="{{ $banner->h_p_url }}">
                         </div>

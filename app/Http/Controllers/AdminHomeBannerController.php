@@ -19,31 +19,31 @@ class AdminHomeBannerController extends Controller
     public function addHomeBanner(Request $request)
     {
         $validated = $request->validate([
-            'home_banner' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'h_s_desc' => 'string|nullable',
-            'h_title' => 'string|nullable',
-            'h_a_title' => 'string|nullable',
-            'h_p_name' => 'string|nullable',
-            'h_p_url' => 'string|nullable',
+            'home_banner' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'h_s_desc' => 'required|string|max:255',
+            'h_title' => 'required|string|max:255',
+            'h_a_title' => 'nullable|string|max:255',
+            'h_p_name' => 'nullable|string|max:255',
+            'h_p_url' => 'nullable|string|max:255',
         ]);
 
+        $filePath = '';
         if ($request->hasFile('home_banner')) {
             $file = $request->file('home_banner');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $filePath = $file->storeAs('uploads/homebanner', $fileName, 'public');
         }
 
-
         AdminHomeBannerModel::create([
-            'home_banner' => $filePath ?? null,
-            'h_s_desc' => $request->input('h_s_desc'),
-            'h_title' => $request->input('h_title'),
-            'h_a_title' => $request->input('h_a_title'),
-            'h_p_name' => $request->input('h_p_name'),
-            'h_p_url' => $request->input('h_p_url'),
+            'home_banner' => $filePath,
+            'h_s_desc' => $request->input('h_s_desc') ?? '',
+            'h_title' => $request->input('h_title') ?? '',
+            'h_a_title' => $request->input('h_a_title') ?? $request->input('h_title') ?? '',
+            'h_p_name' => $request->input('h_p_name') ?? $request->input('h_a_title') ?? 'Explore',
+            'h_p_url' => $request->input('h_p_url') ?? '#',
         ]);
 
-        return back()->with('success', 'Added Successfully!');
+        return back()->with('success', 'Home Banner added successfully!');
     }
 
 
@@ -52,12 +52,12 @@ class AdminHomeBannerController extends Controller
     public function editHomeBanner(Request $request, $id)
     {
         $validated = $request->validate([
-            'home_banner' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'h_s_desc' => 'string|nullable',
-            'h_title' => 'string|nullable',
-            'h_a_title' => 'string|nullable',
-            'h_p_name' => 'string|nullable',
-            'h_p_url' => 'string|nullable',
+            'home_banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'h_s_desc' => 'required|string|max:255',
+            'h_title' => 'required|string|max:255',
+            'h_a_title' => 'nullable|string|max:255',
+            'h_p_name' => 'nullable|string|max:255',
+            'h_p_url' => 'nullable|string|max:255',
         ]);
 
         $homeBannerInfo = AdminHomeBannerModel::find($id);
@@ -66,7 +66,7 @@ class AdminHomeBannerController extends Controller
             if ($request->hasFile('home_banner')) {
                 // Delete the old image
                 if (file_exists(public_path('storage/' . $homeBannerInfo->home_banner))) {
-                    unlink(public_path('storage/' . $homeBannerInfo->home_banner));
+                    @unlink(public_path('storage/' . $homeBannerInfo->home_banner));
                 }
 
                 // Store the new image
@@ -76,16 +76,16 @@ class AdminHomeBannerController extends Controller
                 $homeBannerInfo->home_banner = $filePath;
             }
 
-            $homeBannerInfo->h_s_desc = $request->input('h_s_desc');
-            $homeBannerInfo->h_title = $request->input('h_title');
-            $homeBannerInfo->h_a_title = $request->input('h_a_title');
-            $homeBannerInfo->h_p_name = $request->input('h_p_name');
-            $homeBannerInfo->h_p_url = $request->input('h_p_url');
+            $homeBannerInfo->h_s_desc = $request->input('h_s_desc') ?? '';
+            $homeBannerInfo->h_title = $request->input('h_title') ?? '';
+            $homeBannerInfo->h_a_title = $request->input('h_a_title') ?? $request->input('h_title') ?? '';
+            $homeBannerInfo->h_p_name = $request->input('h_p_name') ?? $request->input('h_a_title') ?? 'Explore';
+            $homeBannerInfo->h_p_url = $request->input('h_p_url') ?? '#';
             $homeBannerInfo->save();
 
-            return back()->with('success', 'updated successfully!');
+            return back()->with('success', 'Home Banner updated successfully!');
         } else {
-            return back()->with('error', 'not found.');
+            return back()->with('error', 'Banner not found.');
         }
     }
 
