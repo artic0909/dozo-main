@@ -268,111 +268,309 @@
 
 
 
-        <!-- Services Area Start -->
-        <div class="services-area1 section-padding30">
+        <!-- Why Choose DOZO System Windows Section (Catalogue Info) Start -->
+        <div class="catalogue-why-section services-area1 section-padding30" id="why-dozo">
             <div class="container">
-                <!-- section tittle -->
+                <!-- Section Title -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="section-tittle mb-55">
+                        <div class="section-tittle mb-50 text-center">
                             <div class="front-text">
-                                <h2 class="">Our Services</h2>
+                                <h2 class="">Why Choose DOZO System Windows?</h2>
                             </div>
-                            <span class="back-text">Services</span>
+                            <span class="back-text">WHY DOZO</span>
+                            <p style="color: #ff5f13; font-weight: 700; font-size: 17px; margin-top: 10px; letter-spacing: 0.5px;">
+                                <i class="fa-solid fa-circle-check"></i> Basic Windows Requirements Are Fulfilled By DOZO Windows
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
 
-                    @foreach($services as $service)
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="{{ asset('storage/' . $service->sr_img) }}" alt="" />
+                <!-- 4 Performance Pillars Grid -->
+                <div class="row mb-40">
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                        <div class="catalogue-pillar-card">
+                            <div class="catalogue-pillar-icon">
+                                <i class="fa-solid fa-wind"></i>
                             </div>
-                            <div class="service-cap">
-                                <h4><a href="{{ url('/service-details/' . $service->id) }}">{{$service->sr_title}}</a></h4>
-                                <a href="{{ url('/service-details/' . $service->id) }}" class="more-btn">Read More <i class="ti-plus"></i></a>
+                            <h3 class="catalogue-pillar-title">AIR</h3>
+                            <span class="catalogue-pillar-badge">Tested by 3.0 kPa</span>
+                            <p class="catalogue-pillar-desc">Superior wind pressure resistance tested rigorously up to 3.0 kPa for ultimate high-rise safety and structural stability.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                        <div class="catalogue-pillar-card">
+                            <div class="catalogue-pillar-icon">
+                                <i class="fa-solid fa-droplet"></i>
                             </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="" />
+                            <h3 class="catalogue-pillar-title">WATER</h3>
+                            <span class="catalogue-pillar-badge">Tested by 0.30 kPa</span>
+                            <p class="catalogue-pillar-desc">Advanced watertight sealing tested up to 0.30 kPa preventing water ingress during extreme monsoon weather.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                        <div class="catalogue-pillar-card">
+                            <div class="catalogue-pillar-icon">
+                                <i class="fa-solid fa-volume-xmark"></i>
+                            </div>
+                            <h3 class="catalogue-pillar-title">SOUND</h3>
+                            <span class="catalogue-pillar-badge">20 - 45 dB Cutoff</span>
+                            <p class="catalogue-pillar-desc">High acoustic insulation reducing outside urban noise by 20 to 45 dB depending on glass configuration for peaceful interiors.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                        <div class="catalogue-pillar-card">
+                            <div class="catalogue-pillar-icon">
+                                <i class="fa-solid fa-temperature-arrow-down"></i>
+                            </div>
+                            <h3 class="catalogue-pillar-title">THERMAL</h3>
+                            <span class="catalogue-pillar-badge">10 - 12°C Reduction</span>
+                            <p class="catalogue-pillar-desc">Exceptional thermal barrier reducing indoor temperature by 10 to 12°C depending on glass, maximizing energy savings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Warranty Cards & Manufacturing Checklist -->
+                <div class="row align-items-stretch">
+                    <!-- Left: 3 Warranty Cards -->
+                    <div class="col-lg-5 col-md-12 mb-30">
+                        <div class="row h-100">
+                            <div class="col-12 mb-20">
+                                <div class="catalogue-warranty-card">
+                                    <div class="catalogue-warranty-number">25 YEARS</div>
+                                    <h4 class="catalogue-warranty-title">Warranty on Aluminium Material</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-20">
+                                <div class="catalogue-warranty-card">
+                                    <div class="catalogue-warranty-number">15 YEARS</div>
+                                    <h4 class="catalogue-warranty-title">Powder Coating Warranty</h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-20">
+                                <div class="catalogue-warranty-card">
+                                    <div class="catalogue-warranty-number">5 YEARS</div>
+                                    <h4 class="catalogue-warranty-title">Hardware Warranty</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
 
+                    <!-- Right: Manufacturing Excellence Checklist -->
+                    <div class="col-lg-7 col-md-12 mb-30">
+                        <div class="catalogue-feature-box h-100">
+                            <h4 style="font-size: 20px; font-weight: 800; color: #111111; margin-bottom: 20px; text-transform: uppercase;">
+                                <i class="fa-solid fa-award" style="color: #ff5f13; margin-right: 8px;"></i> Manufacturing & Quality Standards
+                            </h4>
+                            <ul class="catalogue-feature-list">
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span><strong>Fully Factory Made:</strong> Precision manufactured with advanced automatic CNC machines.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span><strong>Certified Raw Materials:</strong> 100% quality tested raw materials adhering to global benchmarks.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span><strong>Versatile Glass Fitting:</strong> 4mm to 24mm glass fitted seamlessly in our windows & doors.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span><strong>Direct Factory Value:</strong> Transparent, reasonable pricing directly from the manufacturer.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Callout Quality Statement -->
+                <div class="catalogue-callout-banner">
+                    <p>
+                        <i class="fa-solid fa-shield-halved" style="color: #ff5f13; font-size: 22px; margin-right: 10px; vertical-align: middle;"></i>
+                        To ensure the quality, durability, and performance of our Aluminium Windows with Thermal & Noise Insulation, we comply with industry standards and conduct rigorous testing.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="btn header-btn" style="background: #ff5f13; color: #ffffff; padding: 12px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-file-pdf"></i> View Catalogue
+                        </a>
+                        <a href="{{ url('/contact') }}" class="btn header-btn" style="background: #333333; color: #ffffff; padding: 12px 24px; font-size: 14px; font-weight: 700; border-radius: 6px; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-envelope"></i> Quick Inquiry
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Services Area End -->
+        <!-- Why Choose DOZO System Windows Section End -->
 
 
 
 
 
-
-
-
-        <!-- Product Area Start -->
-        <section class="project-area section-padding30" id="products">
+        <!-- Shaping Modern Architecture & Envelope Solution Section Start -->
+        <section class="catalogue-architecture-section section-padding30" id="architectural-solutions">
             <div class="container">
-                <div class="project-heading mb-35">
-                    <div class="row align-items-end">
-                        <div class="col-lg-6">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle section-tittle3">
-                                <div class="front-text">
-                                    <h2 class="">Our Products</h2>
-                                </div>
-                                <span class="back-text">Gellary</span>
+                <!-- Section Header -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle mb-50">
+                            <div class="front-text">
+                                <h2 class="">Shaping Modern Architecture</h2>
+                            </div>
+                            <span class="back-text">SOLUTIONS</span>
+                            <p style="font-size: 18px; color: #666; font-weight: 600; margin-top: 8px;">Architecture with Performance and Elegance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Luxury Living Banner -->
+                <div class="catalogue-luxury-banner">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-lg-12">
+                            <div class="catalogue-luxury-content">
+                                <span class="catalogue-luxury-badge">Designed for Luxury Living</span>
+                                <h3 class="catalogue-luxury-title">At DOZO Windows & Façade, We Deliver Exactly That.</h3>
+                                <p class="catalogue-luxury-desc">
+                                    In today's architectural landscape, buildings are no longer judged solely by their structure. They are defined by their façade, natural light, energy efficiency, sustainability, and the experience they create for occupants. As India's premium real estate market continues to evolve, developers, architects, and luxury homeowners are seeking solutions that combine aesthetics, innovation, and long-term performance.
+                                </p>
+                                <ul class="catalogue-luxury-points">
+                                    <li>
+                                        <i class="fa-solid fa-circle-dot"></i>
+                                        <span><strong>Beyond Products, Complete Architectural Solutions:</strong> A window is more than an opening. A façade is more than an exterior surface. Together, they define a building's identity, efficiency, and value.</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-circle-dot"></i>
+                                        <span><strong>Integrated Façade & Fenestration:</strong> We provide solutions that combine design expertise, engineering precision, premium materials, fabrication excellence, professional installation, and dedicated after-sales support.</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-circle-dot"></i>
+                                        <span><strong>Timeless Living:</strong> Modern homeowners expect more than beautiful homes — they seek comfort, security, energy efficiency, and timeless elegance.</span>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Envelope Solutions, Applications & Technical Specifications -->
                 <div class="row">
-                    <div class="col-12">
-                        <!-- Nav Card -->
+                    <!-- Left: Complete Building Envelope Solution & Applications -->
+                    <div class="col-lg-6 mb-30">
+                        <div class="catalogue-specs-card h-100">
+                            <h3 style="font-size: 24px; font-weight: 900; color: #111111; margin-bottom: 20px; font-family: 'Barlow', sans-serif; text-transform: uppercase;">
+                                <i class="fa-solid fa-building" style="color: #ff5f13; margin-right: 10px;"></i> Complete Building Envelope Solution
+                            </h3>
+                            <ul class="catalogue-feature-list mb-35">
+                                <li>
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span><strong>Wind Load Capacity:</strong> Engineered up to 3.0 kPa for ultimate resistance.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span><strong>Premium 6063-T6 Aluminum:</strong> Architectural grade alloy for maximum structural strength.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span><strong>Super Durable Powder Coating:</strong> Weather-resistant Qualicoat approved finishing.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span><strong>Thermal Efficiency & Acoustic Comfort:</strong> Superior multi-chamber insulation.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span><strong>Luxury Appearance:</strong> Sleek minimalist profiles with expansive glass views.</span>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-check-circle"></i>
+                                    <span><strong>Sustainable & Recyclable:</strong> 100% eco-friendly and energy-saving fenestration.</span>
+                                </li>
+                            </ul>
 
-                        <div class="tab-content active" id="nav-tabContent">
+                            <h4 style="font-size: 18px; font-weight: 800; color: #111111; text-transform: uppercase; margin-bottom: 15px;">
+                                <i class="fa-solid fa-city" style="color: #ff5f13; margin-right: 8px;"></i> Applications
+                            </h4>
+                            <div class="catalogue-app-grid">
+                                <span class="catalogue-app-item"><i class="fa-solid fa-building-flag"></i> High-rise Buildings</span>
+                                <span class="catalogue-app-item"><i class="fa-solid fa-house-chimney-window"></i> Luxury Apartments</span>
+                                <span class="catalogue-app-item"><i class="fa-solid fa-hotel"></i> Hotels & Resorts</span>
+                                <span class="catalogue-app-item"><i class="fa-solid fa-store"></i> Commercial Complexes</span>
+                                <span class="catalogue-app-item"><i class="fa-solid fa-landmark"></i> Institutional Buildings</span>
+                            </div>
+                        </div>
+                    </div>
 
-
-
-                            <!-- card ONE -->
-                            <div class="tab-pane fade active show" id="nav-all">
-                                <div class="project-caption">
-                                    <div class="row">
-
-                                        @foreach($products as $product)
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-project mb-30">
-                                                <div class="project-img">
-                                                    <img src="{{ asset('storage/' . $product->pr_image) }}" alt="" />
-                                                </div>
-                                                <div class="project-cap">
-                                                    <a href="{{ url('/product-view/' . $product->id) }}" class="plus-btn"><i class="ti-plus"></i></a>
-                                                    <h4 class="mb-3">
-                                                        <a href="{{ url('/product-view/' . $product->id) }}" style="text-transform: capitalize;">{{$product->pr_title}}</a>
-                                                    </h4>
-                                                    <h4><i class="fa-solid fa-circle-dot" style="color: #ff5f13;"></i> <a href="{{ url('/product-view/' . $product->id) }}">{{ $product->mainCategory->main_category }}</a></h4>
-                                                    <h4><i class="fa-solid fa-circle-dot" style="color: #ff5f13;"></i> <a href="{{ url('/product-view/' . $product->id) }}">{{ $product->subCategory->sub_category }}</a></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
+                    <!-- Right: Aluminium Alloy Technical Specifications -->
+                    <div class="col-lg-6 mb-30">
+                        <div class="catalogue-specs-card h-100">
+                            <div class="catalogue-alloy-header-badge">
+                                <i class="fa-solid fa-flask"></i> Aluminium Alloy Used in DOZO Systems
                             </div>
 
+                            <h5 style="font-size: 16px; font-weight: 800; color: #111111; margin-bottom: 12px;">
+                                A. 6063-T6 Architectural Grade Chemical Properties
+                            </h5>
+                            <table class="catalogue-table">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Aluminum (Al)</strong></td>
+                                        <td>97 – 99%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Magnesium (Mg)</strong></td>
+                                        <td>0.45 – 0.90%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Silicon (Si)</strong></td>
+                                        <td>0.20 – 0.60%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Iron (Fe)</strong></td>
+                                        <td>Controlled</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Trace Elements</strong></td>
+                                        <td>Cu, Mn, Cr, Zn, Ti</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
+                            <h5 style="font-size: 16px; font-weight: 800; color: #111111; margin-top: 25px; margin-bottom: 12px;">
+                                B. 6063-T6 Alloy Physical & Mechanical Properties
+                            </h5>
+                            <table class="catalogue-table">
+                                <thead>
+                                    <tr>
+                                        <th>Properties</th>
+                                        <th>Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Tensile Strength</strong></td>
+                                        <td>110 – 120 MPa</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Yield Strength</strong></td>
+                                        <td>160 – 240 MPa</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- End Nav Card -->
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Product Area End -->
+        <!-- Shaping Modern Architecture & Envelope Solution Section End -->
 
 
 

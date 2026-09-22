@@ -599,3 +599,346 @@ img {
     max-width: calc(100% - 20px);
   }
 }
+
+/* --------------------------------------------------------------------------
+   11. Catalogue Themed Sections (Why Choose DOZO, Performance & Building Envelope)
+   -------------------------------------------------------------------------- */
+.catalogue-why-section {
+  background: #fbfbfb;
+  position: relative;
+  overflow: hidden;
+}
+
+.catalogue-pillar-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 4px solid #ff5f13;
+  transition: all 0.35s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalogue-pillar-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(255, 95, 19, 0.15);
+  border-color: rgba(255, 95, 19, 0.3);
+}
+
+.catalogue-pillar-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ff5f13 0%, #ff8c42 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(255, 95, 19, 0.3);
+}
+
+.catalogue-pillar-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111111;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-family: "Barlow", sans-serif;
+}
+
+.catalogue-pillar-badge {
+  display: inline-block;
+  background: rgba(255, 95, 19, 0.1);
+  color: #ff5f13;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  width: fit-content;
+}
+
+.catalogue-pillar-desc {
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Warranty Cards Grid */
+.catalogue-warranty-card {
+  background: #191919;
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.catalogue-warranty-card:hover {
+  transform: translateY(-4px);
+  border-color: #ff5f13;
+}
+
+.catalogue-warranty-number {
+  font-size: 38px;
+  font-weight: 900;
+  color: #ff5f13;
+  font-family: "Teko", sans-serif;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.catalogue-warranty-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+}
+
+/* Feature Check List */
+.catalogue-feature-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.catalogue-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalogue-feature-list li {
+  font-size: 15px;
+  color: #333333;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.5;
+}
+
+.catalogue-feature-list li:last-child {
+  border-bottom: none;
+}
+
+.catalogue-feature-list li i {
+  color: #ff5f13;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Quality Assurance Callout Banner */
+.catalogue-callout-banner {
+  background: linear-gradient(135deg, #111111 0%, #222222 100%);
+  border-radius: 12px;
+  padding: 30px 35px;
+  color: #ffffff;
+  border-left: 6px solid #ff5f13;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.catalogue-callout-banner p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 750px;
+  color: #e0e0e0;
+}
+
+/* Shaping Modern Architecture Section */
+.catalogue-architecture-section {
+  background: #ffffff;
+  position: relative;
+}
+
+.catalogue-luxury-banner {
+  background: linear-gradient(135deg, #161616 0%, #282828 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  margin-bottom: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.catalogue-luxury-content {
+  padding: 45px 40px;
+  color: #ffffff;
+}
+
+.catalogue-luxury-badge {
+  background: #ff5f13;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 18px;
+}
+
+.catalogue-luxury-title {
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Barlow", sans-serif;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.catalogue-luxury-desc {
+  font-size: 15px;
+  color: #cccccc;
+  line-height: 1.75;
+  margin-bottom: 25px;
+}
+
+.catalogue-luxury-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalogue-luxury-points li {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #dddddd;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.catalogue-luxury-points li i {
+  color: #ff5f13;
+  margin-top: 4px;
+  font-size: 16px;
+}
+
+/* Application Badges */
+.catalogue-app-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.catalogue-app-item {
+  background: #f5f5f5;
+  color: #222222;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+.catalogue-app-item:hover {
+  background: #ff5f13;
+  color: #ffffff;
+  border-color: #ff5f13;
+  transform: translateY(-2px);
+}
+
+.catalogue-app-item i {
+  color: #ff5f13;
+  transition: color 0.25s ease;
+}
+
+.catalogue-app-item:hover i {
+  color: #ffffff;
+}
+
+/* Alloy Technical Specifications Card & Tables */
+.catalogue-specs-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 35px 30px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 30px;
+}
+
+.catalogue-alloy-header-badge {
+  background: linear-gradient(135deg, #111111 0%, #292929 100%);
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid #ff5f13;
+  margin-bottom: 25px;
+}
+
+.catalogue-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eeeeee;
+}
+
+.catalogue-table thead th {
+  background: #ff5f13;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.catalogue-table tbody td {
+  padding: 12px 18px;
+  font-size: 14px;
+  color: #333333;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.catalogue-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.catalogue-table tbody tr:hover {
+  background-color: #fff4ee;
+}
+
+.catalogue-table tbody td strong {
+  color: #111111;
+  font-weight: 700;
+}
+
