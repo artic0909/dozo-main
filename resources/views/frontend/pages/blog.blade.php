@@ -421,7 +421,7 @@
                         <article class="blog_item">
                             @if(!empty($blog->b_img))
                             <div class="blog_item_img">
-                                <a href="{{ url('/blog-details/' . $blog->id) }}">
+                                <a href="{{ url('/blog/' . ($blog->slug ?? $blog->id)) }}">
                                     <img class="card-img rounded-0" src="{{ asset('storage/' . $blog->b_img) }}" alt="{{ $blog->b_title }}">
                                 </a>
                                 <div class="blog_item_date">
@@ -432,7 +432,7 @@
                             @endif
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="{{ url('/blog-details/' . $blog->id) }}">
+                                <a class="d-inline-block" href="{{ url('/blog/' . ($blog->slug ?? $blog->id)) }}">
                                     <h2>{{ $blog->b_title }}</h2>
                                 </a>
                                 <p>{{ Str::limit($blog->b_desc ?? $blog->b_qt, 160) }}</p>
@@ -511,7 +511,7 @@
                             @endif
                             <div class="recent-post-info">
                                 <h4>
-                                    <a href="{{ url('/blog-details/' . $b->id) }}">{{ Str::limit($b->b_title ?? $b->b_qt, 55) }}</a>
+                                    <a href="{{ url('/blog/' . ($b->slug ?? $b->id)) }}">{{ Str::limit($b->b_title ?? $b->b_qt, 55) }}</a>
                                 </h4>
                                 <span><i class="fa-regular fa-calendar-days"></i> {{ $b->b_date ?? ($b->created_at ? $b->created_at->format('d M, Y') : '') }}</span>
                             </div>

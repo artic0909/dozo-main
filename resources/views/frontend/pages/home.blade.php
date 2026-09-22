@@ -1325,12 +1325,12 @@
                                     <li><i class="fa-solid fa-tag" style="color: #ff5f13;"></i> &nbsp; {{$blog->b_qt}}</li>
                                 </ul>
                                 <h2>
-                                    <a href="{{ url('/blog-details/' . $blog->id) }}">{{$blog->b_title}}</a>
+                                    <a href="{{ url('/blog/' . ($blog->slug ?? $blog->id)) }}">{{$blog->b_title}}</a>
                                 </h2>
                                 <p style="font-size: 14px; color: #666666; line-height: 1.5; margin-bottom: 15px;">
                                     {{ Str::limit($blog->b_desc, 100) }}
                                 </p>
-                                <a href="{{ url('/blog-details/' . $blog->id) }}" class="d-btn">Read more <i class="ti-arrow-right"></i></a>
+                                <a href="{{ url('/blog/' . ($blog->slug ?? $blog->id)) }}" class="d-btn">Read more <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

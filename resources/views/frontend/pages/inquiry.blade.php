@@ -109,8 +109,8 @@
                                                     <div id="amcForm">
                                                         <div class="form-inner" id="windowGroup_1">
                                                             <div class="form-group">
-                                                                <label class="amc-label">Window 1<span class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control bdrn" name="window_name[]" placeholder="Master Bedroom" required>
+                                                                <label class="amc-label">Window / System Name<span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control bdrn" name="window_name[]" value="{{ request('product', '') }}" placeholder="e.g. Casement Window / Master Bedroom" required>
                                                             </div>
 
                                                             <div class="form-group">

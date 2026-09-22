@@ -479,7 +479,7 @@
                             @endif
                             <div class="recent-post-info">
                                 <h4>
-                                    <a href="{{ url('/blog-details/' . $recentBlog->id) }}">{{ Str::limit($recentBlog->b_title ?? $recentBlog->b_qt, 55) }}</a>
+                                    <a href="{{ url('/blog/' . ($recentBlog->slug ?? $recentBlog->id)) }}">{{ Str::limit($recentBlog->b_title ?? $recentBlog->b_qt, 55) }}</a>
                                 </h4>
                                 <span><i class="fa-regular fa-calendar-days"></i> {{ $recentBlog->b_date ?? $recentBlog->created_at->format('d M, Y') }}</span>
                             </div>

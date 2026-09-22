@@ -39,7 +39,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 80px;">Cover</th>
-                                <th>Blog Title</th>
+                                <th>Blog Title & Slug</th>
                                 <th>Tag / Category</th>
                                 <th>Content Snippet</th>
                                 <th>Date</th>
@@ -59,7 +59,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14px;">{{ $blog->b_title }}</strong>
+                                    <strong class="text-dark d-block" style="font-size: 14px;">{{ $blog->b_title }}</strong>
+                                    <span class="text-muted" style="font-size: 12px;">
+                                        <i class="fa-solid fa-link text-primary mr-1"></i>
+                                        <a href="{{ url('/blog/' . ($blog->slug ?? $blog->id)) }}" target="_blank" class="text-primary font-weight-500">
+                                            /blog/{{ $blog->slug ?? $blog->id }}
+                                        </a>
+                                    </span>
                                 </td>
                                 <td>
                                     <span class="badge badge-dozo">{{ $blog->b_tag ?? 'Architecture' }}</span>
@@ -76,6 +82,10 @@
                                 </td>
                                 <td style="text-align: center;">
                                     <div class="d-flex justify-content-center gap-1">
+                                        <a href="{{ url('/blog/' . ($blog->slug ?? $blog->id)) }}" target="_blank" class="btn btn-sm btn-outline-info mr-1" title="View Live Blog" style="padding: 5px 9px; border-radius: 6px;">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </a>
+
                                         <button type="button" class="btn btn-sm btn-outline-primary mr-1" data-toggle="modal" data-target="#editBlogModal{{ $blog->id }}" title="Edit Blog" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
@@ -123,9 +133,14 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-md-8 form-group">
                             <label for="b_title" class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="b_title" id="b_title" placeholder="Enter article title" required>
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label for="b_slug" class="font-weight-bold">Custom Slug (Optional)</label>
+                            <input type="text" class="form-control" name="slug" id="b_slug" placeholder="Auto-generated if empty">
                         </div>
 
                         <div class="col-md-6 form-group">
@@ -182,9 +197,14 @@
                 @method('PUT')
                 <div class="modal-body p-4">
                     <div class="row">
-                        <div class="col-12 form-group">
+                        <div class="col-md-8 form-group">
                             <label class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="b_title" value="{{ $blog->b_title }}" required>
+                        </div>
+
+                        <div class="col-md-4 form-group">
+                            <label class="font-weight-bold">URL Slug</label>
+                            <input type="text" class="form-control" name="slug" value="{{ $blog->slug }}">
                         </div>
 
                         <div class="col-md-6 form-group">

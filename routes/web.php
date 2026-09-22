@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminAboutCompanyController;
 use App\Http\Controllers\AdminAboutNumbersController;
 use App\Http\Controllers\AdminAMCController;
@@ -42,13 +43,22 @@ Route::get('/', [FrontHomeController::class, 'getall'])->name('getall');
 Route::get('/about', [FrontAboutController::class, 'getAllAbout'])->name('getAllAbout');
 Route::get('/about/maincategory/{id}', [ProductController::class, 'getAllAbout'])->name('about.maincategory');
 Route::get('/get-products/{id}', [FrontAboutController::class, 'getProduct'])->name('product.show');
+
+// Product Slug & Legacy View Routes
+Route::get('/product/{slug}', [FrontHomeController::class, 'getProductDetails'])->name('product.details');
 Route::get('/product-view/{id}', [FrontHomeController::class, 'getProductDetails'])->name('product.view');
+
+// Service Routes
 Route::get('/service', [FrontServiceController::class, 'getAllService'])->name('getAllService');
 Route::get('/service-details/{id}', [FrontHomeController::class, 'getServiceDetails'])->name('service.details');
+
+// Blog Slug & Legacy Details Routes
 Route::get('/blog', [FrontBlogsController::class, 'getAllBlog'])->name('getAllBlog');
+Route::get('/blog/{slug}', [FrontHomeController::class, 'getBlogDetails'])->name('blog.slug');
 Route::get('/blog-details/{id}', [FrontHomeController::class, 'getBlogDetails'])->name('blog.details');
 Route::post('/addBlog', [FrontHomeController::class, 'addBlog'])->name('addBlog');
 
+// AMC & Inquiries & Support
 Route::get('/amc', [AMCInquiryController::class, 'amcView'])->name('amc');
 Route::post('/amc', [AMCInquiryController::class, 'store'])->name('amc.store');
 Route::get('/inquiry', [InquiryWindowController::class, 'inquiryView'])->name('inquiry');
@@ -74,6 +84,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/product-details/add', [ProductController::class, 'addProduct'])->name('addProduct');
     Route::put('/product-details/edit/{id}', [ProductController::class, 'editProduct'])->name('editProduct');
     Route::delete('/product-details/delete/{id}', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+    Route::post('/product-details/delete-gallery-image/{id}', [ProductController::class, 'deleteGalleryImage'])->name('deleteGalleryImage');
 
     // Categories
     Route::get('/product-main-category', [MainCategoryController::class, 'getMainC'])->name('getMainC');
