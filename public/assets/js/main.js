@@ -22,11 +22,19 @@
   };
 
 
+  /* Apply data-background immediately */
+  $("[data-background]").each(function () {
+    $(this).css("background-image", "url(" + $(this).attr("data-background") + ")");
+  });
+
   /* 3. MainSlider-1 */
   // h1-hero-active
   function mainSlider() {
     var BasicSlider = $('.slider-active');
     BasicSlider.on('init', function (e, slick) {
+      $("[data-background]").each(function () {
+        $(this).css("background-image", "url(" + $(this).attr("data-background") + ")");
+      });
       var $firstAnimatingElements = $('.single-slider:first-child').find('[data-animation]');
       doAnimations($firstAnimatingElements);
     });
@@ -35,11 +43,15 @@
       doAnimations($animatingElements);
     });
     BasicSlider.slick({
-      autoplay: false,
-      autoplaySpeed: 4000,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      speed: 1200,
       dots: false,
       fade: true,
       arrows: false,
+      infinite: true,
+      pauseOnHover: false,
+      pauseOnFocus: false,
       prevArrow: '<button type="button" class="slick-prev"><img src="img/hero_thumb/arrow-left.png" alt=""><img class="secondary-img" src="img/hero_thumb/left-white.png" alt=""></button>',
       nextArrow: '<button type="button" class="slick-next"><img src="img/hero_thumb/arrow-right.png" alt=""><img class="secondary-img" src="img/hero_thumb/right-white.png" alt=""></button>',
       responsive: [{
@@ -94,7 +106,9 @@
       dots: false,
       infinite: true,
       speed: 1000,
-      autoplay: false,
+      autoplay: true,
+      autoplaySpeed: 6000,
+      pauseOnHover: true,
       arrows: true,
       prevArrow: '<button type="button" class="slick-prev"><i class="ti-angle-left"></i></button>',
       nextArrow: '<button type="button" class="slick-next"><i class="ti-angle-right"></i></button>',
@@ -131,6 +145,37 @@
     });
   }
 
+  /* 4.1 Blog / Latest News Slider Active */
+  var blogSlider = $('.latest-news-active');
+  if (blogSlider.length) {
+    blogSlider.slick({
+      dots: false,
+      infinite: true,
+      speed: 1000,
+      autoplay: true,
+      autoplaySpeed: 4500,
+      pauseOnHover: true,
+      arrows: false,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 991,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }
+      ]
+    });
+  }
 
   /* 5. Gallery Active */
   var client_list = $('.gallery-active');

@@ -228,6 +228,7 @@
 
                 @foreach($homeBannners as $banner)
                 <div class="single-slider hero-overly slider-height d-flex align-items-center"
+                    style="background-image: url('{{ asset('storage/' . $banner->home_banner) }}'); background-size: cover; background-position: center center; background-repeat: no-repeat;"
                     data-background="{{ asset('storage/' . $banner->home_banner) }}">
                     <div class="container">
                         <div class="row">
@@ -1436,149 +1437,6 @@
 
 
 
-        <!-- contact with us Start -->
-        <section class="contact-with-area" data-background="assets/img/gallery/contact.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-8 col-lg-9 offset-xl-1 offset-lg-1">
-                        <div class="contact-us-caption">
-                            <div class="team-info mb-30 pt-45">
-                                <!-- Section Tittle -->
-                                <div class="section-tittle section-tittle4">
-                                    <div class="front-text">
-                                        <h2 class="">Lats talk with us</h2>
-                                    </div>
-                                    <span class="back-text">Lat`s chat</span>
-                                </div>
-                                <p style="text-align: justify;">
-                                    Expert Craftsmanship: Our team brings years of expertise to each window solution, ensuring quality in every detail.
-                                    Customized Solutions: We provide tailored designs that meet your unique needs, adding beauty and functionality to your space.
-                                    Premium Materials: Using top-grade materials, we guarantee durability and elegance in every product.
-                                    Innovative Designs: Our modern and efficient designs enhance energy efficiency and elevate the aesthetics of any room.
-                                    Dedicated Support: From consultation to installation, our team is here to assist you every step of the way.
-                                    Commitment to Satisfaction: We prioritize your satisfaction, ensuring that each project is completed to perfection.
-                                </p>
-                                <div class="btn-action-group">
-                                    <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i class="fa-solid fa-envelope"></i> get in touch</a>
-                                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="white-btn" style="background:#ff5f13; color:#fff; border-color:#ff5f13;"><i class="fa-solid fa-file-pdf"></i> View Catalogue</a>
-                                    <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myBlogCreateModal">leave your own blog</a>
-                                </div>
-                            </div>
-
-
-
-                            <!-- gifs -->
-                            <div class="gif-area" style="display: flex; flex-wrap: wrap; gap: 1%;">
-                                <img src="assets/img/icon/e9.gif" width="70" alt="">
-                                <img src="assets/img/icon/e2.gif" width="70" alt="">
-                                <img src="assets/img/icon/e8.gif" width="70" alt="">
-                                <img src="assets/img/icon/e10.gif" width="70" alt="">
-                                <img src="assets/img/icon/e3.gif" width="70" alt="">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- contact with us End-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- CountDown Area Start -->
-        <div class="count-area">
-            <div class="container">
-                <div class="count-wrapper count-bg" data-background="{{asset('assets/img/gallery/countt.png')}}">
-                    <div class="row justify-content-center">
-
-
-                        @foreach($aboutNumbers as $abn)
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="count-clients">
-                                <div class="single-counter">
-                                    <div class="count-number">
-                                        <span class="counter">{{$abn->an_number}}</span>
-                                    </div>
-                                    <div class="count-text">
-                                        <p>{{$abn->an_t}}</p>
-                                        <h5>{{$abn->an_define}}</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- CountDown Area End -->
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Team Start -->
-        <div class="team-area section-padding30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle section-tittle5 mb-50">
-                            <div class="front-text">
-                                <h2 class="">Exparts</h2>
-                            </div>
-                            <span class="back-text">our Team</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach($teams as $team)
-                    <!-- single Tem -->
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-">
-
-
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="{{ asset('storage/' . $team->m_img) }}" alt="" />
-                            </div>
-                            <div class="team-caption">
-                                <span>{{$team->m_prof}}</span>
-                                <h3>{{$team->m_name}}</h3>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
-
-
-
-
-
-
-
 
 
 
@@ -1649,39 +1507,45 @@
 
 
         <!-- Blog latest News Area start -->
-        <div class="latest-news-area section-padding30">
+        <div class="latest-news-area section-padding30" id="blogs">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle section-tittle7 mb-50">
+                        <!-- Section Title -->
+                        <div class="section-tittle section-tittle7 mb-40">
                             <div class="front-text">
-                                <h2 class="">latest news</h2>
+                                <h2 class="">Latest News & Insights</h2>
                             </div>
-                            <span class="back-text">Our Blogs</span>
+                            <span class="back-text">OUR BLOGS</span>
+                            <p style="color: #ff8c42; font-size: 16px; font-weight: 700; margin-top: 8px;">
+                                Expert Articles on Aluminium Windows, Façade Engineering & Fenestration Trends
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row latest-news-active">
 
                     @foreach($blogs as $blog)
-                    <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="col-xl-6 col-lg-6 col-md-6 px-3">
                         <!-- single-news -->
                         <div class="single-news mb-30">
                             <div class="news-img">
-                                <img src="{{ asset('storage/' . $blog->b_img) }}" alt="" />
+                                <img src="{{ asset('storage/' . $blog->b_img) }}" alt="{{ $blog->b_title }}" style="height: 270px; width: 100%; object-fit: cover;" />
                                 <div class="news-date text-center">
                                     <span>{{$blog->b_date}}</span>
                                 </div>
                             </div>
                             <div class="news-caption">
                                 <ul class="david-info">
-                                    <li>| &nbsp; &nbsp; {{$blog->b_qt}}</li>
+                                    <li><i class="fa-solid fa-tag" style="color: #ff5f13;"></i> &nbsp; {{$blog->b_qt}}</li>
                                 </ul>
                                 <h2>
                                     <a href="{{ url('/blog-details/' . $blog->id) }}">{{$blog->b_title}}</a>
                                 </h2>
-                                <a href="{{ url('/blog-details/' . $blog->id) }}" class="d-btn">Read more »</a>
+                                <p style="font-size: 14px; color: #666666; line-height: 1.5; margin-bottom: 15px;">
+                                    {{ Str::limit($blog->b_desc, 100) }}
+                                </p>
+                                <a href="{{ url('/blog-details/' . $blog->id) }}" class="d-btn">Read more <i class="ti-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
