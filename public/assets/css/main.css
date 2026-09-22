@@ -2218,7 +2218,7 @@ hr {
 .hero-overly::before {
   position: absolute;
   content: "";
-  background-color: rgba(1, 10, 28, 0.3);
+  background-color: rgba(1, 10, 28, 0.2);
   width: 100%;
   height: 100%;
   left: 0;

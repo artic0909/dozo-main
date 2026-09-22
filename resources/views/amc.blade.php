@@ -194,8 +194,13 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="/">Home</a></li>
-                                            <li><a href="/about">About</a></li>
+                                            <li><a href="/#products">Aluminium System Window & Facade</a></li>
+                                            <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf" style="color: #ff5f13;"></i> Catalogue Download</a></li>
+                                            <li><a href="/amc">Window AMC</a></li>
 
+                                            {{-- Commented other pages --}}
+                                            {{--
+                                            <li><a href="/about">About</a></li>
                                             <li>
                                                 <a href="#">Product</a>
                                                 <ul class="submenu">
@@ -204,9 +209,6 @@
                                                     @endforeach
                                                 </ul>
                                             </li>
-
-
-
                                             <li>
                                                 <a href="#">Service</a>
                                                 <ul class="submenu">
@@ -214,25 +216,19 @@
                                                     <li><a href="/amc">Annual Maintenance Contract</a></li>
                                                 </ul>
                                             </li>
-
-
-
-
                                             <li><a href="/blog">Blog</a></li>
                                             <!-- <li><a href="#" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i
                                                         class="fa-solid fa-headset"></i>&nbsp; Contact Us</a></li> -->
                                             <li><a href="/amc" class="h-btnn">AMC Inquiry</a></li>
-
-
-
-
+                                            --}}
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
 
                             <div class="col-xl-2 col-lg-2 col-md-3">
-                                <div class="header-right-btn f-right d-none d-lg-block">
+                                <div class="header-right-btn f-right d-none d-lg-flex align-items-center gap-2">
+                                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="header-cat-btn" title="Download Catalogue"><i class="fa-solid fa-file-pdf"></i> Catalogue</a>
                                     <a href="/inquiry" class="btn">Inquiry</a>
                                 </div>
 
@@ -675,6 +671,7 @@
                                     <ul>
                                         <li><a href="/about">About</a></li>
                                         <li><a href="/service">Services</a></li>
+                                        <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf text-danger"></i> Download Catalogue</a></li>
                                         <li><a href="/product-upvc">UPVC Windows</a></li>
                                         <li><a href="/product-aluminium">Aluminium Windows</a></li>
                                         <li><a href="/inquiry">For Inquiry</a></li>

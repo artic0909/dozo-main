@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="assets/css/themify-icons.css" />
     <link rel="stylesheet" href="assets/css/slick.css" />
-    <link rel="stylesheet" href="assets/css/nice-select.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
     <style>
         .inquiry-img {
             animation: scale1 1s ease-in-out infinite;
@@ -165,9 +165,15 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="/">Home</a></li>
-                                            <li><a href="/about">About</a></li>
+                                            <!-- <li><a href="/">Home</a></li> -->
+                                            <li><a href="/service">Aluminium System Window</a></li>
+                                            <li><a href="#facade">Facade</a></li>
+                                            <!-- <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf" style="color: #ff5f13;"></i> Catalogue Download</a></li> -->
+                                            <li><a href="/amc">Window AMC</a></li>
 
+                                            {{-- Commented other pages --}}
+                                            {{--
+                                            <li><a href="/about">About</a></li>
                                             <li>
                                                 <a href="#">Product</a>
                                                 <ul class="submenu">
@@ -176,9 +182,6 @@
                                                     @endforeach
                                                 </ul>
                                             </li>
-
-
-
                                             <li>
                                                 <a href="#">Service</a>
                                                 <ul class="submenu">
@@ -186,25 +189,19 @@
                                                     <li><a href="/amc">Annual Maintenance Contract</a></li>
                                                 </ul>
                                             </li>
-
-
-
-
                                             <li><a href="/blog">Blog</a></li>
                                             <li><a href="#" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i
                                                         class="fa-solid fa-headset"></i>&nbsp; Contact Us</a></li>
                                             <li><a href="/amc" class="h-btnn">AMC Inquiry</a></li>
-
-
-
-
+                                            --}}
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
 
                             <div class="col-xl-2 col-lg-2 col-md-3">
-                                <div class="header-right-btn f-right d-none d-lg-block">
+                                <div class="header-right-btn f-right d-none d-lg-flex align-items-center gap-2">
+                                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="header-cat-btn" title="Download Catalogue"><i class="fa-solid fa-file-pdf"></i> Catalogue</a>
                                     <a href="/inquiry" class="btn">Inquiry</a>
                                 </div>
 
@@ -260,6 +257,10 @@
                                     </div>
                                     <div class="hero-text2 mt-110" data-animation="fadeInUp" data-delay=".9s">
                                         <span><a href="{{$banner->h_p_url}}">{{$banner->h_p_name}}</a></span>
+                                    </div>
+                                    <div class="hero-btns-wrapper" data-animation="fadeInUp" data-delay="1.0s">
+                                        <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="hero-catalogue-btn"><i class="fa-solid fa-file-pdf"></i> View Catalogue</a>
+                                        <a href="/inquiry" class="hero-inquiry-btn">Send Inquiry <i class="ti-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -327,7 +328,7 @@
 
 
         <!-- Product Area Start -->
-        <section class="project-area section-padding30">
+        <section class="project-area section-padding30" id="products">
             <div class="container">
                 <div class="project-heading mb-35">
                     <div class="row align-items-end">
@@ -420,10 +421,11 @@
                                     Dedicated Support: From consultation to installation, our team is here to assist you every step of the way.
                                     Commitment to Satisfaction: We prioritize your satisfaction, ensuring that each project is completed to perfection.
                                 </p>
-                                <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myInquiryModal">get in touch</a>
-                                &nbsp;
-                                <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myBlogCreateModal">leave your own
-                                    blog</a>
+                                <div class="btn-action-group">
+                                    <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i class="fa-solid fa-envelope"></i> get in touch</a>
+                                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="white-btn" style="background:#ff5f13; color:#fff; border-color:#ff5f13;"><i class="fa-solid fa-file-pdf"></i> View Catalogue</a>
+                                    <a href="#" class="white-btn" data-bs-toggle="modal" data-bs-target="#myBlogCreateModal">leave your own blog</a>
+                                </div>
                             </div>
 
 
@@ -717,6 +719,7 @@
                                     <ul>
                                         <li><a href="/about">About</a></li>
                                         <li><a href="/service">Services</a></li>
+                                        <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf text-danger"></i> Download Catalogue</a></li>
                                         <li><a href="/product-upvc">UPVC Windows</a></li>
                                         <li><a href="/product-aluminium">Aluminium Windows</a></li>
                                         <li><a href="/inquiry">For Inquiry</a></li>
