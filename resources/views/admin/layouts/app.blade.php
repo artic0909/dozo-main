@@ -29,80 +29,161 @@
         }
 
         .navbar .navbar-brand-wrapper {
-            background: #111111 !important;
+            /* background: #111111 !important; */
         }
 
-        /* Sidebar Navigation & Active States */
-        .sidebar .nav .nav-item {
-            margin-bottom: 2px;
+        /* ==========================================================================
+           SIDEBAR STYLING & ACTIVE STATES (OVERRIDE SKYDASH DEFAULTS)
+           ========================================================================== */
+        
+        /* 1. Reset all container backgrounds on the sidebar nav & list items */
+        .sidebar,
+        .sidebar .nav,
+        .sidebar .nav .nav-item,
+        .sidebar .nav:not(.sub-menu) > .nav-item,
+        .sidebar .nav:not(.sub-menu) > .nav-item.active,
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover,
+        .sidebar .nav:not(.sub-menu) > .nav-item[aria-expanded="true"],
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"] {
+            background: transparent !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
         }
 
-        .sidebar .nav .nav-item .nav-link {
+        .sidebar .nav:not(.sub-menu) > .nav-item {
+            margin-top: 0.35rem !important;
+            margin-bottom: 0.35rem !important;
+        }
+
+        /* 2. Top-level Nav Links (Base State) */
+        .sidebar .nav .nav-item .nav-link,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link {
+            background: transparent !important;
+            color: #334155 !important;
+            font-weight: 600 !important;
+            font-size: 14px !important;
+            padding: 10px 14px !important;
+            border-radius: 8px !important;
+            margin: 0 !important;
+            transition: all 0.2s ease !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link i,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link .menu-icon,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link .menu-title,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link .menu-arrow {
             color: #475569 !important;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border-radius: 8px;
-            margin: 0 8px;
+            transition: color 0.2s ease !important;
         }
 
-        .sidebar .nav .nav-item .nav-link i,
-        .sidebar .nav .nav-item .nav-link .menu-title {
-            color: #475569 !important;
-            transition: color 0.2s ease;
-        }
-
-        .sidebar .nav .nav-item .nav-link:hover {
-            background: rgba(255, 95, 19, 0.06) !important;
+        /* 3. Top-level Nav Link Hover State */
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link:hover {
+            background: rgba(255, 95, 19, 0.08) !important;
             color: #ff5f13 !important;
         }
 
-        .sidebar .nav .nav-item .nav-link:hover i,
-        .sidebar .nav .nav-item .nav-link:hover .menu-title {
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link i,
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link .menu-icon,
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link .menu-title,
+        .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link .menu-arrow {
             color: #ff5f13 !important;
         }
 
-        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link,
-        .sidebar .nav .nav-item.active > .nav-link {
+        /* 4. Top-level Open Accordion Header State */
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] {
+            background: rgba(255, 95, 19, 0.08) !important;
+            color: #ff5f13 !important;
+            font-weight: 700 !important;
+            border-radius: 8px 8px 0 0 !important;
+        }
+
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] i,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] .menu-icon,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] .menu-title,
+        .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] .menu-arrow {
+            color: #ff5f13 !important;
+        }
+
+        /* 5. Top-level Single Active Nav Link (e.g. Dashboard, Inquiries, Support, Blogs) */
+        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link {
             background: rgba(255, 95, 19, 0.12) !important;
             color: #ff5f13 !important;
             font-weight: 700 !important;
             border-left: 4px solid #ff5f13 !important;
+            border-radius: 8px !important;
         }
 
-        .sidebar .nav .nav-item.active > .nav-link i,
-        .sidebar .nav .nav-item.active > .nav-link .menu-title {
+        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link i,
+        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link .menu-icon,
+        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link .menu-title,
+        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link .menu-arrow {
             color: #ff5f13 !important;
             font-weight: 700 !important;
         }
 
-        /* Sub-menu styling */
+        /* 6. Submenu Container Styling */
         .sidebar .nav.sub-menu {
-            padding: 4px 0 6px 18px !important;
-            background: transparent !important;
+            background: #f8fafc !important;
+            border-radius: 0 0 8px 8px !important;
+            border: 1px solid #e2e8f0 !important;
+            border-top: none !important;
+            margin: 0 !important;
+            padding: 8px 10px 10px 24px !important;
+            list-style: none !important;
         }
 
+        .sidebar .nav.sub-menu .nav-item {
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 3px 0 !important;
+            position: relative !important;
+        }
+
+        /* Submenu bullet dot */
+        .sidebar .nav.sub-menu .nav-item::before {
+            background: #cbd5e1 !important;
+            width: 6px !important;
+            height: 6px !important;
+            margin-top: 13px !important;
+            left: -12px !important;
+            position: absolute !important;
+            border-radius: 50% !important;
+            content: "" !important;
+            transition: background 0.2s ease !important;
+        }
+
+        /* Submenu Link Items */
         .sidebar .nav.sub-menu .nav-item .nav-link {
-            color: #64748b !important;
+            color: #475569 !important;
             font-size: 13.5px !important;
             font-weight: 500 !important;
-            padding: 8px 14px !important;
+            padding: 6px 12px !important;
+            border-radius: 6px !important;
+            background: transparent !important;
+            display: block !important;
+            transition: all 0.2s ease !important;
         }
 
         .sidebar .nav.sub-menu .nav-item .nav-link:hover {
             color: #ff5f13 !important;
             background: rgba(255, 95, 19, 0.08) !important;
+            font-weight: 600 !important;
         }
 
+        /* Active Submenu Link */
         .sidebar .nav.sub-menu .nav-item .nav-link.active-sub,
         .sidebar .nav.sub-menu .nav-item .nav-link.active {
             color: #ff5f13 !important;
             font-weight: 700 !important;
-            background: rgba(255, 95, 19, 0.12) !important;
-            border-radius: 6px;
+            background: rgba(255, 95, 19, 0.14) !important;
+            border-radius: 6px !important;
         }
 
-        .sidebar .nav.sub-menu .nav-item .nav-link.active-sub::before,
-        .sidebar .nav.sub-menu .nav-item .nav-link.active::before {
+        .sidebar .nav.sub-menu .nav-item:has(.active-sub)::before,
+        .sidebar .nav.sub-menu .nav-item:has(.active)::before {
             background: #ff5f13 !important;
         }
 
@@ -384,7 +465,7 @@
                         </div>
                     </li>
 
-                    <!-- Inquiries & AMC -->
+                    <!-- Inquiries -->
                     <li class="nav-item {{ request()->is('window-inquiry*') ? 'active' : '' }}">
                         <a class="nav-link" href="/window-inquiry">
                             <img src="{{ asset('admin/images/wen.png') }}" alt="" width="20" class="mr-2">
@@ -392,6 +473,7 @@
                         </a>
                     </li>
 
+                    <!-- Service & AMC -->
                     <li class="nav-item {{ request()->is('amc-*') || request()->is('window-service*') ? 'active' : '' }}">
                         <a class="nav-link" data-toggle="collapse" href="#ui-services" aria-expanded="{{ request()->is('amc-*') || request()->is('window-service*') ? 'true' : 'false' }}" aria-controls="ui-services">
                             <img src="{{ asset('admin/images/srv.png') }}" alt="" width="20" class="mr-2">
