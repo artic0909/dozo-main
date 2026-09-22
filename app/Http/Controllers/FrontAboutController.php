@@ -16,7 +16,7 @@ class FrontAboutController extends Controller
         $testimonials = AdminTestimonialModel::all();
         $teams = AdminTeamModel::all();
         $maincategories = MainCategory::all();
-        return view('about', compact('aboutDetails', 'testimonials', 'teams', 'maincategories'));
+        return view('frontend.pages.about', compact('aboutDetails', 'testimonials', 'teams', 'maincategories'));
     }
 
     public function getProduct($id)
@@ -29,6 +29,6 @@ class FrontAboutController extends Controller
         $maincategory = MainCategory::with('products')->findOrFail($id);
         $products = $maincategory->products;
 
-        return view('product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
+        return view('frontend.pages.product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
     }
 }

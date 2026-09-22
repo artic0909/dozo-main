@@ -17,7 +17,7 @@ class InquiryWindowController extends Controller
         $aboutDetails = AdminAboutCompanyModel::all();
         $maincategories = MainCategory::all();
 
-        return view('inquiry', compact('aboutDetails', 'maincategories'));
+        return view('frontend.pages.inquiry', compact('aboutDetails', 'maincategories'));
     }
 
 

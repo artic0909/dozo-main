@@ -15,6 +15,6 @@ class FrontBlogsController extends Controller
         $blogs = AdminBlogModel::paginate(2); //pagination
         $blogData = AdminBlogModel::inRandomOrder()->take(4)->get();
 
-        return view('blog', compact('aboutDetails', 'maincategories', 'blogs', 'blogData'));
+        return view('frontend.pages.blog', compact('aboutDetails', 'maincategories', 'blogs', 'blogData'));
     }
 }

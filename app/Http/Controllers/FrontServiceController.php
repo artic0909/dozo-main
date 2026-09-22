@@ -15,7 +15,7 @@ class FrontServiceController extends Controller
         $maincategories = MainCategory::all();
         $services = AdminServiceDetailsModel::all();
 
-        return view('service', compact('aboutDetails', 'maincategories', 'services'));
+        return view('frontend.pages.service', compact('aboutDetails', 'maincategories', 'services'));
     }
 
     public function getProduct($id)
@@ -28,6 +28,6 @@ class FrontServiceController extends Controller
         $maincategory = MainCategory::with('products')->findOrFail($id);
         $products = $maincategory->products;
 
-        return view('product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
+        return view('frontend.pages.product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
     }
 }

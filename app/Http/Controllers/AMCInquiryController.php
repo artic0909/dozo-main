@@ -19,7 +19,7 @@ class AMCInquiryController extends Controller
         $maincategories = MainCategory::all();
         $offers = AdminOfferModel::all();
 
-        return view('amc', compact('aboutDetails', 'maincategories', 'offers'));
+        return view('frontend.pages.amc', compact('aboutDetails', 'maincategories', 'offers'));
     }
 
     // Store the AMC inquiry

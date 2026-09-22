@@ -30,7 +30,7 @@ class FrontHomeController extends Controller
         $teams = AdminTeamModel::all();
         $testimonials = AdminTestimonialModel::all();
         $blogs = AdminBlogModel::inRandomOrder()->take(2)->get();
-        return view('home', compact('aboutDetails', 'homeBannners', 'services', 'products', 'maincategories', 'aboutNumbers', 'teams', 'testimonials', 'blogs'));
+        return view('frontend.pages.home', compact('aboutDetails', 'homeBannners', 'services', 'products', 'maincategories', 'aboutNumbers', 'teams', 'testimonials', 'blogs'));
     }
 
 
@@ -47,7 +47,7 @@ class FrontHomeController extends Controller
         $aboutDetails = AdminAboutCompanyModel::all();
         $maincategories = MainCategory::all();
         $service = AdminServiceDetailsModel::findOrFail($id);
-        return view('service-details', compact('service', 'maincategories', 'aboutDetails'));
+        return view('frontend.pages.service-details', compact('service', 'maincategories', 'aboutDetails'));
     }
 
 
@@ -62,7 +62,7 @@ class FrontHomeController extends Controller
         $aboutDetails = AdminAboutCompanyModel::all();
         $maincategories = MainCategory::all();
         $product = Product::with('mainCategory', 'subCategory')->findOrFail($id);
-        return view('product-view', compact('product', 'maincategories', 'aboutDetails'));
+        return view('frontend.pages.product-view', compact('product', 'maincategories', 'aboutDetails'));
     }
 
 
@@ -76,7 +76,7 @@ class FrontHomeController extends Controller
         $maincategories = MainCategory::all();
         $blogs = AdminBlogModel::inRandomOrder()->take(4)->get();
         $blog = AdminBlogModel::findOrFail($id);
-        return view('blog-details', compact('blogs', 'blog', 'maincategories', 'aboutDetails'));
+        return view('frontend.pages.blog-details', compact('blogs', 'blog', 'maincategories', 'aboutDetails'));
     }
 
 
@@ -139,6 +139,6 @@ class FrontHomeController extends Controller
         $maincategory = MainCategory::with('products')->findOrFail($id);
         $products = $maincategory->products;
 
-        return view('product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
+        return view('frontend.pages.product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
     }
 }
