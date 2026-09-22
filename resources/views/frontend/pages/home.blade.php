@@ -2,6 +2,94 @@
 
 @section('title', 'DOZO | House of Aluminium Windows & Facade')
 
+@section('styles')
+<style>
+    /* ==========================================================================
+       ARCHITECTURAL BLUEPRINT BACKGROUND ELEMENTS (FADED OPACITY WATERMARKS)
+       You can adjust the opacity anytime via the CSS variables below:
+       ========================================================================== */
+    :root {
+        --watermark-thermal-opacity: 0.08; /* Adjust faded opacity for thermal insulation blueprint (e.g. 0.04 - 0.12) */
+        --watermark-subframe-opacity: 0.08; /* Adjust faded opacity for subframe engineering blueprint (e.g. 0.04 - 0.12) */
+    }
+
+    /* 1. Enhanced Thermal & Noise Insulation Blueprint Watermark */
+    .catalogue-why-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .catalogue-why-section::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -3%;
+        transform: translateY(-50%);
+        width: 720px;
+        height: 720px;
+        background-image: url("{{ asset('products/enhunce-thermal-noise-insulation.png') }}");
+        background-repeat: no-repeat;
+        background-position: center right;
+        background-size: contain;
+        opacity: var(--watermark-thermal-opacity);
+        pointer-events: none;
+        z-index: 1;
+        filter: grayscale(100%) contrast(115%);
+        transition: opacity 0.3s ease;
+    }
+
+    @media (max-width: 991px) {
+        .catalogue-why-section::before {
+            width: 440px;
+            height: 440px;
+            right: -8%;
+            opacity: calc(var(--watermark-thermal-opacity) * 0.7);
+        }
+    }
+
+    /* 2. DOZO Sub Frame Amended Installation Blueprint Watermark */
+    .catalogue-subframe-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .catalogue-subframe-section::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -3%;
+        transform: translateY(-50%);
+        width: 680px;
+        height: 680px;
+        background-image: url("{{ asset('products/subframe-ins.png') }}");
+        background-repeat: no-repeat;
+        background-position: center left;
+        background-size: contain;
+        opacity: var(--watermark-subframe-opacity);
+        pointer-events: none;
+        z-index: 1;
+        filter: grayscale(100%) contrast(115%);
+        transition: opacity 0.3s ease;
+    }
+
+    @media (max-width: 991px) {
+        .catalogue-subframe-section::before {
+            width: 400px;
+            height: 400px;
+            left: -8%;
+            opacity: calc(var(--watermark-subframe-opacity) * 0.7);
+        }
+    }
+
+    /* Ensure content stays firmly above background watermarks */
+    .catalogue-why-section .container,
+    .catalogue-subframe-section .container {
+        position: relative;
+        z-index: 2;
+    }
+</style>
+@endsection
+
 @section('content')
 
 
