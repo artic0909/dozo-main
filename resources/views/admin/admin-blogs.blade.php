@@ -1,670 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Blogs | DOZO Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="Admin/vendors/feather/feather.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="Admin/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="Admin/js/select.dataTables.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="Admin/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-
-    <!-- icon -->
-    <link rel="icon" href="assets/img/logo/dlogo.ico" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .floating-btn-div {
-            position: fixed;
-            bottom: 70px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .floating-btn {
-            color: white !important;
-            background-color: #ff5f13;
-            color: rgb(0, 0, 0);
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            font-size: 2rem;
-            transition: background-color 0.3s ease;
-            animation: 1000ms linear 100ms infinite alternate scrollUpDown1;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container-scroller">
-
-
-
-        <!-- partial:partials/_navbar.html -->
-
-
-
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-
-            <!-- logo -->
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/logo.png')}}" alt="DOZO">
-                </a>
-                <a class="navbar-brand brand-logo-mini" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/dlogo.ico')}}" alt="DZ">
-                </a>
-            </div>
-
-
-
-
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
-
-                <ul class="navbar-nav navbar-nav-right">
-
-
-
-
-                    <!-- logout -->
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{asset('assets/img/team/t1.png')}}" alt="profile" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="dropdown-item" :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Logout
-                                </a>
-                            </form>
-                        </div>
-                    </li>
-
-
-
-
-                </ul>
-
-
-
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="icon-menu"></span>
-                </button>
-
-
-
-
-            </div>
-        </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Sidebar -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
-
-
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-
-
-                    <!-- dashboard -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-
-
-                    <!-- Banners -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/banner.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Banners</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-home-banner">Home Banner</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-other-banner">Others Page Banner</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- About Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/about.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">About</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-about">About Company</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-numbers">About Numbers</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Product Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/window.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Products</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/product-main-category">Main Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-sub-category">Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-details">Product Details</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Service Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/srv.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Service</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/window-service">Window Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-offers">AMC Offers</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-request">AMC Request</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-                    <!-- Window Inquiry -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/window-inquiry">
-                            <img src="{{asset('admin/images/wen.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Window Inquiry</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Blogs -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-blogs">
-                            <img src="{{asset('admin/images/blog.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Blogs</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Testimonial -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-testimonial">
-                            <img src="{{asset('admin/images/qt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Testimonial</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Expert Team -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/teams">
-                            <img src="{{asset('admin/images/team.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Expert Team</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Customer Support -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/customer-support">
-                            <img src="{{asset('admin/images/spt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Customer Support</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-
-                </ul>
-            </nav>
-
-
-
-
-
-            <!-- MAIN CONTENT PART START==================================================================================================================================== -->
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">All Blogs</h3>
-                                </div>
-
-
-
-
-
-                                <div class="col-lg-12 grid-margin stretch-card mt-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Ratio: 751x375</h4>
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Edit</th>
-                                                            <th>Delete</th>
-                                                            <th>Blog Image</th>
-                                                            <th>Blog Title</th>
-                                                            <th>Quotes</th>
-                                                            <th>Blog Tags</th>
-                                                            <th>Blog Date</th>
-                                                            <th>Description</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($blogs as $b)
-                                                        <tr>
-                                                            <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{$b->id}}"><i class="fa-solid fa-pen-to-square"></i></a></td>
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$b->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><img src="{{ asset('storage/' . $b->b_img) }}" alt="" style="width: 100px; height: 80px; border-radius: 10px;"></td>
-                                                            <td>{{$b->b_title}}</td>
-                                                            <td>{{$b->b_qt}}</td>
-                                                            <td>{{$b->b_tag}}</td>
-                                                            <td>{{$b->b_date}}</td>
-                                                            <td>{{$b->b_desc}}</td>
-                                                        </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. <a href="" target="_blank">DOZO | House of Windows</a> All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Easy-To-Access & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Developed by <a href="https://github.com/artic0909" target="_blank">Saklinmustak</a></span>
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-            <!-- MAIN CONTENT PART END====================================================================================================================================== -->
-
-
-
-
-
+@extends('admin.layouts.app')
+
+@section('title', 'Blog Management')
+
+@section('styles')
+<style>
+    .blog-thumb {
+        width: 70px;
+        height: 60px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid #e2e8f0;
+    }
+</style>
+@endsection
+
+@section('content')
+<!-- Page Header -->
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+            <h3 class="font-weight-bold mb-1" style="color: #111111;">Blog Posts & Articles</h3>
+            <p class="text-muted mb-0" style="font-size: 14px;">Publish architectural insights, fenestration guides, and company news.</p>
         </div>
-
-
-
-
-
-
-
-        <!-- floating add btn -->
-        <div class="floating-btn-div" data-toggle="modal" data-target="#myAddModal">
-            <button class="floating-btn">
-                <i class="fa-solid fa-plus"></i>
+        <div class="mt-2 mt-sm-0">
+            <button class="btn btn-primary dozo-btn font-weight-bold px-3 py-2" data-toggle="modal" data-target="#addBlogModal">
+                <i class="fa-solid fa-plus mr-1"></i> Add New Blog
             </button>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- add modal -->
-        <div class="modal" id="myAddModal">
-            <div class="modal-dialog  modal-xl">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Blogs</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <form action="{{route('addblog')}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="form-group">
-                                <label for="b_img">Blog Image</label>
-                                <input type="file" class="form-control" id="b_img" name="b_img">
-                                <small id="emailHelp" class="form-text text-muted">Upload banner less than 1.5 MB</small>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="b_title" class="form-label">Blog Title<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="b_title" id="b_title">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_qt">Quotes<span style="color: red;">*</span></label>
-                                <textarea name="b_qt" id="b_qt" class="form-control" rows="5"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_desc">Blog Description<span
-                                        style="color: red;">*</span></label>
-                                <textarea name="b_desc" id="b_desc" class="form-control" rows="5"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_tag">Blog Tags<span
-                                        style="color: red;">*</span></label>
-                                <textarea name="b_tag" id="b_tag" class="form-control" rows="3"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_date">Blog Date<span
-                                        style="color: red;">*</span></label>
-                                <input type="text" name="b_date" id="b_date" class="form-control">
-                            </div>
-
-
-
-
-
-
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <!-- edit modal -->
-        @foreach($blogs as $b)
-        <div class="modal" id="myEditModal{{$b->id}}">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Blogs</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <form action="{{route('editblog', $b->id)}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-
-
-                            <div class="form-group" style="display: flex; justify-content: center;">
-                                <img src="{{ asset('storage/' . $b->b_img) }}" style="width: 100%; height:350px; border-radius: 10px;" alt="">
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="b_img">Blog Image</label>
-                                <input type="file" class="form-control" id="b_img" name="b_img">
-                                <small id="emailHelp" class="form-text text-muted">Upload banner less than 1.5 MB</small>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label for="b_title" class="form-label">Blog Title<span style="color: red;">*</span></label>
-                                <input type="text" class="form-control" name="b_title" id="b_title" value="{{$b->b_title}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_qt">Quotes<span style="color: red;">*</span></label>
-                                <textarea name="b_qt" id="b_qt" class="form-control" rows="5">{{$b->b_qt}}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_desc">Blog Description<span
-                                        style="color: red;">*</span></label>
-                                <textarea name="b_desc" id="b_desc" class="form-control" rows="5">{{$b->b_desc}}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_tag">Blog Tags<span
-                                        style="color: red;">*</span></label>
-                                <textarea name="b_tag" id="b_tag" class="form-control" rows="3">{{$b->b_tag}}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-check-label" for="b_date">Blog Date<span
-                                        style="color: red;">*</span></label>
-                                <input type="text" name="b_date" id="b_date" class="form-control" value="{{$b->b_date}}" placeholder="10 JUN">
-                            </div>
-
-
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-        @endforeach
-
-
-
-
-
-
-        <!-- delete modal -->
-        @foreach($blogs as $b)
-        <div class="modal fade" id="myDeleteModal{{$b->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myDeleteModal">Confirm Delete</h5>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this information?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{route('deleteblog', $b->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- page-body-wrapper ends -->
-        </div>
-        @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
+</div>
 
-    <!-- plugins:js -->
-    <script src="Admin/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="Admin/vendors/chart.js/Chart.min.js"></script>
-    <script src="Admin/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="Admin/js/dataTables.select.min.js"></script>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-hover dataTable-modern" id="blogTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">Cover</th>
+                                <th>Blog Title</th>
+                                <th>Content Snippet</th>
+                                <th>Date</th>
+                                <th style="width: 120px; text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($blogs as $blog)
+                            <tr>
+                                <td>
+                                    @if($blog->blog_image)
+                                        <img src="{{ asset('storage/' . $blog->blog_image) }}" alt="Blog" class="blog-thumb">
+                                    @else
+                                        <div class="blog-thumb bg-light d-flex align-items-center justify-content-center text-muted">
+                                            <i class="fa-regular fa-image"></i>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <strong class="text-dark" style="font-size: 14px;">{{ $blog->blog_title }}</strong>
+                                </td>
+                                <td>
+                                    <span class="text-muted" style="font-size: 13px;">
+                                        {{ Str::limit($blog->blog_desc, 60) }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="text-muted" style="font-size: 12.5px;">
+                                        {{ $blog->created_at ? $blog->created_at->format('d M Y') : '—' }}
+                                    </span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <button type="button" class="btn btn-sm btn-outline-primary mr-1" data-toggle="modal" data-target="#editBlogModal{{ $blog->id }}" title="Edit Blog" style="padding: 5px 9px; border-radius: 6px;">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
 
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="Admin/js/off-canvas.js"></script>
-    <script src="Admin/js/hoverable-collapse.js"></script>
-    <script src="Admin/js/template.js"></script>
-    <script src="Admin/js/settings.js"></script>
-    <script src="Admin/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="Admin/js/dashboard.js"></script>
-    <script src="Admin/js/Chart.roundedBarCharts.js"></script>
-    <!-- End custom js for this page-->
-</body>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteBlogForm{{ $blog->id }}', '{{ addslashes($blog->blog_title) }}')" title="Delete Blog" style="padding: 5px 9px; border-radius: 6px;">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
 
-</html>
+                                        <form id="deleteBlogForm{{ $blog->id }}" action="{{ route('deleteblog', $blog->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Add Button -->
+<div class="floating-btn-div" data-toggle="modal" data-target="#addBlogModal" title="Add Blog">
+    <button class="floating-btn">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+</div>
+
+<!-- Add Blog Modal -->
+<div class="modal fade" id="addBlogModal" tabindex="-1" role="dialog" aria-labelledby="addBlogModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none;">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title font-weight-bold" id="addBlogModalLabel" style="color: #111111;">
+                    <i class="fa-solid fa-plus text-primary mr-2"></i> Add New Blog Post
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('addblog') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body p-4">
+                    <div class="form-group">
+                        <label for="blog_title" class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="blog_title" id="blog_title" placeholder="Enter article title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog_image" class="font-weight-bold">Cover Image <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control-file border p-2 rounded w-100" name="blog_image" id="blog_image" accept="image/*" required>
+                        <small class="form-text text-muted">Recommended resolution: 800x500px.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="blog_desc" class="font-weight-bold">Article Content <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="blog_desc" id="blog_desc" rows="8" placeholder="Write the complete blog article text..." required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary dozo-btn font-weight-bold px-4">Publish Article</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Blog Modals -->
+@foreach($blogs as $blog)
+<div class="modal fade" id="editBlogModal{{ $blog->id }}" tabindex="-1" role="dialog" aria-labelledby="editBlogModalLabel{{ $blog->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none;">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title font-weight-bold" id="editBlogModalLabel{{ $blog->id }}" style="color: #111111;">
+                    <i class="fa-solid fa-pen-to-square text-primary mr-2"></i> Edit Blog Post
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('editblog', $blog->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body p-4">
+                    <div class="form-group text-center mb-3">
+                        @if($blog->blog_image)
+                            <img src="{{ asset('storage/' . $blog->blog_image) }}" style="max-height: 140px; border-radius: 8px; border: 1px solid #e2e8f0;" alt="Cover">
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="blog_title" value="{{ $blog->blog_title }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold">Update Cover Image (Optional)</label>
+                        <input type="file" class="form-control-file border p-2 rounded w-100" name="blog_image" accept="image/*">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold">Article Content <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="blog_desc" rows="8" required>{{ $blog->blog_desc }}</textarea>
+                    </div>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary dozo-btn font-weight-bold px-4">Update Article</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+@endsection

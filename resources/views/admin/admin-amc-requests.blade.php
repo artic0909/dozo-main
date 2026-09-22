@@ -1,585 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>AMC Requsts | DOZO Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="Admin/vendors/feather/feather.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="Admin/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="Admin/js/select.dataTables.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="Admin/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-
-    <!-- icon -->
-    <link rel="icon" href="assets/img/logo/dlogo.ico" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .floating-btn-div {
-            position: fixed;
-            bottom: 70px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .floating-btn {
-            color: white !important;
-            background-color: #ff5f13;
-            color: rgb(0, 0, 0);
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            font-size: 2rem;
-            transition: background-color 0.3s ease;
-            animation: 1000ms linear 100ms infinite alternate scrollUpDown1;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container-scroller">
-
-
-
-        <!-- partial:partials/_navbar.html -->
-
-
-
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-
-            <!-- logo -->
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/logo.png')}}" alt="DOZO">
-                </a>
-                <a class="navbar-brand brand-logo-mini" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/dlogo.ico')}}" alt="DZ">
-                </a>
-            </div>
-
-
-
-
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
-
-                <ul class="navbar-nav navbar-nav-right">
-
-
-
-
-                    <!-- logout -->
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{asset('assets/img/team/t1.png')}}" alt="profile" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="dropdown-item" :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Logout
-                                </a>
-                            </form>
-                        </div>
-                    </li>
-
-
-
-
-                </ul>
-
-
-
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="icon-menu"></span>
-                </button>
-
-
-
-
-            </div>
-        </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Sidebar -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
-
-
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-
-
-                    <!-- dashboard -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-
-
-                    <!-- Banners -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/banner.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Banners</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-home-banner">Home Banner</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-other-banner">Others Page Banner</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- About Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/about.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">About</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-about">About Company</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-numbers">About Numbers</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Product Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/window.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Products</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/product-main-category">Main Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-sub-category">Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-details">Product Details</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Service Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/srv.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Service</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/window-service">Window Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-offers">AMC Offers</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-request">AMC Request</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-                    <!-- Window Inquiry -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/window-inquiry">
-                            <img src="{{asset('admin/images/wen.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Window Inquiry</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Blogs -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-blogs">
-                            <img src="{{asset('admin/images/blog.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Blogs</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Testimonial -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-testimonial">
-                            <img src="{{asset('admin/images/qt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Testimonial</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Expert Team -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/teams">
-                            <img src="{{asset('admin/images/team.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Expert Team</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Customer Support -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/customer-support">
-                            <img src="{{asset('admin/images/spt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Customer Support</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-
-                </ul>
-            </nav>
-
-
-
-
-
-            <!-- MAIN CONTENT PART START==================================================================================================================================== -->
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">AMC Requsts</h3>
-                                </div>
-
-
-
-
-
-                                <div class="col-lg-12 grid-margin stretch-card mt-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <!-- <th>Edit</th> -->
-                                                            <th>Delete</th>
-                                                            <th>Print</th>
-
-                                                            <th>FullName</th>
-                                                            <th>Email</th>
-                                                            <th>Mobile</th>
-                                                            <th>ADD</th>
-                                                            <th>PIN</th>
-                                                            <th>Window INFO</th>
-                                                            <th>Customer Requirements</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-
-                                                        @foreach($amcs as $amc)
-                                                        <tr>
-                                                            <!-- <td><a href="" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal"><i class="fa-solid fa-pen-to-square"></i></a></td> -->
-                                                            <td><a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{$amc->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                            <td><a target="_blank" href="{{ route('pdf_create', ['id' => $amc->id]) }}" style="font-size: 1.4rem;"><i class="fa-solid fa-file-pdf"></i></a></td>
-                                                            <td>{{$amc->fname}}</td>
-                                                            <td><a href="mailto:{{$amc->email}}" style="color: blue;">{{$amc->email}}</a></td>
-                                                            <td><a href="tel:{{$amc->mob}}" style="color: red;">{{$amc->mob}}</a></td>
-                                                            <td>{{$amc->add}}</td>
-                                                            <td>{{$amc->pin}}</td>
-                                                            <td><a href="" data-toggle="modal" data-target="#myWindowInfoModal{{$amc->id}}"><i class="fa-solid fa-diamond-turn-right" style="color: #ff5f13; font-size: 2rem;"></i></a></td>
-                                                            <td>{{$amc->d_op}}</td>
-                                                        </tr>
-                                                        @endforeach
-
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. <a href="" target="_blank">DOZO | House of Windows</a> All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Easy-To-Access & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Developed by <a href="https://github.com/artic0909" target="_blank">Saklinmustak</a></span>
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-            <!-- MAIN CONTENT PART END====================================================================================================================================== -->
-
-
-
-
-
+@extends('admin.layouts.app')
+
+@section('title', 'AMC Requests')
+
+@section('content')
+<!-- Page Header -->
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+            <h3 class="font-weight-bold mb-1" style="color: #111111;">Annual Maintenance Contract (AMC) Requests</h3>
+            <p class="text-muted mb-0" style="font-size: 14px;">Review and manage scheduled annual maintenance inspection bookings.</p>
         </div>
-
-
-
-
-
-
-
-        <!-- floating add btn -->
-        <!-- <div class="floating-btn-div" data-toggle="modal" data-target="#myAddModal">
-            <button class="floating-btn">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- delete modal -->
-        @foreach($amcs as $amc)
-        <div class="modal fade" id="myDeleteModal{{$amc->id}}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myDeleteModal{{$amc->id}}">Confirm Delete</h5>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this information?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{route('deleteRequest' , $amc->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- page-body-wrapper ends -->
+        <div class="mt-2 mt-sm-0">
+            <span class="badge badge-dozo p-2 px-3">
+                <i class="fa-solid fa-file-shield mr-1"></i> Total: {{ count($amcs) }} Requests
+            </span>
         </div>
-        @endforeach
-
-
-
-
-        <!-- window details modal -->
-        @foreach($amcs as $amc)
-        <div class="modal fade" id="myWindowInfoModal{{$amc->id}}" tabindex="-1" aria-labelledby="myWindowInfoModal{{$amc->id}}" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myWindowInfoModal{{$amc->id}}">Window Info {{$amc->fname}} / {{ $amc->email}}</h5>
-                    </div>
-                    <div class="modal-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Window</th>
-                                        <th>Length</th>
-                                        <th>Breadth</th>
-                                        <th>Window Type</th>
-                                        <th>Unit</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if(is_array($amc->window_info))
-                                    @foreach($amc->window_info as $window)
-                                    <tr>
-                                        <td>{{ $window['window_name'] }}</td>
-                                        <td>{{ $window['w_length'] }}</td>
-                                        <td>{{ $window['w_breadth'] }}</td>
-                                        <td>{{ $window['w_type'] }}</td>
-                                        <td>{{ $window['w_unit'] }}</td>
-                                    </tr>
-                                    @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
+</div>
 
-    <!-- plugins:js -->
-    <script src="Admin/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="Admin/vendors/chart.js/Chart.min.js"></script>
-    <script src="Admin/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="Admin/js/dataTables.select.min.js"></script>
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div class="card-body p-4">
+                <div class="table-responsive">
+                    <table class="table table-hover dataTable-modern" id="amcTable">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>PIN</th>
+                                <th>Window Info</th>
+                                <th>Requirements</th>
+                                <th>Date</th>
+                                <th style="text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($amcs as $amc)
+                            <tr>
+                                <td class="font-weight-bold text-dark">{{ $amc->fname }}</td>
+                                <td>
+                                    <a href="mailto:{{ $amc->email }}" class="text-primary font-weight-bold">
+                                        {{ $amc->email }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="tel:{{ $amc->mob }}" class="text-dark">
+                                        <i class="fa-solid fa-phone text-success mr-1"></i> {{ $amc->mob }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span title="{{ $amc->add }}">{{ Str::limit($amc->add, 25) }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light border text-muted">{{ $amc->pin ?? '—' }}</span>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#myAMCWindowInfoModal{{ $amc->id }}" title="View Window Details" style="font-weight: 700; font-size: 12px; border-radius: 6px;">
+                                        <i class="fa-solid fa-cube mr-1"></i> View ({{ is_array($amc->window_info) ? count($amc->window_info) : 'List' }})
+                                    </button>
+                                </td>
+                                <td>
+                                    <span title="{{ $amc->d_op }}" class="text-muted" style="font-size: 13px;">
+                                        {{ Str::limit($amc->d_op, 30) }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="text-muted" style="font-size: 12.5px;">
+                                        {{ $amc->created_at ? $amc->created_at->format('d M Y') : '—' }}
+                                    </span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <a href="{{ route('pdf_create', ['id' => $amc->id]) }}" target="_blank" class="btn btn-sm btn-outline-primary mr-1" title="Print AMC Sheet" style="padding: 5px 9px; border-radius: 6px;">
+                                            <i class="fa-solid fa-print"></i>
+                                        </a>
 
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="Admin/js/off-canvas.js"></script>
-    <script src="Admin/js/hoverable-collapse.js"></script>
-    <script src="Admin/js/template.js"></script>
-    <script src="Admin/js/settings.js"></script>
-    <script src="Admin/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="Admin/js/dashboard.js"></script>
-    <script src="Admin/js/Chart.roundedBarCharts.js"></script>
-    <!-- End custom js for this page-->
-</body>
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteAMCForm{{ $amc->id }}', 'AMC Request from {{ addslashes($amc->fname) }}')" title="Delete Request" style="padding: 5px 9px; border-radius: 6px;">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
 
-</html>
+                                        <form id="deleteAMCForm{{ $amc->id }}" action="{{ route('deleteRequest', $amc->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AMC Window Info Modals -->
+@foreach($amcs as $amc)
+<div class="modal fade" id="myAMCWindowInfoModal{{ $amc->id }}" tabindex="-1" role="dialog" aria-labelledby="myAMCWindowInfoModalLabel{{ $amc->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none;">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title font-weight-bold" id="myAMCWindowInfoModalLabel{{ $amc->id }}" style="color: #111111;">
+                    <i class="fa-solid fa-border-all text-primary mr-2"></i> AMC Window Inventory - {{ $amc->fname }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                @if(is_array($amc->window_info) && count($amc->window_info) > 0)
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Window Tag / Name</th>
+                                    <th>Length</th>
+                                    <th>Breadth</th>
+                                    <th>Window Type</th>
+                                    <th>Units</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($amc->window_info as $index => $wInfo)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td class="font-weight-bold">{{ $wInfo['window_name'] ?? '—' }}</td>
+                                    <td>{{ $wInfo['w_length'] ?? '—' }}</td>
+                                    <td>{{ $wInfo['w_breadth'] ?? '—' }}</td>
+                                    <td><span class="badge badge-dozo">{{ $wInfo['w_type'] ?? '—' }}</span></td>
+                                    <td><strong>{{ $wInfo['w_unit'] ?? 1 }}</strong></td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <p class="text-muted mb-0">No window details array stored.</p>
+                @endif
+            </div>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+@endsection

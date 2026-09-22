@@ -1,593 +1,445 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>DOZO Admin Panel</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="Admin/vendors/feather/feather.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="Admin/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="Admin/js/select.dataTables.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="Admin/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-
-    <!-- icon -->
-    <link rel="icon" href="assets/img/logo/dlogo.ico" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-    <div class="container-scroller">
-
-
-
-        <!-- partial:partials/_navbar.html -->
-
-
-
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-
-            <!-- logo -->
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/logo.png')}}" alt="DOZO">
-                </a>
-                <a class="navbar-brand brand-logo-mini" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/dlogo.ico')}}" alt="DZ">
-                </a>
-            </div>
-
-
-
-
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
-
-                <ul class="navbar-nav navbar-nav-right">
-
-
-
-
-                    <!-- logout -->
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{asset('assets/img/team/t1.png')}}" alt="profile" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="dropdown-item" :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Logout
-                                </a>
-                            </form>
-                        </div>
-                    </li>
-
-
-
-
-                </ul>
-
-
-
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="icon-menu"></span>
-                </button>
-
-
-
-
-            </div>
-        </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Sidebar -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
-
-
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-
-
-                    <!-- dashboard -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-
-
-                    <!-- Banners -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/banner.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Banners</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-home-banner">Home Banner</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-other-banner">Others Page Banner</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- About Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/about.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">About</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-about">About Company</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-numbers">About Numbers</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Product Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/window.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Products</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/product-main-category">Main Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-sub-category">Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-details">Product Details</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Service Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/srv.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Service</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/window-service">Window Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-offers">AMC Offers</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-request">AMC Request</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-                    <!-- Window Inquiry -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/window-inquiry">
-                            <img src="{{asset('admin/images/wen.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Window Inquiry</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Blogs -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-blogs">
-                            <img src="{{asset('admin/images/blog.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Blogs</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Testimonial -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-testimonial">
-                            <img src="{{asset('admin/images/qt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Testimonial</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Expert Team -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/teams">
-                            <img src="{{asset('admin/images/team.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Expert Team</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Customer Support -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/customer-support">
-                            <img src="{{asset('admin/images/spt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Customer Support</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-
-                </ul>
-            </nav>
-
-
-
-
-
-            <!-- MAIN CONTENT PART START==================================================================================================================================== -->
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-
-
-
-
-
-
-
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Welcome to DOZO || House of Windows</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-                    <div class="row">
-
-
-
-                        <div class="col-md-3 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/gallery/g1.jpg')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-3 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/gallery/g2.jpg')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/gallery/g3.jpg')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/gallery/g4.jpg')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="row">
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e2.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e3.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e8.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e9.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e10.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e7.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e1.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e4.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e5.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e6.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e11.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-1 grid-margin stretch-card">
-                            <div class="card tale-bg">
-                                <div class="card-people mt-auto">
-                                    <img src="{{asset('assets/img/icon/e12.gif')}}" alt="people">
-
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-
-
-                    </div>
-
-
-
-
-
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. <a href="" target="_blank">DOZO | House of Windows</a> All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Easy-To-Access & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Developed by <a href="https://github.com/artic0909" target="_blank">Saklinmustak</a></span>
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-            <!-- MAIN CONTENT PART END====================================================================================================================================== -->
-
-
-
-
-
+@extends('admin.layouts.app')
+
+@section('title', 'Admin Dashboard')
+
+@section('styles')
+<style>
+    .stat-card {
+        border-radius: 12px;
+        border: none;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-icon-wrapper {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .quick-action-btn {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #1e293b;
+        font-weight: 700;
+        font-size: 14px;
+        transition: all 0.2s;
+        text-decoration: none !important;
+    }
+
+    .quick-action-btn:hover {
+        background: #fff8f5;
+        border-color: #ff5f13;
+        color: #ff5f13;
+        transform: translateY(-2px);
+    }
+
+    .chart-container-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 22px 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        height: 100%;
+    }
+</style>
+@endsection
+
+@section('content')
+<!-- Page Header -->
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+            <h3 class="font-weight-bold mb-1" style="color: #111111;">DOZO Control Centre</h3>
+            <p class="text-muted mb-0" style="font-size: 14px;">Welcome back to your administration dashboard and analytics overview.</p>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- page-body-wrapper ends -->
+        <div class="mt-2 mt-sm-0">
+            <span class="badge badge-dozo p-2 px-3">
+                <i class="fa-solid fa-calendar-days mr-1"></i> {{ date('l, d F Y') }}
+            </span>
+        </div>
     </div>
-    <!-- container-scroller -->
+</div>
 
-    <!-- plugins:js -->
-    <script src="Admin/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="Admin/vendors/chart.js/Chart.min.js"></script>
-    <script src="Admin/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="Admin/js/dataTables.select.min.js"></script>
+<!-- Core Metric Stats Row -->
+<div class="row">
+    <!-- Total Window Inquiries -->
+    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card stat-card" style="border-left: 4px solid #ff5f13;">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 text-uppercase font-weight-bold" style="font-size: 12px; letter-spacing: 0.5px;">Window Inquiries</p>
+                        <h3 class="font-weight-bold mb-0" style="color: #111111;">{{ $totalInquiries ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon-wrapper" style="background: rgba(255, 95, 19, 0.12); color: #ff5f13;">
+                        <i class="fa-solid fa-window-restore"></i>
+                    </div>
+                </div>
+                <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center">
+                    <a href="/window-inquiry" class="text-primary font-weight-bold" style="font-size: 12px;">View All &rarr;</a>
+                    <span class="text-muted" style="font-size: 11.5px;">Active Leads</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="Admin/js/off-canvas.js"></script>
-    <script src="Admin/js/hoverable-collapse.js"></script>
-    <script src="Admin/js/template.js"></script>
-    <script src="Admin/js/settings.js"></script>
-    <script src="Admin/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="Admin/js/dashboard.js"></script>
-    <script src="Admin/js/Chart.roundedBarCharts.js"></script>
-    <!-- End custom js for this page-->
-</body>
+    <!-- Total AMC Requests -->
+    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card stat-card" style="border-left: 4px solid #3b82f6;">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 text-uppercase font-weight-bold" style="font-size: 12px; letter-spacing: 0.5px;">AMC Requests</p>
+                        <h3 class="font-weight-bold mb-0" style="color: #111111;">{{ $totalAMC ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon-wrapper" style="background: rgba(59, 130, 246, 0.12); color: #3b82f6;">
+                        <i class="fa-solid fa-file-shield"></i>
+                    </div>
+                </div>
+                <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center">
+                    <a href="/amc-request" class="text-primary font-weight-bold" style="font-size: 12px;">View All &rarr;</a>
+                    <span class="text-muted" style="font-size: 11.5px;">Contracts</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-</html>
+    <!-- Total Products -->
+    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card stat-card" style="border-left: 4px solid #10b981;">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 text-uppercase font-weight-bold" style="font-size: 12px; letter-spacing: 0.5px;">Products</p>
+                        <h3 class="font-weight-bold mb-0" style="color: #111111;">{{ $totalProducts ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon-wrapper" style="background: rgba(16, 185, 129, 0.12); color: #10b981;">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                </div>
+                <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center">
+                    <a href="/product-details" class="text-primary font-weight-bold" style="font-size: 12px;">Manage &rarr;</a>
+                    <span class="text-muted" style="font-size: 11.5px;">In {{ $totalMainCategories ?? 0 }} Categories</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Tickets -->
+    <div class="col-xl-3 col-lg-6 col-sm-6 grid-margin stretch-card">
+        <div class="card stat-card" style="border-left: 4px solid #8b5cf6;">
+            <div class="card-body p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <p class="text-muted mb-1 text-uppercase font-weight-bold" style="font-size: 12px; letter-spacing: 0.5px;">Support Tickets</p>
+                        <h3 class="font-weight-bold mb-0" style="color: #111111;">{{ $totalSupport ?? 0 }}</h3>
+                    </div>
+                    <div class="stat-icon-wrapper" style="background: rgba(139, 92, 246, 0.12); color: #8b5cf6;">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                </div>
+                <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center">
+                    <a href="/customer-support" class="text-primary font-weight-bold" style="font-size: 12px;">Tickets &rarr;</a>
+                    <span class="text-muted" style="font-size: 11.5px;">Queries</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Action Shortcuts -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div class="card-body p-3">
+                <h6 class="font-weight-bold mb-3 text-muted text-uppercase" style="font-size: 12px; letter-spacing: 0.5px;">
+                    <i class="fa-solid fa-bolt text-warning mr-1"></i> Quick Management Shortcuts
+                </h6>
+                <div class="row g-2">
+                    <div class="col-md-3 col-sm-6 mb-2">
+                        <a href="/product-details" class="quick-action-btn">
+                            <i class="fa-solid fa-circle-plus text-primary font-size-lg"></i>
+                            <span>Add / Edit Products</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2">
+                        <a href="/window-inquiry" class="quick-action-btn">
+                            <i class="fa-solid fa-list-check text-info font-size-lg"></i>
+                            <span>View Inquiries</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2">
+                        <a href="/amc-request" class="quick-action-btn">
+                            <i class="fa-solid fa-shield-halved text-success font-size-lg"></i>
+                            <span>AMC Requests</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6 mb-2">
+                        <a href="/admin-blogs" class="quick-action-btn">
+                            <i class="fa-solid fa-pen-nib text-secondary font-size-lg"></i>
+                            <span>Publish Blog</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analytics Charts & Graphs Row -->
+<div class="row mb-4">
+    <!-- Chart 1: Monthly Trends (Window Inquiries vs AMC Requests) -->
+    <div class="col-lg-8 grid-margin stretch-card">
+        <div class="chart-container-card w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="font-weight-bold mb-1" style="color: #111111;">Inquiry & AMC Volume Trends ({{ date('Y') }})</h5>
+                    <p class="text-muted mb-0" style="font-size: 13px;">Month-by-month volume comparison of client inquiries and AMC bookings</p>
+                </div>
+                <div>
+                    <span class="badge badge-light border p-2"><i class="fa-solid fa-chart-line text-primary mr-1"></i> Live Analytics</span>
+                </div>
+            </div>
+            <div style="height: 290px;">
+                <canvas id="inquiryTrendsChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart 2: Product Breakdown By Category -->
+    <div class="col-lg-4 grid-margin stretch-card">
+        <div class="chart-container-card w-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h5 class="font-weight-bold mb-1" style="color: #111111;">Product Distribution</h5>
+                    <p class="text-muted mb-0" style="font-size: 13px;">Products per category</p>
+                </div>
+            </div>
+            <div style="height: 220px; position: relative;">
+                <canvas id="categoryDoughnutChart"></canvas>
+            </div>
+            <div class="mt-3 pt-2 border-top text-center">
+                <a href="/product-main-category" class="text-primary font-weight-bold" style="font-size: 13px;">Manage Categories &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Inquiries Table & Recent AMC Requests -->
+<div class="row">
+    <!-- Recent Inquiries -->
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="font-weight-bold mb-0" style="color: #111111;">
+                        <i class="fa-solid fa-clock-rotate-left text-warning mr-1"></i> Recent Window Inquiries
+                    </h5>
+                    <a href="/window-inquiry" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">View All</a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Phone</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recentInquiries as $inquiry)
+                            <tr>
+                                <td class="font-weight-bold text-dark">{{ $inquiry->fname ?? 'N/A' }}</td>
+                                <td>{{ $inquiry->mob ?? 'N/A' }}</td>
+                                <td>
+                                    <span class="badge badge-light border text-muted">
+                                        {{ $inquiry->created_at ? $inquiry->created_at->format('d M, Y') : 'Recent' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/download-inquiry/{{ $inquiry->id }}" target="_blank" class="btn btn-sm btn-outline-danger" title="Print Invoice / Sheet" style="padding: 4px 8px;">
+                                        <i class="fa-solid fa-print"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-3">No inquiries recorded yet.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent AMC Requests -->
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="font-weight-bold mb-0" style="color: #111111;">
+                        <i class="fa-solid fa-file-contract text-primary mr-1"></i> Recent AMC Requests
+                    </h5>
+                    <a href="/amc-request" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">View All</a>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Phone</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recentAMC as $amc)
+                            <tr>
+                                <td class="font-weight-bold text-dark">{{ $amc->fname ?? 'N/A' }}</td>
+                                <td>{{ $amc->mob ?? 'N/A' }}</td>
+                                <td>
+                                    <span class="badge badge-light border text-muted">
+                                        {{ $amc->created_at ? $amc->created_at->format('d M, Y') : 'Recent' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/download-pdf/{{ $amc->id }}" target="_blank" class="btn btn-sm btn-outline-danger" title="Print AMC Sheet" style="padding: 4px 8px;">
+                                        <i class="fa-solid fa-print"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-3">No AMC requests recorded yet.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Line Chart: Inquiries vs AMC Requests
+        const ctxTrends = document.getElementById('inquiryTrendsChart').getContext('2d');
+        const months = {!! json_encode($months ?? ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']) !!};
+        const inquiryCounts = {!! json_encode($monthlyInquiries ?? [0,0,0,0,0,0,0,0,0,0,0,0]) !!};
+        const amcCounts = {!! json_encode($monthlyAMC ?? [0,0,0,0,0,0,0,0,0,0,0,0]) !!};
+
+        new Chart(ctxTrends, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'Window Inquiries',
+                        data: inquiryCounts,
+                        borderColor: '#ff5f13',
+                        backgroundColor: 'rgba(255, 95, 19, 0.1)',
+                        borderWidth: 2.5,
+                        fill: true,
+                        tension: 0.35,
+                        pointBackgroundColor: '#ff5f13',
+                        pointRadius: 4
+                    },
+                    {
+                        label: 'AMC Requests',
+                        data: amcCounts,
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.08)',
+                        borderWidth: 2.5,
+                        fill: true,
+                        tension: 0.35,
+                        pointBackgroundColor: '#3b82f6',
+                        pointRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            precision: 0
+                        },
+                        gridLines: {
+                            color: '#f1f5f9'
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                },
+                legend: {
+                    position: 'top',
+                    labels: {
+                        boxWidth: 12,
+                        fontFamily: "'Segoe UI', 'Helvetica Neue', Arial",
+                        fontSize: 12
+                    }
+                }
+            }
+        });
+
+        // Doughnut Chart: Category Product Distribution
+        const ctxCategory = document.getElementById('categoryDoughnutChart').getContext('2d');
+        const catLabels = {!! json_encode(!empty($categoryLabels) ? $categoryLabels : ['Aluminium System', 'UPVC Windows']) !!};
+        const catCounts = {!! json_encode(!empty($categoryProductCounts) ? $categoryProductCounts : [1, 1]) !!};
+
+        new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: catLabels,
+                datasets: [{
+                    data: catCounts,
+                    backgroundColor: ['#ff5f13', '#3b82f6', '#10b981', '#8b5cf6', '#f59e0b'],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutoutPercentage: 65,
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 10,
+                        fontSize: 11
+                    }
+                }
+            }
+        });
+    });
+</script>
+@endpush

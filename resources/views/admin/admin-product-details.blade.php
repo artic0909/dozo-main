@@ -1,717 +1,354 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Product Details | DOZO Admin</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="Admin/vendors/feather/feather.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="Admin/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <link rel="stylesheet" href="Admin/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="Admin/js/select.dataTables.min.css">
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="Admin/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-
-    <!-- icon -->
-    <link rel="icon" href="assets/img/logo/dlogo.ico" type="image/png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .floating-btn-div {
-            position: fixed;
-            bottom: 70px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .floating-btn {
-            color: white !important;
-            background-color: #ff5f13;
-            color: rgb(0, 0, 0);
-            border: none;
-            border-radius: 50%;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            font-size: 2rem;
-            transition: background-color 0.3s ease;
-            animation: 1000ms linear 100ms infinite alternate scrollUpDown1;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container-scroller">
-
-
-
-        <!-- partial:partials/_navbar.html -->
-
-
-
-        <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-
-
-            <!-- logo -->
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/logo.png')}}" alt="DOZO">
-                </a>
-                <a class="navbar-brand brand-logo-mini" href="/dashboard">
-                    <img src="{{asset('assets/img/logo/dlogo.ico')}}" alt="DZ">
-                </a>
-            </div>
-
-
-
-
-            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                    <span class="icon-menu"></span>
-                </button>
-
-                <ul class="navbar-nav navbar-nav-right">
-
-
-
-
-                    <!-- logout -->
-                    <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                            <img src="{{asset('assets/img/team/t1.png')}}" alt="profile" />
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <a class="dropdown-item" :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                    <i class="ti-power-off text-primary"></i>
-                                    Logout
-                                </a>
-                            </form>
-                        </div>
-                    </li>
-
-
-
-
-                </ul>
-
-
-
-                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-                    <span class="icon-menu"></span>
-                </button>
-
-
-
-
-            </div>
-        </nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Sidebar -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_settings-panel.html -->
-
-
-            <!-- partial -->
-            <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-
-
-                    <!-- dashboard -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-
-
-                    <!-- Banners -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/banner.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Banners</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-home-banner">Home Banner</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-other-banner">Others Page Banner</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- About Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/about.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">About</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-about">About Company</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-numbers">About Numbers</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Product Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic11111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/window.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Products</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic11111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/product-main-category">Main Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-sub-category">Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/product-details">Product Details</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-
-                    <!-- Service Section -->
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-basic1111" aria-expanded="false" aria-controls="ui-basic">
-                            <img src="{{asset('admin/images/srv.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Service</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic1111">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/window-service">Window Service</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-offers">AMC Offers</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/amc-request">AMC Request</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-
-
-                    <!-- Window Inquiry -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/window-inquiry">
-                            <img src="{{asset('admin/images/wen.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Window Inquiry</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Blogs -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-blogs">
-                            <img src="{{asset('admin/images/blog.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Blogs</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Testimonial -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin-testimonial">
-                            <img src="{{asset('admin/images/qt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Testimonial</span>
-                        </a>
-                    </li>
-
-
-
-
-                    <!-- Expert Team -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/teams">
-                            <img src="{{asset('admin/images/team.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Expert Team</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-                    <!-- Customer Support -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/customer-support">
-                            <img src="{{asset('admin/images/spt.png')}}" alt="" width="20"> &nbsp;
-                            <span class="menu-title">Customer Support</span>
-                        </a>
-                    </li>
-
-
-
-
-
-
-
-                </ul>
-            </nav>
-
-
-
-
-
-            <!-- MAIN CONTENT PART START==================================================================================================================================== -->
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="row">
-                                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                    <h3 class="font-weight-bold">Product Details</h3>
-                                </div>
-
-
-
-
-
-                                <div class="col-lg-12 grid-margin stretch-card mt-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Ratio: 370x394</h4>
-                                            <div class="table-responsive">
-                                                <table class="table table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <!-- <th>Edit</th> -->
-                                                            <th>Delete</th>
-                                                            <th>Product Image</th>
-                                                            <th>Main Category</th>
-                                                            <th>Sub Category</th>
-                                                            <th>Title</th>
-                                                            <th>Description</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                        @foreach($products as $product)
-                                                        <tr>
-                                                            <!-- <td>
-                                                                <a href="#" class="text-success" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myEditModal{{ $product->id }}">
-                                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                                </a>
-                                                            </td> -->
-                                                            <td>
-                                                                <a href="" class="text-danger" style="font-size: 1.4rem;" data-toggle="modal" data-target="#myDeleteModal{{ $product->id }}">
-                                                                    <i class="fa-solid fa-trash-can"></i>
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <img src="{{ asset('storage/' . $product->pr_image) }}" alt="Product Image" style="width: 100px; height: 100px; border-radius: 10px;">
-                                                            </td>
-                                                            <td>{{ $product->mainCategory->main_category }}</td>
-                                                            <td>{{ $product->subCategory->sub_category }}</td>
-                                                            
-                                                            <td>{{ $product->pr_title }}</td>
-                                                            <td>{{ Str::limit($product->pr_desc, 50) }}</td>
-                                                        </tr>
-                                                        @endforeach
-
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-
-
-
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
-                <footer class="footer">
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024. <a href="" target="_blank">DOZO | House of Windows</a> All rights reserved.</span>
-                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Easy-To-Access & made with <i class="ti-heart text-danger ml-1"></i></span>
-                    </div>
-                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Developed by <a href="https://github.com/artic0909" target="_blank">Saklinmustak</a></span>
-                    </div>
-                </footer>
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-            <!-- MAIN CONTENT PART END====================================================================================================================================== -->
-
-
-
-
-
+@extends('admin.layouts.app')
+
+@section('title', 'Product Management')
+
+@section('styles')
+<style>
+    .product-thumb {
+        width: 65px;
+        height: 65px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid #e2e8f0;
+    }
+
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.15s;
+    }
+
+    .action-btn:hover {
+        transform: scale(1.1);
+    }
+</style>
+@endsection
+
+@section('content')
+<!-- Page Header -->
+<div class="row mb-4">
+    <div class="col-12 d-flex justify-content-between align-items-center flex-wrap">
+        <div>
+            <h3 class="font-weight-bold mb-1" style="color: #111111;">Product Catalogue Management</h3>
+            <p class="text-muted mb-0" style="font-size: 14px;">Add, edit, or manage products across aluminium & UPVC architectural systems.</p>
         </div>
-
-
-
-
-
-
-
-        <!-- floating add btn -->
-        <div class="floating-btn-div" data-toggle="modal" data-target="#myAddModal">
-            <button class="floating-btn">
-                <i class="fa-solid fa-plus"></i>
+        <div class="mt-2 mt-sm-0">
+            <button class="btn btn-primary dozo-btn font-weight-bold px-3 py-2" data-toggle="modal" data-target="#addProductModal">
+                <i class="fa-solid fa-plus mr-1"></i> Add New Product
             </button>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- add modal -->
-        <div class="modal" id="myAddModal">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Product Details</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <form action="{{ route('addProduct') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="form-group">
-                                <label for="pr_image">Product Image</label>
-                                <input type="file" class="form-control" name="pr_image" id="pr_image">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="main_cat">Main Category</label>
-                                <select class="form-control" name="main_cat" id="main_cat">
-                                    <option value="">Select Main Category</option>
-                                    @foreach($mainCategories as $mainCategory)
-                                    <option value="{{ $mainCategory->id }}">{{ $mainCategory->main_category }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sub_cat">Sub Category</label>
-                                <select class="form-control" name="sub_cat" id="sub_cat">
-                                    <option value="">Select Sub Category</option>
-                                </select>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="pr_title">Product Title</label>
-                                <input type="text" class="form-control" name="pr_title" id="pr_title">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="pr_desc">Product Description</label>
-                                <textarea class="form-control" name="pr_desc" id="pr_desc" cols="30" rows="10"></textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-
-        <!-- Edit modal -->
-        @foreach($products as $product)
-        <div class="modal" id="myEditModal{{ $product->id }}">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Product Details</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <div class="modal-body">
-                        <form action="{{ route('editProduct', $product->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="form-group text-center">
-                                <img src="{{ asset('storage/' . $product->pr_image) }}" style="width: 100%; height:150px; border-radius: 10px;" alt="Product Image">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="pr_image">Product Image</label>
-                                <input type="file" class="form-control" name="pr_image" id="pr_image">
-                            </div>
-
-                            <!-- <div class="form-group">
-                                <label for="main_cat">Main Category</label>
-                                <select class="form-control main-cat-select" name="main_cat" id="main_cat{{ $product->id }}">
-                                    <option value="">Select Main Category</option>
-                                    @foreach($mainCategories as $mainCategory)
-                                    <option value="{{ $mainCategory->id }}" {{ $mainCategory->id == $product->main_cat_id ? 'selected' : '' }}>
-                                        {{ $mainCategory->main_category }}
-                                    </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="sub_cat">Sub Category</label>
-                                <select class="form-control sub-cat-select" name="sub_cat" id="sub_cat{{ $product->id }}">
-                                    <option value="{{ $product->sub_cat_id }}">{{ $product->sub_category->sub_cat ?? 'Select Sub Category' }}</option>
-                                </select>
-                            </div> -->
-
-                            <div class="form-group">
-                                <label for="pr_title">Product Title</label>
-                                <input type="text" class="form-control" name="pr_title" id="pr_title" value="{{ $product->pr_title }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="pr_desc">Product Description</label>
-                                <textarea class="form-control" name="pr_desc" id="pr_desc" cols="30" rows="10">{{ $product->pr_desc }}</textarea>
-                            </div>
-
-                            <button type="submit" class="btn btn-success">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
-
-
-
-
-
-
-
-
-        <!-- delete modal -->
-        @foreach($products as $product)
-        <div class="modal fade" id="myDeleteModal{{ $product->id }}" tabindex="-1" aria-labelledby="myDeleteModal" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="myDeleteModal">Confirm Delete</h5>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this information?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{route('deleteProduct', $product->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <!-- page-body-wrapper ends -->
-        </div>
-        @endforeach
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
+</div>
 
-    <!-- plugins:js -->
-    <script src="Admin/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="Admin/vendors/chart.js/Chart.min.js"></script>
-    <script src="Admin/vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="Admin/js/dataTables.select.min.js"></script>
+<!-- Main Products Table Card -->
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card" style="border-radius: 12px; border: 1px solid #e2e8f0;">
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="font-weight-bold mb-0" style="color: #111111;">
+                        <i class="fa-solid fa-boxes-stacked text-primary mr-2"></i> All Registered Products ({{ count($products) }})
+                    </h5>
+                    <span class="text-muted" style="font-size: 13px;">Image Recommended: 370x394 (PNG / JPG / WEBP)</span>
+                </div>
 
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="Admin/js/off-canvas.js"></script>
-    <script src="Admin/js/hoverable-collapse.js"></script>
-    <script src="Admin/js/template.js"></script>
-    <script src="Admin/js/settings.js"></script>
-    <script src="Admin/js/todolist.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="Admin/js/dashboard.js"></script>
-    <script src="Admin/js/Chart.roundedBarCharts.js"></script>
-    <!-- End custom js for this page-->
+                <div class="table-responsive">
+                    <table class="table table-hover dataTable-modern" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 70px;">Image</th>
+                                <th>Title</th>
+                                <th>Main Category</th>
+                                <th>Sub Category</th>
+                                <th>Description</th>
+                                <th style="width: 100px; text-align: center;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($products as $product)
+                            <tr>
+                                <td>
+                                    @if($product->pr_image)
+                                        <img src="{{ asset('storage/' . $product->pr_image) }}" alt="Product" class="product-thumb">
+                                    @else
+                                        <div class="product-thumb bg-light d-flex align-items-center justify-content-center text-muted">
+                                            <i class="fa-regular fa-image"></i>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td>
+                                    <strong class="text-dark" style="font-size: 14px;">{{ $product->pr_title }}</strong>
+                                </td>
+                                <td>
+                                    <span class="badge badge-dozo px-2 py-1">
+                                        {{ $product->mainCategory->main_category ?? 'Unassigned' }}
+                                    </span>
+                                </td>
+                                <td>
+                                    @if($product->subCategory)
+                                        <span class="badge badge-light border text-secondary px-2 py-1">
+                                            {{ $product->subCategory->sub_category }}
+                                        </span>
+                                    @else
+                                        <span class="text-muted" style="font-size: 12.5px;"><em>None (Optional)</em></span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <span class="text-muted" title="{{ $product->pr_desc }}" style="font-size: 13px;">
+                                        {{ Str::limit($product->pr_desc, 60) }}
+                                    </span>
+                                </td>
+                                <td style="text-align: center;">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        <!-- Edit Trigger -->
+                                        <button type="button" class="btn btn-sm btn-outline-primary action-btn mr-1" data-toggle="modal" data-target="#editProductModal{{ $product->id }}" title="Edit Product">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </button>
 
+                                        <!-- Delete Trigger -->
+                                        <button type="button" class="btn btn-sm btn-outline-danger action-btn" onclick="confirmDelete('deleteProductForm{{ $product->id }}', '{{ addslashes($product->pr_title) }}')" title="Delete Product">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button>
 
+                                        <form id="deleteProductForm{{ $product->id }}" action="{{ route('deleteProduct', $product->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Floating Quick Add Button -->
+<div class="floating-btn-div" data-toggle="modal" data-target="#addProductModal" title="Add New Product">
+    <button class="floating-btn">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+</div>
 
+<!-- ==========================================================================
+     ADD PRODUCT MODAL
+     ========================================================================== -->
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none;">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title font-weight-bold" id="addProductModalLabel" style="color: #111111;">
+                    <i class="fa-solid fa-plus text-primary mr-2"></i> Add New Product
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+            <form action="{{ route('addProduct') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <!-- Main Category -->
+                        <div class="col-md-6 form-group">
+                            <label for="add_main_cat" class="font-weight-bold">Main Category <span class="text-danger">*</span></label>
+                            <select class="form-control" name="main_cat" id="add_main_cat" required>
+                                <option value="">Select Main Category</option>
+                                @foreach($mainCategories as $mainCat)
+                                    <option value="{{ $mainCat->id }}">{{ $mainCat->main_category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
+                        <!-- Sub Category (OPTIONAL) -->
+                        <div class="col-md-6 form-group">
+                            <label for="add_sub_cat" class="font-weight-bold">
+                                Sub Category <span class="badge badge-light border text-muted ml-1" style="font-size: 11px;">Optional</span>
+                            </label>
+                            <select class="form-control" name="sub_cat" id="add_sub_cat">
+                                <option value="">None / Optional</option>
+                            </select>
+                            <small class="form-text text-muted">Leave blank if this product has no specific subcategory.</small>
+                        </div>
 
+                        <!-- Product Title -->
+                        <div class="col-12 form-group">
+                            <label for="add_pr_title" class="font-weight-bold">Product Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="pr_title" id="add_pr_title" placeholder="e.g. Minimalist Slim-Line Sliding Window" required>
+                        </div>
 
+                        <!-- Product Image -->
+                        <div class="col-12 form-group">
+                            <label for="add_pr_image" class="font-weight-bold">Product Image <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control-file border p-2 rounded w-100" name="pr_image" id="add_pr_image" accept="image/*" required>
+                            <small class="form-text text-muted">Recommended resolution: 370x394px or 800x600px. Formats: WEBP, PNG, JPG.</small>
+                        </div>
 
-    <script>
-        $(document).ready(function() {
-            // When main category is selected
-            $('#main_cat').change(function() {
-                var mainCategoryId = $(this).val(); // Get selected main category ID
+                        <!-- Product Description -->
+                        <div class="col-12 form-group">
+                            <label for="add_pr_desc" class="font-weight-bold">Description / Technical Specifications</label>
+                            <textarea class="form-control" name="pr_desc" id="add_pr_desc" rows="5" placeholder="Enter product details, acoustic ratings, glazing thickness, etc..."></textarea>
+                        </div>
+                    </div>
+                </div>
 
-                if (mainCategoryId) {
-                    // Send AJAX request to fetch subcategories
-                    $.ajax({
-                        url: '/get-subcategories/' + mainCategoryId, // Update this URL as per your route
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(response) {
-                            // Clear the subcategory dropdown
-                            $('#sub_cat').empty();
-                            $('#sub_cat').append('<option value="">Select Sub Category</option>');
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary dozo-btn font-weight-bold px-4">
+                        <i class="fa-solid fa-check mr-1"></i> Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-                            // Check if subcategories were returned
-                            if (response.length > 0) {
-                                $.each(response, function(index, subCategory) {
-                                    $('#sub_cat').append('<option value="' + subCategory.id + '">' + subCategory.sub_category + '</option>');
-                                });
-                            } else {
-                                $('#sub_cat').append('<option value="">No subcategories available</option>');
-                            }
-                        },
-                        error: function() {
-                            alert('Failed to load subcategories');
+<!-- ==========================================================================
+     EDIT PRODUCT MODALS (FOREACH)
+     ========================================================================== -->
+@foreach($products as $product)
+<div class="modal fade" id="editProductModal{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="editProductModalLabel{{ $product->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none;">
+            <div class="modal-header bg-light">
+                <h5 class="modal-title font-weight-bold" id="editProductModalLabel{{ $product->id }}" style="color: #111111;">
+                    <i class="fa-solid fa-pen-to-square text-primary mr-2"></i> Edit Product: {{ $product->pr_title }}
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{{ route('editProduct', $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <!-- Current Image Preview & Replacement -->
+                        <div class="col-12 mb-3 text-center">
+                            @if($product->pr_image)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $product->pr_image) }}" alt="Current Image" style="max-height: 120px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                </div>
+                            @endif
+                            <label class="font-weight-bold d-block text-left">Update Image (Leave empty to keep current)</label>
+                            <input type="file" class="form-control-file border p-2 rounded w-100" name="pr_image" accept="image/*">
+                        </div>
+
+                        <!-- Main Category -->
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Main Category <span class="text-danger">*</span></label>
+                            <select class="form-control edit-main-cat" name="main_cat" data-product-id="{{ $product->id }}" required>
+                                <option value="">Select Main Category</option>
+                                @foreach($mainCategories as $mainCat)
+                                    <option value="{{ $mainCat->id }}" {{ $product->main_cat == $mainCat->id ? 'selected' : '' }}>
+                                        {{ $mainCat->main_category }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Sub Category (OPTIONAL) -->
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">
+                                Sub Category <span class="badge badge-light border text-muted ml-1" style="font-size: 11px;">Optional</span>
+                            </label>
+                            <select class="form-control edit-sub-cat" name="sub_cat" id="edit_sub_cat_{{ $product->id }}">
+                                <option value="">None / Optional</option>
+                                @if($product->mainCategory && $product->mainCategory->subCategories)
+                                    @foreach($product->mainCategory->subCategories as $subCat)
+                                        <option value="{{ $subCat->id }}" {{ $product->sub_cat == $subCat->id ? 'selected' : '' }}>
+                                            {{ $subCat->sub_category }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                            <small class="form-text text-muted">Optional. Leave as "None / Optional" if not applicable.</small>
+                        </div>
+
+                        <!-- Product Title -->
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Product Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="pr_title" value="{{ $product->pr_title }}" required>
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Description / Technical Specifications</label>
+                            <textarea class="form-control" name="pr_desc" rows="5">{{ $product->pr_desc }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary dozo-btn font-weight-bold px-4">
+                        <i class="fa-solid fa-check mr-1"></i> Update Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+@endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        // Dynamic Subcategory for Add Modal
+        $('#add_main_cat').change(function() {
+            var mainCategoryId = $(this).val();
+            var $subCat = $('#add_sub_cat');
+
+            $subCat.empty().append('<option value="">None / Optional</option>');
+
+            if (mainCategoryId) {
+                $.ajax({
+                    url: '/get-subcategories/' + mainCategoryId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.length > 0) {
+                            $.each(response, function(index, subCategory) {
+                                $subCat.append('<option value="' + subCategory.id + '">' + subCategory.sub_category + '</option>');
+                            });
                         }
-                    });
-                } else {
-                    // If no main category is selected, reset the subcategory dropdown
-                    $('#sub_cat').empty();
-                    $('#sub_cat').append('<option value="">Select Sub Category</option>');
-                }
-            });
+                    }
+                });
+            }
         });
-    </script>
 
+        // Dynamic Subcategory for Edit Modals
+        $('.edit-main-cat').change(function() {
+            var mainCategoryId = $(this).val();
+            var productId = $(this).data('product-id');
+            var $subCat = $('#edit_sub_cat_' + productId);
 
+            $subCat.empty().append('<option value="">None / Optional</option>');
 
-
-
-
-
-</body>
-
-</html>
+            if (mainCategoryId) {
+                $.ajax({
+                    url: '/get-subcategories/' + mainCategoryId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.length > 0) {
+                            $.each(response, function(index, subCategory) {
+                                $subCat.append('<option value="' + subCategory.id + '">' + subCategory.sub_category + '</option>');
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+@endpush
