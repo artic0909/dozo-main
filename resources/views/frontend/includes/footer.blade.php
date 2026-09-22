@@ -25,12 +25,12 @@
                             <div class="footer-tittle">
                                 <h4>Quick Links</h4>
                                 <ul>
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="/about">About DOZO</a></li>
-                                    <li><a href="/service">Our Services</a></li>
-                                    <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf text-danger"></i> Download Catalogue</a></li>
+                                    <li><a href="/">Information</a></li>
                                     <li><a href="/amc">Window AMC</a></li>
-                                    <li><a href="/inquiry">Inquiry Now</a></li>
+                                    <!-- <li><a href="/about">About DOZO</a></li> -->
+                                    <!-- <li><a href="/service">Our Services</a></li> -->
+                                    <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf text-danger"></i> Download Catalogue</a></li>
+                                    <!-- <li><a href="/inquiry">Inquiry Now</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -50,13 +50,9 @@
                                 <ul>
                                     @if(isset($aboutDetails) && count($aboutDetails) > 0)
                                         @foreach($aboutDetails as $abItem)
-                                        <li><a href="tel:{{$abItem->ab_num}}"><i class="fa-solid fa-phone" style="color: #ff5f13;"></i> +91 {{$abItem->ab_num}}</a></li>
-                                        <li><a href="https://wa.me/{{$abItem->ab_num}}"><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp: +91 {{$abItem->ab_num}}</a></li>
-                                        <li><a href="mailto:{{$abItem->ab_email}}"><i class="fa-solid fa-envelope" style="color: #ff5f13;"></i> {{$abItem->ab_email}}</a></li>
+                                        <li><a href="tel:{{$abItem->ab_num}}">+91 {{$abItem->ab_num}}</a></li>
+                                        <li><a href="mailto:{{$abItem->ab_email}}">{{$abItem->ab_email}}</a></li>
                                         @endforeach
-                                    @else
-                                        <li><a href="tel:8981444141"><i class="fa-solid fa-phone" style="color: #ff5f13;"></i> +91 8981444141</a></li>
-                                        <li><a href="https://wa.me/8981444141"><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> WhatsApp: +91 8981444141</a></li>
                                     @endif
                                 </ul>
                             </div>
@@ -78,7 +74,7 @@
                     <div class="col-xl-12">
                         <div class="footer-copy-right">
                             <p>
-                                Copyright &copy; {{ date('Y') }} All rights reserved by <a href="/" target="_blank" style="color: #ff5f13; font-weight: 700;">DOZO | House of Windows</a> (A Brand of Ranihati Construction)
+                                Copyright &copy; {{ date('Y') }} <a href="/" target="_blank" style="color: #ff5f13; font-weight: 700;">DOZO | Façade & Fenestration Aluminum System Windows</a> A brand of rconpl.in
                             </p>
                         </div>
                     </div>

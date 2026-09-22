@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/amc.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/function.css') }}" />
 
     <style>
         .inquiry-img {
@@ -64,6 +66,24 @@
         @media (max-width:991px) {
             .h-btnn {
                 display: block !important;
+            }
+        }
+
+        /* for multisteps button ============================================================================================*/
+        .bttt1,
+        .bttt2 {
+            width: 30% !important;
+        }
+
+        @media (max-width:660px) {
+            .button-main-container {
+                display: block !important;
+            }
+
+            .bttt1,
+            .bttt2 {
+                width: 100% !important;
+                margin-bottom: 15px !important;
             }
         }
     </style>
@@ -158,62 +178,6 @@
     </div>
     <!-- Contact Us Modal End -->
 
-    <!-- Blog Create Modal Start -->
-    <div class="modal fade" id="myBlogCreateModal" tabindex="-1" aria-labelledby="myBlogCreateModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="myBlogCreateModalLabel" style="font-weight: 700;">Share Your Project / Story</h3>
-                </div>
-                <div class="modal-body">
-                    <form id="blogForm" action="{{ route('addBlog') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3" style="display: flex; flex-direction: column; align-items: center;">
-                            <label for="b_img" class="form-label">
-                                <img src="{{ asset('assets/img/blog/add-image.png') }}" style="width: 80px; cursor: pointer;" alt="Upload">
-                                <span id="requiredMark" style="color: red; font-size: 2rem;">*</span>
-                                <span id="checkMark" style="color: rgb(28, 121, 5); font-size: 2rem; display: none;">✔</span>
-                            </label>
-                            <input type="file" name="b_img" class="form-control" id="b_img" style="display: none;" onchange="toggleMarks()">
-                            <small id="b_img_error" class="txt-org" style="display: none;">Please upload an image under 2MB.</small>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="b_title" class="form-label">Post Title<span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" name="b_title" id="b_title" required>
-                            <small id="b_title_error" class="txt-org" style="display: none;">Post title is required.</small>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-check-label" for="b_qt">Short Quote / Tagline<span style="color: red;">*</span></label>
-                            <textarea name="b_qt" id="b_qt" class="form-control" required></textarea>
-                            <small id="b_qt_error" class="txt-org" style="display: none;">Quote field is required.</small>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-check-label" for="b_desc">Post Description<span style="color: red;">*</span></label>
-                            <textarea name="b_desc" id="b_desc" class="form-control" rows="4" required></textarea>
-                            <small id="b_desc_error" class="txt-org" style="display: none;">Post description is required.</small>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-check-label" for="b_tag">Tags (e.g. #Aluminium #Architecture)<span style="color: red;">*</span></label>
-                            <textarea name="b_tag" id="b_tag" class="form-control" required></textarea>
-                            <small id="b_tag_error" class="txt-org" style="display: none;">Post tags are required.</small>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-check-label" for="b_date">Post Date<span style="color: red;">*</span></label>
-                            <input type="text" class="form-control" name="b_date" id="b_date" value="{{ date('d M Y') }}" required>
-                        </div>
-
-                        <button type="submit" class="btn w-100">Submit Post</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Blog Create Modal End -->
 
     <!-- Global Success Modal -->
     <div class="modal fade" id="myInquirySuccessModal" tabindex="-1" role="dialog" aria-labelledby="myInquirySuccessModalLabel" aria-hidden="true">
