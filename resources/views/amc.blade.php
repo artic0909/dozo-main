@@ -1,1150 +1,1272 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+@extends('frontend.layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>AMC Page</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/dlogo.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+@section('title', 'Annual Maintenance Contract (AMC) & Façade Care | DOZO')
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/gijgo.css">
-    <link rel="stylesheet" href="assets/css/slicknav.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="stylesheet" href="assets/css/amc.css">
-    <link rel="stylesheet" href="assets/css/function.css">
-    <style>
-        .inquiry-img {
-            animation: scale1 1s ease-in-out infinite;
-            transition: transform 120ms ease-in;
+@section('styles')
+<style>
+    /* ==========================================================================
+       Modern AMC Breadcrumb Header (No BG Image)
+       ========================================================================== */
+    .amc-header-banner {
+        background: linear-gradient(135deg, #0d0f12 0%, #171a1f 50%, #20242b 100%);
+        padding: 175px 0 50px 0;
+        position: relative;
+        border-bottom: 3px solid #ff5f13;
+        overflow: hidden;
+    }
+
+    .amc-header-banner::after {
+        content: '';
+        position: absolute;
+        bottom: -60px;
+        right: -60px;
+        width: 320px;
+        height: 320px;
+        background: radial-gradient(circle, rgba(255, 95, 19, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+        pointer-events: none;
+    }
+
+    @media (max-width: 991px) {
+        .amc-header-banner {
+            padding: 130px 0 40px 0;
         }
+    }
 
-        /* Applying animation delays to each image */
-        .inquiry-img:nth-child(1) {
-            animation-delay: 0s;
+    .amc-header-banner .breadcrumb-nav {
+        margin-bottom: 12px;
+    }
+
+    .amc-header-banner .breadcrumb-nav ol {
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .amc-header-banner .breadcrumb-nav li {
+        font-size: 14px;
+        color: #9ea3a8;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .amc-header-banner .breadcrumb-nav li a {
+        color: #ff5f13;
+        transition: color 0.2s;
+    }
+
+    .amc-header-banner .breadcrumb-nav li a:hover {
+        color: #ffffff;
+    }
+
+    .amc-header-banner .breadcrumb-nav li::after {
+        content: "/";
+        margin-left: 8px;
+        color: #555c63;
+    }
+
+    .amc-header-banner .breadcrumb-nav li:last-child::after {
+        content: "";
+    }
+
+    .amc-header-banner .breadcrumb-nav li.active {
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    .amc-header-banner h1 {
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 800;
+        line-height: 1.3;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+    }
+
+    .amc-header-banner p {
+        color: #b8bec5;
+        font-size: 15px;
+        max-width: 850px;
+        margin-bottom: 18px;
+        line-height: 1.6;
+    }
+
+    .amc-header-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .amc-badge-pill {
+        background: rgba(255, 95, 19, 0.12);
+        color: #ff7b39;
+        border: 1px solid rgba(255, 95, 19, 0.35);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 700;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    /* ==========================================================================
+       Full-Width AMC Multi-Step Form Styling
+       ========================================================================== */
+    .amc-form-section {
+        background: #f4f6f9;
+        padding: 50px 0 60px 0;
+    }
+
+    .amc-form-card {
+        background: #ffffff;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+        padding: 40px 45px;
+    }
+
+    @media (max-width: 767px) {
+        .amc-form-card {
+            padding: 25px 20px;
         }
+    }
 
-        .inquiry-img:nth-child(2) {
-            animation-delay: 0.3s;
-            /* Start after the first */
+    /* Custom Progress Steps */
+    .amc-step-wizard {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        margin-bottom: 40px;
+        padding: 0 20px;
+    }
+
+    .amc-step-wizard::before {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: 50px;
+        right: 50px;
+        height: 3px;
+        background: #e2e8f0;
+        z-index: 1;
+    }
+
+    .amc-step-item {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        background: #ffffff;
+        padding: 0 10px;
+        cursor: default;
+    }
+
+    .amc-step-circle {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid #cbd5e1;
+        color: #64748b;
+        font-weight: 700;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 8px;
+        transition: all 0.25s ease;
+    }
+
+    .amc-step-label {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #64748b;
+        display: block;
+        transition: color 0.25s ease;
+    }
+
+    .amc-step-item.active .amc-step-circle {
+        background: #ff5f13;
+        border-color: #ff5f13;
+        color: #ffffff;
+        box-shadow: 0 0 0 4px rgba(255, 95, 19, 0.2);
+    }
+
+    .amc-step-item.active .amc-step-label {
+        color: #ff5f13;
+        font-weight: 800;
+    }
+
+    .amc-step-item.completed .amc-step-circle {
+        background: #111111;
+        border-color: #111111;
+        color: #ffffff;
+    }
+
+    .amc-step-item.completed .amc-step-label {
+        color: #111111;
+    }
+
+    @media (max-width: 575px) {
+        .amc-step-wizard {
+            padding: 0;
         }
-
-        .inquiry-img:nth-child(3) {
-            animation-delay: 0.6s;
-            /* Start after the second */
+        .amc-step-label {
+            font-size: 11px;
         }
-
-        .inquiry-img:hover {
-            transform: scale(1.2);
-            animation: none;
+        .amc-step-circle {
+            width: 34px;
+            height: 34px;
+            font-size: 13px;
         }
-
-        @keyframes scale1 {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
+        .amc-step-wizard::before {
+            top: 17px;
+            left: 25px;
+            right: 25px;
         }
+    }
 
+    /* Panels & Inputs */
+    .amc-panel {
+        display: none;
+        animation: amcFadeIn 0.35s ease;
+    }
 
-        .h-btnn {
-            display: none !important;
+    .amc-panel.active {
+        display: block;
+    }
+
+    @keyframes amcFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
         }
-
-        @media (max-width:991px) {
-            .h-btnn {
-                display: block !important;
-            }
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
+    .amc-form-card .form-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 6px;
+    }
 
+    .amc-form-card .form-control,
+    .amc-form-card .form-select {
+        height: 48px;
+        border-radius: 8px;
+        border: 1.5px solid #cbd5e1;
+        font-size: 14.5px;
+        color: #1e293b;
+        padding: 10px 15px;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
 
-        /* for button ============================================================================================*/
-        .bttt1,
-        .bttt2 {
-            width: 30% !important;
-        }
+    .amc-form-card textarea.form-control {
+        height: auto;
+    }
 
-        @media (max-width:660px) {
-            .button-main-container {
-                display: block !important;
-            }
+    .amc-form-card .form-control:focus,
+    .amc-form-card .form-select:focus {
+        border-color: #ff5f13;
+        box-shadow: 0 0 0 3px rgba(255, 95, 19, 0.15);
+        outline: none;
+    }
 
-            .bttt1,
-            .bttt2 {
-                width: 100% !important;
-                margin-bottom: 15px !important;
-            }
-        }
-    </style>
-</head>
+    .amc-form-card .form-control.is-invalid,
+    .amc-form-card .form-select.is-invalid {
+        border-color: #ef4444;
+        background-image: none;
+    }
 
-<body>
+    .amc-invalid-feedback {
+        color: #ef4444;
+        font-size: 12.5px;
+        font-weight: 600;
+        margin-top: 4px;
+        display: none;
+    }
 
+    .is-invalid ~ .amc-invalid-feedback {
+        display: block;
+    }
 
+    /* Window Card Container */
+    .amc-window-row-card {
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 22px 20px;
+        margin-bottom: 18px;
+        position: relative;
+        transition: border-color 0.2s;
+    }
 
+    .amc-window-row-card:hover {
+        border-color: #cbd5e1;
+    }
 
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/logo-loader33.png" alt="" />
+    .amc-window-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #cbd5e1;
+    }
+
+    .amc-window-header h5 {
+        font-size: 15px;
+        font-weight: 800;
+        color: #ff5f13;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .amc-remove-btn {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .amc-remove-btn:hover {
+        background: #ef4444;
+        color: #ffffff;
+    }
+
+    .amc-add-window-btn {
+        background: #111111;
+        color: #ffffff;
+        border: 1.5px solid #111111;
+        padding: 10px 22px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+    }
+
+    .amc-add-window-btn:hover {
+        background: #ff5f13;
+        border-color: #ff5f13;
+        color: #ffffff;
+    }
+
+    /* Buttons */
+    .amc-nav-btn {
+        padding: 13px 28px;
+        font-size: 15px;
+        font-weight: 800;
+        border-radius: 8px;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    .amc-btn-prev {
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #cbd5e1;
+    }
+
+    .amc-btn-prev:hover {
+        background: #e2e8f0;
+        color: #1e293b;
+    }
+
+    .amc-btn-next,
+    .amc-btn-submit {
+        background: #ff5f13;
+        color: #ffffff;
+        border: 1px solid #ff5f13;
+    }
+
+    .amc-btn-next:hover,
+    .amc-btn-submit:hover {
+        background: #e04e0a;
+        border-color: #e04e0a;
+        color: #ffffff;
+    }
+
+    /* ==========================================================================
+       Informative Cards & Scope Sections Below
+       ========================================================================== */
+    .amc-pillar-card {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e9edf2;
+        padding: 28px 22px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+        transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .amc-pillar-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: #ff5f13;
+        opacity: 0;
+        transition: opacity 0.25s;
+    }
+
+    .amc-pillar-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(255, 95, 19, 0.1);
+        border-color: rgba(255, 95, 19, 0.3);
+    }
+
+    .amc-pillar-card:hover::before {
+        opacity: 1;
+    }
+
+    .amc-pillar-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 10px;
+        background: rgba(255, 95, 19, 0.1);
+        color: #ff5f13;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .amc-pillar-card h4 {
+        font-size: 18px;
+        font-weight: 800;
+        color: #111111;
+        margin-bottom: 10px;
+    }
+
+    .amc-pillar-card p {
+        font-size: 13.5px;
+        color: #555555;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .amc-process-step {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 22px 18px;
+        border: 1px solid #edf1f5;
+        height: 100%;
+        text-align: center;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.02);
+    }
+
+    .amc-step-num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #ff5f13;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+    }
+
+    .amc-process-step h5 {
+        font-size: 15px;
+        font-weight: 800;
+        color: #111111;
+        margin-bottom: 6px;
+    }
+
+    .amc-process-step p {
+        font-size: 12.5px;
+        color: #666666;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .amc-scope-box {
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #eef0f3;
+        padding: 30px 25px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        margin-bottom: 30px;
+    }
+
+    .amc-scope-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f2f4f7;
+    }
+
+    .amc-scope-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .amc-scope-item i {
+        color: #ff5f13;
+        font-size: 16px;
+        margin-top: 3px;
+        flex-shrink: 0;
+    }
+
+    .amc-scope-item strong {
+        color: #111111;
+        font-weight: 700;
+        display: block;
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .amc-scope-item p {
+        color: #666666;
+        font-size: 13px;
+        margin: 0;
+        line-height: 1.5;
+    }
+</style>
+@endsection
+
+@section('content')
+<!-- Modern AMC Breadcrumb Header (No BG Image) -->
+<section class="amc-header-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-11 col-lg-12">
+                <nav class="breadcrumb-nav" aria-label="breadcrumb">
+                    <ol>
+                        <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li class="active" aria-current="page">Annual Maintenance Contract (AMC)</li>
+                    </ol>
+                </nav>
+
+                <h1>DOZO Window Care & Annual Maintenance Contract (AMC)</h1>
+                <p>
+                    Protect your architectural investment. Ensure lifelong frictionless gliding, airtight monsoon sealing, acoustic cutoff, and optimal energy efficiency for your aluminium system windows and high-rise facades with factory-certified DOZO AMC care.
+                </p>
+
+                <div class="amc-header-badges">
+                    <span class="amc-badge-pill"><i class="fa-solid fa-shield-halved"></i> 100% Factory Certified Care</span>
+                    <span class="amc-badge-pill"><i class="fa-solid fa-screwdriver-wrench"></i> Periodic Hardware & Roller Tuning</span>
+                    <span class="amc-badge-pill"><i class="fa-solid fa-droplet-slash"></i> Monsoon Seepage Prevention</span>
+                    <span class="amc-badge-pill"><i class="fa-solid fa-phone-volume"></i> 24-48h Emergency Callout</span>
+                    <span class="amc-badge-pill"><i class="fa-solid fa-building"></i> Residential & Commercial Plans</span>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
+</section>
 
+<!-- ==========================================================================
+     FULL-WIDTH AMC MULTI-STEP FORM (PLACED DIRECTLY AFTER BREADCRUMB)
+     ========================================================================== -->
+<section class="amc-form-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-11 col-12">
+                <div class="amc-form-card">
+                    <!-- Form Title & Intro -->
+                    <div class="text-center mb-4">
+                        <span style="color: #ff5f13; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1px;">Instant Window Care Booking</span>
+                        <h2 style="font-size: 28px; font-weight: 800; color: #111111; margin-top: 4px;">Book An AMC Inspection</h2>
+                        <p style="color: #64748b; font-size: 14.5px; max-width: 600px; margin: 0 auto;">
+                            Fill in your site details and window configurations below for an instant inspection quote and scheduled audit visit.
+                        </p>
+                    </div>
 
-
-
-
-
-
-
-
-
-
-
-    <header style="z-index: 11111;">
-        <!-- Header Start -->
-        <div class="header-area header-transparent">
-            <div class="main-header">
-                <div class="header-top d-none d-lg-block" style="background-color: rgb(17, 17, 17)">
-                    <div class="container-fluid">
-                        <div class="col-xl-12">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="header-info-left">
-                                    @foreach($aboutDetails as $abItem)
-                                    <ul>
-                                        <li><a href="tel:{{$abItem->ab_num}}" style="color:white">+(91)-{{$abItem->ab_num}}</a></li>
-                                        <li><a href="mailto:{{$abItem->ab_email}}" style="color:white">{{$abItem->ab_email}}</a></li>
-                                        <li>Mon - Sat 9:00 - 19:30, Sunday - CLOSED</li>
-                                    </ul>
-                                    @endforeach
-                                </div>
-                                <div class="header-info-right">
-                                    <ul class="header-social">
-                                        <li>
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                    <!-- Step Wizard Header -->
+                    <div class="amc-step-wizard">
+                        <div class="amc-step-item active" data-step="1">
+                            <div class="amc-step-circle">1</div>
+                            <span class="amc-step-label">Contact Info</span>
+                        </div>
+                        <div class="amc-step-item" data-step="2">
+                            <div class="amc-step-circle">2</div>
+                            <span class="amc-step-label">Location</span>
+                        </div>
+                        <div class="amc-step-item" data-step="3">
+                            <div class="amc-step-circle">3</div>
+                            <span class="amc-step-label">Windows</span>
+                        </div>
+                        <div class="amc-step-item" data-step="4">
+                            <div class="amc-step-circle">4</div>
+                            <span class="amc-step-label">Requirements</span>
                         </div>
                     </div>
-                </div>
 
-                <div class="header-bottom header-sticky" style="background-color: #ff5f13">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-                                    <!-- logo-1 -->
-                                    <a href="/" class="big-logo"><img src="assets/img/logo/logo.png" alt="" style="
-                          filter: drop-shadow(
-                            3px 3px 2px rgba(15, 15, 15, 0.616)
-                          );
-                        " /></a>
-                                    <!-- logo-2 -->
-                                    <a href="/" class="small-logo"><img src="assets/img/logo/l.png" alt="" style="
-                          filter: drop-shadow(
-                            3px 3px 2px rgba(15, 15, 15, 0.616)
-                          );
-                        " /></a>
+                    <!-- Form -->
+                    <form id="amcInspectionForm" action="{{ route('amc.store') }}" method="POST">
+                        @csrf
+
+                        <!-- ==================== STEP 1: CONTACT INFO ==================== -->
+                        <div class="amc-panel active" id="amcStep1">
+                            <h4 style="font-size: 18px; font-weight: 800; color: #111111; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                                <i class="fa-solid fa-user-check text-warning me-2"></i> Step 1: Customer Contact Information
+                            </h4>
+
+                            <div class="row g-3">
+                                <div class="col-md-6 col-12">
+                                    <label for="amc_fname" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" name="fname" class="form-control" id="amc_fname" placeholder="Enter your full name" required>
+                                    <div class="amc-invalid-feedback">Please enter your full name.</div>
                                 </div>
-                            </div>
-                            <div class="col-xl-7 col-lg-7 col-md-7">
-                                <!-- Main-menu -->
-                                <div class="main-menu f-right d-none d-lg-block">
-                                    <nav>
-                                        <ul id="navigation">
-                                            @foreach($maincategories as $maincategory)
-                                            <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
-                                            @endforeach
 
-                                            {{-- Commented other pages --}}
-                                            {{--
-                                             <li><a href="/amc">Window AMC</a></li>
-                                            <li><a href="/">Home</a></li>
-                                            <li><a href="/about">About</a></li>
-                                            <li><a href="/service">DOZO Window Service</a></li>
-                                            <li><a href="/blog">Blog</a></li>
-                                            <!-- <li><a href="#" data-bs-toggle="modal" data-bs-target="#myInquiryModal"><i
-                                                        class="fa-solid fa-headset"></i>&nbsp; Contact Us</a></li> -->
-                                            <li><a href="/amc" class="h-btnn">AMC Inquiry</a></li>
-                                            --}}
-                                        </ul>
-                                    </nav>
+                                <div class="col-md-6 col-12">
+                                    <label for="amc_email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" name="email" class="form-control" id="amc_email" placeholder="example@domain.com" required>
+                                    <div class="amc-invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label for="amc_mob" class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                                    <input type="tel" name="mob" class="form-control" id="amc_mob" placeholder="10-digit mobile number" maxlength="10" required>
+                                    <div class="amc-invalid-feedback">Please enter a valid 10-digit mobile number.</div>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label class="form-label text-muted">Service Scope</label>
+                                    <div class="p-2 px-3 rounded bg-light border text-secondary" style="font-size: 13.5px; height: 48px; display: flex; align-items: center;">
+                                        <i class="fa-solid fa-shield-halved text-success me-2"></i> Standard / Commercial Façade Care
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-xl-3 col-lg-3 col-md-3">
-                                <div class="header-right-btn f-right d-none d-lg-flex align-items-center">
-                                    <a href="{{ asset('catelogue.pdf') }}" target="_blank" class="header-cat-btn" title="Download Catalogue"><i class="fa-solid fa-file-pdf"></i> Catalogue</a>
-                                    <a href="/amc" class="header-amc-btn">Window AMC</a>
-                                </div>
-
-
-                            </div>
-
-                            <!-- Mobile Menu -->
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
+                            <div class="d-flex justify-content-end mt-4 pt-3 border-top">
+                                <button type="button" class="amc-nav-btn amc-btn-next" onclick="goToStep(2)">
+                                    Next: Site Location &nbsp;<i class="fa-solid fa-arrow-right"></i>
+                                </button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
 
+                        <!-- ==================== STEP 2: ADDRESS & LOCATION ==================== -->
+                        <div class="amc-panel" id="amcStep2">
+                            <h4 style="font-size: 18px; font-weight: 800; color: #111111; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                                <i class="fa-solid fa-location-dot text-danger me-2"></i> Step 2: Site Location & Address
+                            </h4>
 
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="amc_add" class="form-label">Property / Site Address <span class="text-danger">*</span></label>
+                                    <textarea name="add" class="form-control" id="amc_add" rows="4" placeholder="Enter complete site address (Building Name, Flat/Unit No, Street, Landmark, City)" required></textarea>
+                                    <div class="amc-invalid-feedback">Please enter complete site address.</div>
+                                </div>
 
+                                <div class="col-md-6 col-12">
+                                    <label for="amc_pin" class="form-label">PIN Code <span class="text-danger">*</span></label>
+                                    <input type="text" name="pin" class="form-control" id="amc_pin" placeholder="6-digit PIN Code" maxlength="6" required>
+                                    <div class="amc-invalid-feedback">Please enter a valid 6-digit PIN code.</div>
+                                </div>
+                            </div>
 
-
-
-
-
-
-
-
-
-    <!-- slider Area Start-->
-    <div class="slider-area ">
-        <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
-            data-background="assets/img/hero/about.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap pt-100">
-                            <h2>Annual Maintenance Contract</h2>
-                            <nav aria-label="breadcrumb ">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">AMC</a></li>
-                                </ol>
-                            </nav>
+                            <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                                <button type="button" class="amc-nav-btn amc-btn-prev" onclick="goToStep(1)">
+                                    <i class="fa-solid fa-arrow-left"></i> &nbsp;Previous
+                                </button>
+                                <button type="button" class="amc-nav-btn amc-btn-next" onclick="goToStep(3)">
+                                    Next: Window Details &nbsp;<i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+
+                        <!-- ==================== STEP 3: WINDOW INVENTORY ==================== -->
+                        <div class="amc-panel" id="amcStep3">
+                            <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                                <h4 style="font-size: 18px; font-weight: 800; color: #111111; margin: 0;">
+                                    <i class="fa-solid fa-border-all text-primary me-2"></i> Step 3: Window Inventory & Specifications
+                                </h4>
+                                <button type="button" class="amc-add-window-btn" id="amcAddWindowBtn">
+                                    <i class="fa-solid fa-plus"></i> Add Another Window
+                                </button>
+                            </div>
+
+                            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 20px;">
+                                Specify window locations, approximate dimensions, and types so our engineers arrive prepared with suitable replacement parts and tooling.
+                            </p>
+
+                            <!-- Window List Container -->
+                            <div id="amcWindowsContainer">
+                                <!-- Window Item 1 -->
+                                <div class="amc-window-row-card" id="windowCard_1">
+                                    <div class="amc-window-header">
+                                        <h5><i class="fa-solid fa-cube"></i> Window #1</h5>
+                                        <button type="button" class="amc-remove-btn d-none" onclick="removeWindowRow(1)">
+                                            <i class="fa-solid fa-trash-can"></i> Remove
+                                        </button>
+                                    </div>
+
+                                    <div class="row g-3">
+                                        <div class="col-lg-3 col-md-6 col-12">
+                                            <label class="form-label">Location / Tag <span class="text-danger">*</span></label>
+                                            <input type="text" name="window_name[]" class="form-control" placeholder="e.g. Master Bedroom" required>
+                                            <div class="amc-invalid-feedback">Location is required.</div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-3 col-6">
+                                            <label class="form-label">Length <span class="text-danger">*</span></label>
+                                            <input type="text" name="w_length[]" class="form-control" placeholder="e.g. 6 ft" required>
+                                            <div class="amc-invalid-feedback">Required.</div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-3 col-6">
+                                            <label class="form-label">Breadth <span class="text-danger">*</span></label>
+                                            <input type="text" name="w_breadth[]" class="form-control" placeholder="e.g. 5 ft" required>
+                                            <div class="amc-invalid-feedback">Required.</div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-8 col-8">
+                                            <label class="form-label">System Type <span class="text-danger">*</span></label>
+                                            <select name="w_type[]" class="form-select" required>
+                                                <option value="" selected>Select Window Type</option>
+                                                <option value="Sliding Window (2-Track / 3-Track)">Sliding Window (2-Track / 3-Track)</option>
+                                                <option value="Casement Openable Window">Casement Openable Window</option>
+                                                <option value="Tilt & Turn Window">Tilt & Turn Window</option>
+                                                <option value="Fixed Glass / Glazing Panel">Fixed Glass / Glazing Panel</option>
+                                                <option value="Aluminium Sliding Door / Bi-Fold">Aluminium Sliding Door / Bi-Fold</option>
+                                                <option value="Structural Curtain Wall Facade">Structural Curtain Wall Facade</option>
+                                            </select>
+                                            <div class="amc-invalid-feedback">Select window type.</div>
+                                        </div>
+
+                                        <div class="col-lg-2 col-md-4 col-4">
+                                            <label class="form-label">Units <span class="text-danger">*</span></label>
+                                            <input type="number" name="w_unit[]" class="form-control" placeholder="1" min="1" value="1" required>
+                                            <div class="amc-invalid-feedback">Min 1.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                                <button type="button" class="amc-nav-btn amc-btn-prev" onclick="goToStep(2)">
+                                    <i class="fa-solid fa-arrow-left"></i> &nbsp;Previous
+                                </button>
+                                <button type="button" class="amc-nav-btn amc-btn-next" onclick="goToStep(4)">
+                                    Next: Requirements &nbsp;<i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- ==================== STEP 4: REQUIREMENTS & SUBMISSION ==================== -->
+                        <div class="amc-panel" id="amcStep4">
+                            <h4 style="font-size: 18px; font-weight: 800; color: #111111; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px;">
+                                <i class="fa-solid fa-clipboard-list text-warning me-2"></i> Step 4: Special Issues & Review
+                            </h4>
+
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="amc_d_op" class="form-label">Describe Any Current Issues / Special Requirements <span class="text-danger">*</span></label>
+                                    <textarea name="d_op" class="form-control" id="amc_d_op" rows="5" placeholder="e.g. Window sashes are hard to slide, water seepage during rains, broken multi-point handles, or routine annual preventive maintenance preferred..." required></textarea>
+                                    <div class="amc-invalid-feedback">Please provide details about your window requirements or current issues.</div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4 pt-3 border-top">
+                                <button type="button" class="amc-nav-btn amc-btn-prev" onclick="goToStep(3)">
+                                    <i class="fa-solid fa-arrow-left"></i> &nbsp;Previous
+                                </button>
+                                <button type="submit" class="amc-nav-btn amc-btn-submit" id="amcSubmitBtn">
+                                    <i class="fa-solid fa-paper-plane"></i> &nbsp;SUBMIT AMC INQUIRY
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- slider Area End-->
+</section>
 
+<!-- ==========================================================================
+     INFORMATIVE SECTION: 4 VALUE PILLARS & SCOPE OF SERVICE
+     ========================================================================== -->
+<section class="section-padding" style="padding: 60px 0 45px 0; background: #ffffff;">
+    <div class="container">
+        <div class="row mb-35">
+            <div class="col-12 text-center">
+                <div class="section-tittle mb-20">
+                    <div class="front-text">
+                        <h2>Why Routine AMC Is Essential</h2>
+                    </div>
+                    <span class="back-text">PROTECTION</span>
+                </div>
+                <p style="max-width: 780px; margin: 0 auto; color: #555555; font-size: 15px;">
+                    Modern slim-line aluminium windows and glass facades endure continuous wind loads, rain, dirt accumulation, and friction. Scheduled preventive maintenance extends hardware lifespan and prevents expensive repairs.
+                </p>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="amc-pillar-card">
+                    <div class="amc-pillar-icon">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h4>Roller & Track Gliding</h4>
+                    <p>Heavy duty stainless steel tandem rollers and track rails are lubricated, aligned, and calibrated to prevent friction, sash drag, and premature metal wear.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="amc-pillar-card">
+                    <div class="amc-pillar-icon">
+                        <i class="fa-solid fa-cloud-showers-heavy"></i>
+                    </div>
+                    <h4>Monsoon & Air Sealing</h4>
+                    <p>Inspection, resealing, and rejuvenation of continuous EPDM weather gaskets, brush wool piles, and concealed drainage valves to eliminate water leaks.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="amc-pillar-card">
+                    <div class="amc-pillar-icon">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                    </div>
+                    <h4>Acoustic & Thermal Seal</h4>
+                    <p>Compression checks on multi-point lock keepers to maintain airtight insulation, preventing outside city traffic noise (up to 45 dB) and air conditioning loss.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 mb-30">
+                <div class="amc-pillar-card">
+                    <div class="amc-pillar-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h4>Hardware & High-Rise Safety</h4>
+                    <p>Friction stays, heavy handles, transmission gear rods, corner drives, and anchor fasteners audited for wind load security in high-rise towers.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
+<!-- 4-Stage Process Flow -->
+<section class="section-padding" style="padding: 45px 0 55px 0; background: #fafbfc; border-top: 1px solid #edf2f7; border-bottom: 1px solid #edf2f7;">
+    <div class="container">
+        <div class="row mb-30">
+            <div class="col-12 text-center">
+                <div class="section-tittle mb-15">
+                    <div class="front-text">
+                        <h2 style="font-size: 26px;">The DOZO 4-Stage Maintenance Cycle</h2>
+                    </div>
+                    <span class="back-text">PROCESS</span>
+                </div>
+                <p style="color: #666666; font-size: 14.5px; max-width: 700px; margin: 0 auto;">
+                    Every AMC service visit follows a rigorous checklist executed by factory-trained fenestration engineers.
+                </p>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-25">
+                <div class="amc-process-step">
+                    <div class="amc-step-num">1</div>
+                    <h5>Diagnostic Inspection</h5>
+                    <p>Digital laser spirit level check, frame squareness audit, and sliding track load analysis.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 mb-25">
+                <div class="amc-process-step">
+                    <div class="amc-step-num">2</div>
+                    <h5>Track & Drainage Purge</h5>
+                    <p>Debris extraction from concealed sill drainage ports, anti-clogging flush, and brush seal wash.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 mb-25">
+                <div class="amc-process-step">
+                    <div class="amc-step-num">3</div>
+                    <h5>Hardware & Roller Tuning</h5>
+                    <p>Application of silicone lube, multi-point lock keeper recalibration, and friction hinge tightening.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-3 col-md-6 mb-25">
+                <div class="amc-process-step">
+                    <div class="amc-step-num">4</div>
+                    <h5>Certified Audit Report</h5>
+                    <p>Acoustic and weather-tightness verification, followed by a formal AMC inspection certificate.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- AMC Section Start -->
-    <section class="blog_area section-padding">
-        <div class="container">
+<!-- Scope & Offers Section -->
+<section class="section-padding" style="padding: 55px 0 70px 0; background: #ffffff;">
+    <div class="container">
+        <div class="row">
+            <!-- Left: What's Covered -->
+            <div class="col-lg-7 mb-40">
+                <div class="amc-scope-box">
+                    <h3 style="font-size: 19px; font-weight: 800; color: #111111; margin-bottom: 18px; text-transform: uppercase;">
+                        <i class="fa-solid fa-clipboard-check" style="color: #ff5f13; margin-right: 6px;"></i> What's Covered In DOZO AMC
+                    </h3>
 
-
-
-
-            <div class="row">
-                <div class="col-xl-12">
-                    <!-- Section Tittle -->
-                    <div class="section-tittle section-tittle7 mb-50">
-                        <div class="front-text">
-                            <h2 class="">AMC</h2>
+                    <div class="amc-scope-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Bi-Annual / Quarterly Comprehensive Audit</strong>
+                            <p>Full physical diagnostic testing of sliding, casement, tilt & turn sashes, and structural facade glass panels.</p>
                         </div>
-                        <span class="back-text">Annual</span>
+                    </div>
+
+                    <div class="amc-scope-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>EPDM Rubber Gasket & Wool Pile Re-fitting</strong>
+                            <p>Replacing deteriorated weather-strips to maintain sound insulation and wind sealing.</p>
+                        </div>
+                    </div>
+
+                    <div class="amc-scope-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Track Cleaning & Drainage De-clogging</strong>
+                            <p>Deep clearing of concealed water drainage channels to stop monsoon water buildup.</p>
+                        </div>
+                    </div>
+
+                    <div class="amc-scope-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Multipoint Lock & Hinge Realignment</strong>
+                            <p>Adjusting keeper plates, corner drives, handles, and heavy duty hinges for featherlight operation.</p>
+                        </div>
+                    </div>
+
+                    <div class="amc-scope-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div>
+                            <strong>Priority On-Demand Service Visits</strong>
+                            <p>Fast emergency dispatch within 24-48 hours for unexpected jamming, glass issues, or hardware damage.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
-
-            <!-- Annual Maintenance Contract Content -->
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="amc-form">
-
-
-
-
-                        <div class="content">
-                            <div class="content__inner">
-                                <div class="container overflow-hidden">
-                                    <div class="multisteps-form">
-                                        <div class="row">
-                                            <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
-                                                <div class="multisteps-form__progress">
-                                                    <button class="multisteps-form__progress-btn js-active"
-                                                        type="button" title="User Info">User Info</button>
-                                                    <button class="multisteps-form__progress-btn" type="button"
-                                                        title="Address">Address</button>
-                                                    <button class="multisteps-form__progress-btn" type="button"
-                                                        title="Order Info">AMC</button>
-                                                    <button class="multisteps-form__progress-btn" type="button"
-                                                        title="Message">Opinion</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-12 col-lg-8 m-auto">
-                                                <form class="multisteps-form__form" action="{{ route('amc.store') }}" method="POST" enctype="multipart/form-data">
-                                                    @csrf
-
-                                                    <!-- 1st part User INFO -->
-                                                    <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="fade">
-                                                        <!-- User info fields -->
-                                                        <div class="mb-3">
-                                                            <label for="fname" class="form-label">Full Name<span class="text-danger">*</span></label>
-                                                            <input type="text" name="fname" class="form-control" id="fname" required>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="email" class="form-label">Email address<span class="text-danger">*</span></label>
-                                                            <input type="email" name="email" class="form-control" id="email" required>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="mob" class="form-label">Mobile No<span class="text-danger">*</span></label>
-                                                            <input type="text" name="mob" id="mob" class="form-control" required>
-                                                        </div>
-
-                                                        <div class="button-row d-flex mt-4">
-                                                            <button class="btn w-100 ml-auto js-btn-next" type="button" title="Next">Next</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- 2nd part Address Info -->
-                                                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="fade">
-                                                        <div class="mb-3">
-                                                            <label for="add" class="form-check-label">Address<span class="text-danger">*</span></label>
-                                                            <textarea name="add" id="add" class="form-control" required rows="7"></textarea>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <label for="pin" class="form-check-label">PIN CODE<span class="text-danger">*</span></label>
-                                                            <input type="text" name="pin" id="pin" class="form-control">
-                                                        </div>
-
-                                                        <div class="button-row d-flex mt-4 button-main-container">
-                                                            <button class="btn22 bttt1 js-btn-prev" type="button" title="Prev">Prev</button>
-                                                            <button class="btn bttt2 ml-auto js-btn-next" type="button" title="Next">Next</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- 3rd part AMC Info -->
-                                                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" style="z-index: 1;">
-                                                        <div id="amcForm">
-                                                            <div class="form-inner" id="windowGroup_1">
-                                                                <div class="form-group">
-                                                                    <label for="window_name" class="amc-label">Window1<span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control bdrn" name="window_name[]" placeholder="Hall Room" required>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="w_length_1" class="amc-label">Length<span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control bdrn" name="w_length[]" placeholder="Window Len..." required>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="w_breadth_1" class="amc-label">Breadth<span class="text-danger">*</span></label>
-                                                                    <input type="text" class="form-control bdrn" name="w_breadth[]" placeholder="Window Bread..." required>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="w_type_1" class="amc-label">Window Type<span class="text-danger">*</span></label>
-                                                                    <select name="w_type[]" class="form-control bdrn" required>
-                                                                        <option value="" selected>Select Type</option>
-                                                                        <option value="Type 1">Type 1</option>
-                                                                        <option value="Type 2">Type 2</option>
-                                                                        <option value="Type 3">Type 3</option>
-                                                                        <option value="Type 4">Type 4</option>
-                                                                        <option value="Type 5">Type 5</option>
-                                                                    </select>
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="w_unit_1" class="amc-label">Unit<span class="text-danger">*</span></label>
-                                                                    <input type="number" class="form-control bdrn" name="w_unit[]" placeholder="0" required>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="add-button">
-                                                                <a href="#" class="org-btn" id="addButton">ADD</a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row">
-                                                            <div class="button-row d-flex mt-4 col-12 button-main-container">
-                                                                <button class="btn22 bttt1 js-btn-prev" type="button" title="Prev">Prev</button>
-                                                                <button class="btn bttt2 ml-auto js-btn-next" type="button" title="Next">Next</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- 4th Expert Opinion Info -->
-                                                    <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn" style="z-index: 1;">
-                                                        <div class="mb-3">
-                                                            <label for="d_op" class="form-check-label">Detail of Your Requirements<span class="text-danger">*</span></label>
-                                                            <textarea name="d_op" id="d_op" class="form-control" required rows="7"></textarea>
-                                                        </div>
-
-                                                        <div class="button-row d-flex mt-4 button-main-container">
-                                                            <button class="btn22 bttt1 js-btn-prev" type="button" title="Prev">Prev</button>
-                                                            <button class="btn bttt2 ml-auto" type="submit" title="Submit">SUBMIT</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- Right: Live Packages & Hotline -->
+            <div class="col-lg-5 mb-40">
+                <div class="we-offer p-4 rounded" style="background: #111111; color: #ffffff; border: 1px solid #282828; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="amc_title" style="margin-bottom: 15px; display: flex; align-items: center; gap: 12px;">
+                            <img src="{{ asset('assets/img/icon/contract.png') }}" width="45" alt="Contract">
+                            <h4 style="color: #ffffff; font-size: 18px; font-weight: 800; margin: 0;">DOZO Annual Care Packages</h4>
                         </div>
 
-
-
-
-
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-            <!-- Inquiry Send Success Modal Start -->
-            <div class="modal fade" id="myInquirySuccessModal" tabindex="-1" role="dialog" aria-labelledby="myInquirySuccessModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
-                            <img src="assets/img/icon/upp.gif" width="180" alt="">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="section-tittle section-tittle7">
-                                        <div class="front-text">
-                                            <h2 style="text-align: center;">Your AMC Inquiry Is Send Successfully!</h2>
-                                            <p style="text-align: right; font-weight: 700;">Please Check The Mail →</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Inquiry Send Success Modal End -->
-
-
-
-
-            <!-- Inquiry Send Unsuccess Modal Start -->
-            <div class="modal fade" id="myInquiryErrorModal" tabindex="-1" role="dialog" aria-labelledby="myInquiryErrorModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
-                            <img src="assets/img/icon/unn.gif" width="180" alt="">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="section-tittle section-tittle7">
-                                        <div class="front-text">
-                                            <h2 style="text-align: center;">Your AMC Inquiry Is Not SEND!</h2>
-                                            <p style="text-align: right; font-weight: 700;">Please Fill The Form Correctly →</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Inquiry Send Unsuccess Modal End -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- We Offer AMC -->
-            <div class="row" style="z-index: -1;">
-                <div class="col-xl-12 row-innerr">
-
-
-
-
-
-
-
-
-
-
-                    <div class="we-offer">
-
-                        <div class="amc_title" style="margin-top: 40px;">
-                            <img src="assets/img/icon/contract.png" width="60" alt="">
-                            <h3 class="offer-text">We Offer Annual Maintenance Contract</h3>
-                        </div>
-
-                        <div class="row-inner-main">
-
-
-                            <!-- Offers  -->
-                            <ul class="amc_ul">
-
+                        <ul class="amc_ul p-0 m-0" style="list-style: none;">
+                            @if(isset($offers) && count($offers) > 0)
                                 @foreach($offers as $offer)
-                                <li class="amc_li">
-                                    <p class="amc_p">
-                                        <span style="color: #ff5f13; font-weight: 600; font-size: 1.1rem;">✔&nbsp;</span>
-                                        <strong>{{$offer->offer}}</strong> Only
+                                <li class="amc_li mb-3">
+                                    <p class="amc_p m-0" style="color: #e0e0e0; font-size: 14.5px;">
+                                        <span style="color: #ff5f13; font-weight: 800;">✔&nbsp;</span>
+                                        <strong>{{$offer->offer}}</strong>
                                     </p>
                                 </li>
                                 @endforeach
-
-                            </ul>
-
-
-                            <!-- amc_bg -->
-                            <div class="amc_bg">
-                                <img src="assets/img/gallery/amc.png" alt="">
-                            </div>
-
-
-
-
-                        </div>
-
-
-
-
-                        <!-- <hr id="amc_hr"> -->
-
-
-
-
-
+                            @else
+                                <li class="amc_li mb-3">
+                                    <p class="amc_p m-0" style="color: #e0e0e0; font-size: 14.5px;"><span style="color: #ff5f13;">✔&nbsp;</span> Residential Annual Maintenance Contract (Villa & Apartments)</p>
+                                </li>
+                                <li class="amc_li mb-3">
+                                    <p class="amc_p m-0" style="color: #e0e0e0; font-size: 14.5px;"><span style="color: #ff5f13;">✔&nbsp;</span> Commercial High-Rise & Corporate Office Facade AMC</p>
+                                </li>
+                                <li class="amc_li mb-3">
+                                    <p class="amc_p m-0" style="color: #e0e0e0; font-size: 14.5px;"><span style="color: #ff5f13;">✔&nbsp;</span> 100% Genuine Certified Hardware & Rollers Replacement Guarantee</p>
+                                </li>
+                            @endif
+                        </ul>
                     </div>
 
-
-
-
-
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-        </div>
-    </section>
-    <!-- AMC Section End -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-main">
-            <div class="footer-area footer-padding">
-                <div class="container">
-                    <div class="row justify-content-between">
-                        <div class="col-lg-4 col-md-4 col-sm-8">
-                            <div class="single-footer-caption mb-30">
-                                <!-- logo -->
-                                <div class="footer-logo">
-                                    <a href="/"><img src="assets/img/logo/logo.png" alt="" /></a>
-                                </div>
-                                <div class="footer-tittle">
-                                    <div class="footer-pera">
-                                        <p class="info1" style="text-align: justify;">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                            sed do eiusmod tempor incididunt ut labore.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-lg-2 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Quick Links</h4>
-                                    <ul>
-                                        <li><a href="/about">About</a></li>
-                                        <li><a href="/service">Services</a></li>
-                                        <li><a href="{{ asset('catelogue.pdf') }}" target="_blank"><i class="fa-solid fa-file-pdf text-danger"></i> Download Catalogue</a></li>
-                                        <li><a href="/product-upvc">UPVC Windows</a></li>
-                                        <li><a href="/product-aluminium">Aluminium Windows</a></li>
-                                        <li><a href="/inquiry">For Inquiry</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-lg-3 col-md-4 col-sm-7">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Contact Us</h4>
-                                    <div class="footer-pera">
-                                        <p class="info1">
-                                            <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" style="color: #767b7c;">
-                                                H5CM+4XX, Poly Park, Dhulagori, Howrah, Jala Dhulagiri, West Bengal, 711302
-                                            </a>
-                                        </p>
-                                    </div>
-                                    <ul>
-                                        @foreach($aboutDetails as $abItem)
-                                        <li><a href="tel:{{$abItem->ab_num}}">Phone: +91 {{$abItem->ab_num}}</a></li>
-                                        <li><a href="https://wa.me/{{$abItem->ab_num}}">WhatsApp: +91 {{$abItem->ab_num}}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-lg-3 col-md-6 col-sm-8">
-                            <div class="single-footer-caption mb-50">
-
-                                <!-- Map -->
-                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="map-footer">
-                                    <img src="assets/img/gallery/map.png" alt=""
-                                        style="filter: drop-shadow( -5px 5px 0.3px rgba(161, 160, 160, 0.74));" />
-                                </a>
-
-
-                            </div>
-                        </div>
+                    <div class="mt-4 pt-3 text-center" style="border-top: 1px solid #333333;">
+                        <a href="tel:8981444141" style="color: #ff5f13; font-weight: 800; font-size: 15px; text-decoration: none;">
+                            <i class="fa-solid fa-phone"></i> Urgent Window Issue? Call: +91 8981444141
+                        </a>
                     </div>
-                    <!-- Copy-Right -->
-                    <div class="row align-items-center">
-                        <div class="col-xl-12">
-                            <div class="footer-copy-right">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    <!-- Copyright &copy; -->
-                                    <!-- 2024 -->
-                                    <!-- All rights reserved | This template is made with -->
-                                    <!-- <i class="fa fa-heart" aria-hidden="true"></i> by -->
-                                    <!-- <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;
-                                    2024
-                                    All rights reserved by
-                                    <a href="" target="">DOZO</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End-->
-    </footer>
-
-
-
-
-
-
-
-
-
-    <!-- Contact Us Modal Start -->
-    <div class="modal fade" id="myInquiryModal" tabindex="-1" aria-labelledby="myInquiryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <!-- Section Tittle -->
-                            <div class="section-tittle section-tittle7">
-                                <div class="front-text">
-                                    <h2 class="">You Need Help ?</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('support') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
-                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" class="form-control" name="subject" id="subject" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-check-label" for="inquiry">Message</label>
-                            <textarea name="inquiry" id="inquiry" name="inquiry" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn22 w-100">Get Ticket</button>
-
-
-
-
-
-
-
-                        <!-- find links -->
-                        <div class="modal-footer1 mt-3">
-                            <div class="modal-footer-inner"
-                                style="display:flex; justify-content: space-evenly; align-items: center; gap: 3px;">
-
-                                <a href="https://maps.app.goo.gl/2MkcA6S1yNQJqRgv7" target="_blank" class="find-icons">
-                                    <img class="inquiry-img" src="assets/img/icon/location-pin.gif" width="60" alt="">
-                                </a>
-                                @foreach($aboutDetails as $abItem)
-                                <a href="https://wa.me/{{$abItem->ab_num}}" class="find-icons">
-                                    <img class="inquiry-img" src="assets/img/icon/chat.gif" width="60" alt="">
-                                </a>
-
-                                <a href="tel:{{$abItem->ab_num}}" class="find-icons">
-                                    <img class="inquiry-img" src="assets/img/icon/incoming-call.gif" width="60" alt="">
-                                </a>
-                                @endforeach
-                            </div>
-                        </div>
-
-
-
-
-
-                    </form>
-                </div>
-
-
-
-
-
-
-            </div>
-        </div>
-    </div>
-    <!-- Contact Us Modal End -->
-
-
-
-
-
-    <!-- Inquiry Send Success Modal Start -->
-    <div class="modal fade" id="myInquirySuccessModall" tabindex="-1" role="dialog" aria-labelledby="myInquirySuccessModallLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="assets/img/icon/upp.gif" width="180" alt="">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="section-tittle section-tittle7">
-                                <div class="front-text">
-                                    <h2 style="text-align: center;">Your AMC Inquiry Is Send Successfully!</h2>
-                                    <p style="text-align: right; font-weight: 700;">Please Check The Mail →</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn w-100" onclick="window.location.reload()">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Inquiry Send Success Modal End -->
+</section>
 
-
-
-
-    <!-- Inquiry Send Unsuccess Modal Start -->
-    <div class="modal fade" id="myInquiryErrorModall" tabindex="-1" role="dialog" aria-labelledby="myInquiryErrorModallLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body" style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="assets/img/icon/unn.gif" width="180" alt="">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="section-tittle section-tittle7">
-                                <div class="front-text">
-                                    <h2 style="text-align: center;">Your AMC Inquiry Is Not SEND!</h2>
-                                    <p style="text-align: right; font-weight: 700;">Please Fill The Form Correctly →</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn w-100" data-bs-dismiss="modal">Close</button>
-                </div>
+<!-- Inquiry Success Modal -->
+<div class="modal fade" id="myInquirySuccessModal" tabindex="-1" role="dialog" aria-labelledby="myInquirySuccessModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none; overflow: hidden;">
+            <div class="modal-body p-4 text-center">
+                <img src="{{ asset('assets/img/icon/upp.gif') }}" width="130" alt="Success" class="mb-3">
+                <h3 style="font-weight: 800; color: #111111; margin-bottom: 10px;">AMC Request Submitted!</h3>
+                <p style="color: #666666; font-size: 14px;">
+                    Thank you! Our technical service team has received your details and will contact you shortly to schedule the inspection visit.
+                </p>
+            </div>
+            <div class="modal-footer p-3 bg-light">
+                <button type="button" class="btn w-100" style="background: #ff5f13; color: #ffffff; font-weight: 700;" onclick="window.location.reload()">Done</button>
             </div>
         </div>
     </div>
-    <!-- Inquiry Send Unsuccess Modal End -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- JS here -->
-
-    <!-- All JS Custom Plugins Link Here here -->
-    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-    <!-- Jquery, Popper, Bootstrap -->
-    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <!-- Jquery Mobile Menu -->
-    <script src="./assets/js/jquery.slicknav.min.js"></script>
-
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/slick.min.js"></script>
-    <!-- Date Picker -->
-    <script src="./assets/js/gijgo.min.js"></script>
-    <!-- One Page, Animated-HeadLin -->
-    <script src="./assets/js/wow.min.js"></script>
-    <script src="./assets/js/animated.headline.js"></script>
-    <script src="./assets/js/jquery.magnific-popup.js"></script>
-
-    <!-- Scrollup, nice-select, sticky -->
-    <script src="./assets/js/jquery.scrollUp.min.js"></script>
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery.sticky.js"></script>
-
-    <!-- counter , waypoint -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-    <script src="./assets/js/jquery.counterup.min.js"></script>
-
-    <!-- contact js -->
-    <script src="./assets/js/contact.js"></script>
-    <script src="./assets/js/jquery.form.js"></script>
-    <script src="./assets/js/jquery.validate.min.js"></script>
-    <script src="./assets/js/mail-script.js"></script>
-    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-
-    <!-- Jquery Plugins, main Jquery -->
-    <script src="./assets/js/plugins.js"></script>
-    <script src="./assets/js/main.js"></script>
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-
-
-
-
-    <script src="assets/js/function.js"></script>
-    <script src="assets/js/amc.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- form validation -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const steps = document.querySelectorAll(".multisteps-form__panel");
-            const nextButtons = document.querySelectorAll(".js-btn-next");
-            const prevButtons = document.querySelectorAll(".js-btn-prev");
-
-            // Function to validate form fields
-            function validateForm(stepIndex) {
-                let isValid = true;
-                const fields = steps[stepIndex].querySelectorAll("input, textarea, select");
-
-                fields.forEach((field) => {
-                    const errorMsg = field.parentElement.querySelector(".error-message");
-
-                    // Remove existing error message
-                    if (errorMsg) {
-                        errorMsg.remove();
-                    }
-
-                    // Check if field is required and empty
-                    if (field.hasAttribute("required") && !field.value) {
-                        isValid = false;
-                        showError(field, "This field is required");
-                    }
-
-                    // Validate email format
-                    if (field.type === "email" && field.value) {
-                        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                        if (!emailPattern.test(field.value)) {
-                            isValid = false;
-                            showError(field, "Please enter a valid email address");
-                        }
-                    }
-
-                    // Validate phone number format
-                    if (field.id === "mob" && field.value) {
-                        const phonePattern = /^[0-9]{10}$/;
-                        if (!phonePattern.test(field.value)) {
-                            isValid = false;
-                            showError(field, "Please enter a valid 10-digit phone number");
-                        }
-                    }
-                });
-
-                return isValid;
+</div>
+
+<!-- Inquiry Error Modal -->
+<div class="modal fade" id="myInquiryErrorModal" tabindex="-1" role="dialog" aria-labelledby="myInquiryErrorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 12px; border: none;">
+            <div class="modal-body p-4 text-center">
+                <img src="{{ asset('assets/img/icon/unn.gif') }}" width="130" alt="Error" class="mb-3">
+                <h3 style="font-weight: 800; color: #dc3545; margin-bottom: 10px;">Submission Failed</h3>
+                <p style="color: #666666; font-size: 14px;" id="amcErrorMessage">
+                    Please ensure all required fields are filled correctly before submitting.
+                </p>
+            </div>
+            <div class="modal-footer p-3 bg-light">
+                <button type="button" class="btn w-100" style="background: #333333; color: #ffffff;" data-bs-dismiss="modal">Try Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+    let currentStep = 1;
+    let windowCounter = 1;
+
+    // Multi-Step Navigation & Validation
+    function validateStep(step) {
+        let isValid = true;
+        const panel = document.getElementById(`amcStep${step}`);
+        if (!panel) return true;
+
+        const inputs = panel.querySelectorAll('input, select, textarea');
+
+        inputs.forEach(input => {
+            input.classList.remove('is-invalid');
+
+            // Required validation
+            if (input.hasAttribute('required')) {
+                if (!input.value || !input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    isValid = false;
+                }
             }
 
-            // Function to show error messages
-            function showError(field, message) {
-                const errorMsg = document.createElement("div");
-                errorMsg.className = "error-message text-danger";
-                errorMsg.style.fontSize = "0.9rem";
-                errorMsg.style.marginTop = "0.25rem";
-                errorMsg.textContent = message;
-                field.parentElement.appendChild(errorMsg);
+            // Email validation
+            if (input.type === 'email' && input.value.trim()) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(input.value.trim())) {
+                    input.classList.add('is-invalid');
+                    isValid = false;
+                }
             }
 
-            // Event listeners for Next buttons
-            nextButtons.forEach((button, index) => {
-                button.addEventListener("click", () => {
-                    if (validateForm(index)) {
-                        steps[index].classList.remove("js-active");
-                        steps[index + 1].classList.add("js-active");
-                    }
-                });
-            });
+            // Phone validation
+            if (input.name === 'mob' && input.value.trim()) {
+                const cleanPhone = input.value.replace(/\D/g, '');
+                if (cleanPhone.length < 10) {
+                    input.classList.add('is-invalid');
+                    isValid = false;
+                }
+            }
 
-            // Event listeners for Prev buttons
-            prevButtons.forEach((button, index) => {
-                button.addEventListener("click", () => {
-                    steps[index + 1].classList.remove("js-active");
-                    steps[index].classList.add("js-active");
-                });
-            });
+            // PIN validation
+            if (input.name === 'pin' && input.value.trim()) {
+                const cleanPin = input.value.replace(/\D/g, '');
+                if (cleanPin.length !== 6) {
+                    input.classList.add('is-invalid');
+                    isValid = false;
+                }
+            }
         });
-    </script>
 
+        return isValid;
+    }
 
+    function goToStep(step) {
+        if (step > currentStep) {
+            // Validate current step before advancing
+            if (!validateStep(currentStep)) {
+                // Focus first invalid input
+                const firstInvalid = document.querySelector(`#amcStep${currentStep} .is-invalid`);
+                if (firstInvalid) firstInvalid.focus();
+                return;
+            }
+        }
 
+        // Switch panels
+        document.querySelectorAll('.amc-panel').forEach(p => p.classList.remove('active'));
+        const targetPanel = document.getElementById(`amcStep${step}`);
+        if (targetPanel) {
+            targetPanel.classList.add('active');
+        }
 
-    <script>
-        $(document).ready(function() {
-            // Handle form submission
-            $(".multisteps-form__form").submit(function(event) {
-                event.preventDefault(); // Prevent form from submitting normally
+        // Update Wizard Indicators
+        document.querySelectorAll('.amc-step-item').forEach(item => {
+            const itemStep = parseInt(item.getAttribute('data-step'));
+            item.classList.remove('active', 'completed');
+            if (itemStep === step) {
+                item.classList.add('active');
+            } else if (itemStep < step) {
+                item.classList.add('completed');
+            }
+        });
 
-                var formData = new FormData(this); // Get the form data
+        currentStep = step;
 
-                $.ajax({
-                    url: "{{ route('amc.store') }}", // Your route to handle the form data
-                    type: 'POST',
-                    data: formData,
-                    processData: false, // Don't process the data
-                    contentType: false, // Don't set content type
-                    success: function(response) {
-                        // Log the response to the console
-                        console.log("Success:", response);
-                        // Show success modal if the response is successful
-                        $('#myInquirySuccessModal').modal('show'); // Assuming you have a modal with id 'myInquirySuccessModal'
-                    },
-                    error: function(xhr, status, error) {
-                        // Log the error to the console
-                        console.log("Error:", error);
-                        // Show error modal if the request fails
-                        $('#myInquiryErrorModal').modal('show'); // Assuming you have a modal with id 'myInquiryErrorModal'
-                    }
-                });
+        // Scroll to form smoothly
+        const formTop = document.querySelector('.amc-form-card');
+        if (formTop) {
+            window.scrollTo({
+                top: formTop.getBoundingClientRect().top + window.pageYOffset - 110,
+                behavior: 'smooth'
             });
+        }
+    }
+
+    // Dynamic Window Rows
+    document.getElementById('amcAddWindowBtn').addEventListener('click', function() {
+        windowCounter++;
+        const container = document.getElementById('amcWindowsContainer');
+
+        const newCard = document.createElement('div');
+        newCard.className = 'amc-window-row-card';
+        newCard.id = `windowCard_${windowCounter}`;
+        newCard.innerHTML = `
+            <div class="amc-window-header">
+                <h5><i class="fa-solid fa-cube"></i> Window #${windowCounter}</h5>
+                <button type="button" class="amc-remove-btn" onclick="removeWindowRow(${windowCounter})">
+                    <i class="fa-solid fa-trash-can"></i> Remove
+                </button>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <label class="form-label">Location / Tag <span class="text-danger">*</span></label>
+                    <input type="text" name="window_name[]" class="form-control" placeholder="e.g. Living Room, Balcony" required>
+                    <div class="amc-invalid-feedback">Location is required.</div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6">
+                    <label class="form-label">Length <span class="text-danger">*</span></label>
+                    <input type="text" name="w_length[]" class="form-control" placeholder="e.g. 6 ft" required>
+                    <div class="amc-invalid-feedback">Required.</div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-6">
+                    <label class="form-label">Breadth <span class="text-danger">*</span></label>
+                    <input type="text" name="w_breadth[]" class="form-control" placeholder="e.g. 5 ft" required>
+                    <div class="amc-invalid-feedback">Required.</div>
+                </div>
+
+                <div class="col-lg-3 col-md-8 col-8">
+                    <label class="form-label">System Type <span class="text-danger">*</span></label>
+                    <select name="w_type[]" class="form-select" required>
+                        <option value="" selected>Select Window Type</option>
+                        <option value="Sliding Window (2-Track / 3-Track)">Sliding Window (2-Track / 3-Track)</option>
+                        <option value="Casement Openable Window">Casement Openable Window</option>
+                        <option value="Tilt & Turn Window">Tilt & Turn Window</option>
+                        <option value="Fixed Glass / Glazing Panel">Fixed Glass / Glazing Panel</option>
+                        <option value="Aluminium Sliding Door / Bi-Fold">Aluminium Sliding Door / Bi-Fold</option>
+                        <option value="Structural Curtain Wall Facade">Structural Curtain Wall Facade</option>
+                    </select>
+                    <div class="amc-invalid-feedback">Select window type.</div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-4">
+                    <label class="form-label">Units <span class="text-danger">*</span></label>
+                    <input type="number" name="w_unit[]" class="form-control" placeholder="1" min="1" value="1" required>
+                    <div class="amc-invalid-feedback">Min 1.</div>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(newCard);
+    });
+
+    function removeWindowRow(id) {
+        const card = document.getElementById(`windowCard_${id}`);
+        if (card) {
+            card.remove();
+        }
+    }
+
+    // Input cleanup validation
+    document.addEventListener('input', function(e) {
+        if (e.target.classList.contains('is-invalid')) {
+            if (e.target.value.trim()) {
+                e.target.classList.remove('is-invalid');
+            }
+        }
+    });
+
+    // Form Submit via AJAX
+    document.getElementById('amcInspectionForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateStep(4)) {
+            return;
+        }
+
+        const submitBtn = document.getElementById('amcSubmitBtn');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting...';
+
+        const formData = new FormData(this);
+
+        $.ajax({
+            url: "{{ route('amc.store') }}",
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                $('#myInquirySuccessModal').modal('show');
+            },
+            error: function(xhr, status, error) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+                let message = 'Please ensure all required fields are filled correctly.';
+                if (xhr.responseJSON && xhr.responseJSON.message) {
+                    message = xhr.responseJSON.message;
+                }
+                $('#amcErrorMessage').text(message);
+                $('#myInquiryErrorModal').modal('show');
+            }
         });
-    </script>
-
-
-
-
-
-    <script>
-        document.querySelector("form").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            // Create FormData object from the form
-            let formData = new FormData(this);
-
-            // Send the form data using Fetch or Ajax
-            fetch("{{ route('support') }}", {
-                    method: "POST",
-                    body: formData,
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Hide the contact form modal
-                    $('#myInquiryModal').modal('hide');
-
-                    // Check if the form submission was successful
-                    if (data.success) {
-                        // Show success modal
-                        $('#myInquirySuccessModall').modal('show');
-                    } else {
-                        // Show error modal
-                        $('#myInquiryErrorModall').modal('show');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-
-                    // Hide the contact form modal
-                    $('#myInquiryModal').modal('hide');
-
-                    // Show error modal if there's an issue with the submission
-                    $('#myInquiryErrorModal').modal('show');
-                });
-        });
-    </script>
-
-
-
-
-
-
-</body>
-
-</html>
+    });
+</script>
+@endpush
