@@ -19,16 +19,25 @@ class FrontAboutController extends Controller
         return view('frontend.pages.about', compact('aboutDetails', 'testimonials', 'teams', 'maincategories'));
     }
 
-    public function getProduct($id)
+    public function getProduct($slugOrId)
     {
-
         $aboutDetails = AdminAboutCompanyModel::all();
         $maincategories = MainCategory::all();
 
+        $maincategory = MainCategory::with(['products' => function($query) {
+            $query->with('mainCategory', 'subCategory')->latest();
+        }])
+        ->where('slug', $slugOrId)
+        ->orWhere('id', $slugOrId)
+        ->firstOrFail();
 
-        $maincategory = MainCategory::with('products')->findOrFail($id);
         $products = $maincategory->products;
 
         return view('frontend.pages.product', compact('aboutDetails', 'maincategories', 'maincategory', 'products'));
+    }
+
+    public function getCategoryProducts($slugOrId)
+    {
+        return $this->getProduct($slugOrId);
     }
 }

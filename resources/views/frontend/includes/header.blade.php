@@ -59,7 +59,7 @@
                                     <ul id="navigation">
                                         @if(isset($maincategories) && count($maincategories) > 0)
                                             @foreach($maincategories as $maincategory)
-                                            <li><a href="{{ route('product.show', $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
+                                            <li><a href="{{ route('category.products', $maincategory->slug ?? $maincategory->id) }}">{{$maincategory->main_category}}</a></li>
                                             @endforeach
                                         @else
                                             <li><a href="/">Home</a></li>

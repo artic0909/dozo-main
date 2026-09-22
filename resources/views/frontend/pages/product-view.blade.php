@@ -373,7 +373,7 @@
                         <li><a href="/">Home</a></li>
                         <li><a href="/about">Products</a></li>
                         @if(!empty($product->mainCategory))
-                            <li><a href="{{ url('/get-products/' . $product->mainCategory->id) }}">{{ $product->mainCategory->main_category }}</a></li>
+                            <li><a href="{{ route('category.products', $product->mainCategory->slug ?? $product->mainCategory->id) }}">{{ $product->mainCategory->main_category }}</a></li>
                         @endif
                         <li class="active" aria-current="page">{{ $product->pr_title }}</li>
                     </ol>
@@ -383,7 +383,9 @@
 
                 <div class="category-badges">
                     @if(!empty($product->mainCategory))
-                        <span class="cat-badge"><i class="fa-solid fa-circle-dot"></i> {{ $product->mainCategory->main_category }}</span>
+                        <a href="{{ route('category.products', $product->mainCategory->slug ?? $product->mainCategory->id) }}" class="cat-badge text-white text-decoration-none">
+                            <i class="fa-solid fa-circle-dot"></i> {{ $product->mainCategory->main_category }}
+                        </a>
                     @endif
                     @if(!empty($product->subCategory))
                         <span class="cat-badge"><i class="fa-solid fa-circle-dot"></i> {{ $product->subCategory->sub_category }}</span>

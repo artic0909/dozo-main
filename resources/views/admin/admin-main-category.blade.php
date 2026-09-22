@@ -30,11 +30,12 @@
                     <table class="table table-hover dataTable-modern" id="mainCatTable">
                         <thead>
                             <tr>
-                                <th style="width: 80px;">ID</th>
+                                <th style="width: 70px;">ID</th>
                                 <th>Main Category Name</th>
-                                <th>Subcategories Count</th>
-                                <th>Products Count</th>
-                                <th style="width: 120px; text-align: center;">Actions</th>
+                                <th>URL Slug</th>
+                                <th>Subcategories</th>
+                                <th>Products</th>
+                                <th style="width: 130px; text-align: center;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,6 +44,11 @@
                                 <td class="font-weight-bold">#{{ $mainCat->id }}</td>
                                 <td>
                                     <strong class="text-dark" style="font-size: 14.5px;">{{ $mainCat->main_category }}</strong>
+                                </td>
+                                <td>
+                                    <a href="{{ route('category.products', $mainCat->slug ?? $mainCat->id) }}" target="_blank" class="badge badge-light border text-primary font-weight-bold" title="View Category Page" style="font-size: 12px; font-family: monospace;">
+                                        /category/{{ $mainCat->slug ?? $mainCat->id }} <i class="fa-solid fa-arrow-up-right-from-square ml-1" style="font-size: 10px;"></i>
+                                    </a>
                                 </td>
                                 <td>
                                     <span class="badge badge-light border text-muted">
@@ -56,6 +62,10 @@
                                 </td>
                                 <td style="text-align: center;">
                                     <div class="d-flex justify-content-center gap-1">
+                                        <a href="{{ route('category.products', $mainCat->slug ?? $mainCat->id) }}" target="_blank" class="btn btn-sm btn-outline-info mr-1" title="View Public Page" style="padding: 5px 9px; border-radius: 6px;">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+
                                         <button type="button" class="btn btn-sm btn-outline-primary mr-1" data-toggle="modal" data-target="#editMainCategoryModal{{ $mainCat->id }}" title="Edit Category" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
@@ -102,9 +112,14 @@
             <form action="{{ route('addMainC') }}" method="POST">
                 @csrf
                 <div class="modal-body p-4">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="main_category" class="font-weight-bold">Category Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="main_category" id="main_category" placeholder="e.g. Aluminium System Windows" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="slug" class="font-weight-bold">URL Slug <small class="text-muted">(Optional, auto-generated)</small></label>
+                        <input type="text" class="form-control" name="slug" id="slug" placeholder="e.g. aluminium-system-windows">
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -133,9 +148,14 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body p-4">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label class="font-weight-bold">Category Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="main_category" value="{{ $mainCat->main_category }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold">URL Slug <small class="text-muted">(Leave as-is or customize)</small></label>
+                        <input type="text" class="form-control" name="slug" value="{{ $mainCat->slug }}" placeholder="e.g. aluminium-system-windows">
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

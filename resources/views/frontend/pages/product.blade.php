@@ -350,7 +350,9 @@
                                 @if(!empty($product->mainCategory))
                                     <li>
                                         <i class="fa-solid fa-circle-dot"></i>
-                                        <span>{{ $product->mainCategory->main_category }}</span>
+                                        <a href="{{ route('category.products', $product->mainCategory->slug ?? $product->mainCategory->id) }}" class="text-dark text-decoration-none">
+                                            <span>{{ $product->mainCategory->main_category }}</span>
+                                        </a>
                                     </li>
                                 @endif
                                 @if(!empty($product->subCategory))

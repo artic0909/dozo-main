@@ -41,8 +41,10 @@ require __DIR__ . '/auth.php';
 // Client-Facing Public Pages & Form Submission Routes ======================================================================================
 Route::get('/', [FrontHomeController::class, 'getall'])->name('getall');
 Route::get('/about', [FrontAboutController::class, 'getAllAbout'])->name('getAllAbout');
-Route::get('/about/maincategory/{id}', [ProductController::class, 'getAllAbout'])->name('about.maincategory');
-Route::get('/get-products/{id}', [FrontAboutController::class, 'getProduct'])->name('product.show');
+// Category Products (Slug-Based & Legacy ID Routes)
+Route::get('/category/{slug}', [FrontAboutController::class, 'getCategoryProducts'])->name('category.products');
+Route::get('/categories/{slug}', [FrontAboutController::class, 'getCategoryProducts'])->name('categories.products');
+Route::get('/get-products/{slugOrId}', [FrontAboutController::class, 'getProduct'])->name('product.show');
 
 // Product Slug & Legacy View Routes
 Route::get('/product/{slug}', [FrontHomeController::class, 'getProductDetails'])->name('product.details');
