@@ -40,6 +40,7 @@
                             <tr>
                                 <th style="width: 80px;">Cover</th>
                                 <th>Blog Title</th>
+                                <th>Tag / Category</th>
                                 <th>Content Snippet</th>
                                 <th>Date</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
@@ -49,8 +50,8 @@
                             @foreach($blogs as $blog)
                             <tr>
                                 <td>
-                                    @if($blog->blog_image)
-                                        <img src="{{ asset('storage/' . $blog->blog_image) }}" alt="Blog" class="blog-thumb">
+                                    @if($blog->b_img)
+                                        <img src="{{ asset('storage/' . $blog->b_img) }}" alt="Blog" class="blog-thumb">
                                     @else
                                         <div class="blog-thumb bg-light d-flex align-items-center justify-content-center text-muted">
                                             <i class="fa-regular fa-image"></i>
@@ -58,16 +59,19 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14px;">{{ $blog->blog_title }}</strong>
+                                    <strong class="text-dark" style="font-size: 14px;">{{ $blog->b_title }}</strong>
+                                </td>
+                                <td>
+                                    <span class="badge badge-dozo">{{ $blog->b_tag ?? 'Architecture' }}</span>
                                 </td>
                                 <td>
                                     <span class="text-muted" style="font-size: 13px;">
-                                        {{ Str::limit($blog->blog_desc, 60) }}
+                                        {{ Str::limit($blog->b_desc, 60) }}
                                     </span>
                                 </td>
                                 <td>
                                     <span class="text-muted" style="font-size: 12.5px;">
-                                        {{ $blog->created_at ? $blog->created_at->format('d M Y') : '—' }}
+                                        {{ $blog->b_date ? $blog->b_date : ($blog->created_at ? $blog->created_at->format('d M Y') : '—') }}
                                     </span>
                                 </td>
                                 <td style="text-align: center;">
@@ -76,7 +80,7 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteBlogForm{{ $blog->id }}', '{{ addslashes($blog->blog_title) }}')" title="Delete Blog" style="padding: 5px 9px; border-radius: 6px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteBlogForm{{ $blog->id }}', '{{ addslashes($blog->b_title) }}')" title="Delete Blog" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
 
@@ -118,20 +122,37 @@
             <form action="{{ route('addblog') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body p-4">
-                    <div class="form-group">
-                        <label for="blog_title" class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="blog_title" id="blog_title" placeholder="Enter article title" required>
-                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label for="b_title" class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="b_title" id="b_title" placeholder="Enter article title" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="blog_image" class="font-weight-bold">Cover Image <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="blog_image" id="blog_image" accept="image/*" required>
-                        <small class="form-text text-muted">Recommended resolution: 800x500px.</small>
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label for="b_tag" class="font-weight-bold">Category Tag</label>
+                            <input type="text" class="form-control" name="b_tag" id="b_tag" placeholder="e.g. Architecture, Fenestration">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="blog_desc" class="font-weight-bold">Article Content <span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="blog_desc" id="blog_desc" rows="8" placeholder="Write the complete blog article text..." required></textarea>
+                        <div class="col-md-6 form-group">
+                            <label for="b_date" class="font-weight-bold">Publish Date</label>
+                            <input type="date" class="form-control" name="b_date" id="b_date" value="{{ date('Y-m-d') }}">
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label for="b_qt" class="font-weight-bold">Short Quote / Excerpt</label>
+                            <input type="text" class="form-control" name="b_qt" id="b_qt" placeholder="Key summary sentence or architect quote">
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label for="b_img" class="font-weight-bold">Cover Image <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control" name="b_img" id="b_img" accept="image/*" required>
+                            <small class="form-text text-muted">Recommended resolution: 800x500px.</small>
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label for="b_desc" class="font-weight-bold">Article Content <span class="text-danger">*</span></label>
+                            <textarea class="form-control" name="b_desc" id="b_desc" rows="8" placeholder="Write the complete blog article text..." required></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -160,25 +181,42 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body p-4">
-                    <div class="form-group text-center mb-3">
-                        @if($blog->blog_image)
-                            <img src="{{ asset('storage/' . $blog->blog_image) }}" style="max-height: 140px; border-radius: 8px; border: 1px solid #e2e8f0;" alt="Cover">
-                        @endif
-                    </div>
+                    <div class="row">
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="b_title" value="{{ $blog->b_title }}" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Blog Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="blog_title" value="{{ $blog->blog_title }}" required>
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Category Tag</label>
+                            <input type="text" class="form-control" name="b_tag" value="{{ $blog->b_tag }}">
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Update Cover Image (Optional)</label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="blog_image" accept="image/*">
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Publish Date</label>
+                            <input type="date" class="form-control" name="b_date" value="{{ $blog->b_date }}">
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Article Content <span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="blog_desc" rows="8" required>{{ $blog->blog_desc }}</textarea>
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Short Quote / Excerpt</label>
+                            <input type="text" class="form-control" name="b_qt" value="{{ $blog->b_qt }}">
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Cover Image</label>
+                            @if($blog->b_img)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $blog->b_img) }}" alt="Current Blog Cover" class="blog-thumb">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control" name="b_img" accept="image/*">
+                            <small class="form-text text-muted">Leave blank to retain current image.</small>
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Article Content <span class="text-danger">*</span></label>
+                            <textarea class="form-control" name="b_desc" rows="8" required>{{ $blog->b_desc }}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

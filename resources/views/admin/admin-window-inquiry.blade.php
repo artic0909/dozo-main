@@ -39,6 +39,11 @@
                         </thead>
                         <tbody>
                             @foreach($inquiries as $inquiry)
+                            @php
+                                $wInfoArr = is_array($inquiry->cus_window_info) 
+                                    ? $inquiry->cus_window_info 
+                                    : (is_string($inquiry->cus_window_info) ? json_decode($inquiry->cus_window_info, true) : []);
+                            @endphp
                             <tr>
                                 <td class="font-weight-bold text-dark">{{ $inquiry->cus_name }}</td>
                                 <td>
@@ -59,7 +64,7 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#myWindowInfoModal{{ $inquiry->id }}" title="View Window Details" style="font-weight: 700; font-size: 12px; border-radius: 6px;">
-                                        <i class="fa-solid fa-cube mr-1"></i> View ({{ is_array($inquiry->window_info) ? count($inquiry->window_info) : 'List' }})
+                                        <i class="fa-solid fa-cube mr-1"></i> View ({{ is_array($wInfoArr) ? count($wInfoArr) : 0 }})
                                     </button>
                                 </td>
                                 <td>
@@ -100,6 +105,11 @@
 
 <!-- Window Info Modals -->
 @foreach($inquiries as $inquiry)
+@php
+    $wInfoArr = is_array($inquiry->cus_window_info) 
+        ? $inquiry->cus_window_info 
+        : (is_string($inquiry->cus_window_info) ? json_decode($inquiry->cus_window_info, true) : []);
+@endphp
 <div class="modal fade" id="myWindowInfoModal{{ $inquiry->id }}" tabindex="-1" role="dialog" aria-labelledby="myWindowInfoModalLabel{{ $inquiry->id }}" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content" style="border-radius: 12px; border: none;">
@@ -112,7 +122,7 @@
                 </button>
             </div>
             <div class="modal-body p-4">
-                @if(is_array($inquiry->window_info) && count($inquiry->window_info) > 0)
+                @if(is_array($wInfoArr) && count($wInfoArr) > 0)
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead class="bg-light">
@@ -126,10 +136,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($inquiry->window_info as $index => $wInfo)
+                                @foreach($wInfoArr as $index => $wInfo)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td class="font-weight-bold">{{ $wInfo['window_name'] ?? '—' }}</td>
+                                    <td class="font-weight-bold text-dark">{{ $wInfo['window_name'] ?? '—' }}</td>
                                     <td>{{ $wInfo['w_length'] ?? '—' }}</td>
                                     <td>{{ $wInfo['w_breadth'] ?? '—' }}</td>
                                     <td><span class="badge badge-dozo">{{ $wInfo['w_type'] ?? '—' }}</span></td>

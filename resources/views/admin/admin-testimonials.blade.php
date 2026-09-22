@@ -28,7 +28,7 @@
                             <tr>
                                 <th style="width: 80px;">ID</th>
                                 <th>Client Name</th>
-                                <th>Designation / Role</th>
+                                <th>Designation / Firm</th>
                                 <th>Review Quote</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
                             </tr>
@@ -38,14 +38,14 @@
                             <tr>
                                 <td class="font-weight-bold">#{{ $testimonial->id }}</td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $testimonial->test_name }}</strong>
+                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $testimonial->t_name }}</strong>
                                 </td>
                                 <td>
-                                    <span class="badge badge-dozo">{{ $testimonial->test_des }}</span>
+                                    <span class="badge badge-dozo">{{ $testimonial->t_prof }}</span>
                                 </td>
                                 <td>
-                                    <span class="text-muted" title="{{ $testimonial->test_desc }}" style="font-size: 13px;">
-                                        {{ Str::limit($testimonial->test_desc, 60) }}
+                                    <span class="text-muted" title="{{ $testimonial->t_feedback }}" style="font-size: 13px;">
+                                        {{ Str::limit($testimonial->t_feedback, 60) }}
                                     </span>
                                 </td>
                                 <td style="text-align: center;">
@@ -54,7 +54,7 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteTestimonialForm{{ $testimonial->id }}', 'Testimonial from {{ addslashes($testimonial->test_name) }}')" title="Delete Review" style="padding: 5px 9px; border-radius: 6px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteTestimonialForm{{ $testimonial->id }}', 'Testimonial from {{ addslashes($testimonial->t_name) }}')" title="Delete Review" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
 
@@ -97,18 +97,18 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="form-group">
-                        <label for="test_name" class="font-weight-bold">Client / Architect Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="test_name" id="test_name" placeholder="e.g. Ar. Rajesh Mehta" required>
+                        <label for="t_name" class="font-weight-bold">Client / Architect Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="t_name" id="t_name" placeholder="e.g. Ar. Rajesh Mehta" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="test_des" class="font-weight-bold">Designation / Firm <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="test_des" id="test_des" placeholder="e.g. Principal Architect, Studio Enigma" required>
+                        <label for="t_prof" class="font-weight-bold">Designation / Firm <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="t_prof" id="t_prof" placeholder="e.g. Principal Architect, Studio Enigma" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="test_desc" class="font-weight-bold">Review / Testimonial Quote <span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="test_desc" id="test_desc" rows="5" placeholder="Client feedback regarding DOZO windows, acoustics, and service..." required></textarea>
+                        <label for="t_feedback" class="font-weight-bold">Review / Testimonial Quote <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="t_feedback" id="t_feedback" rows="5" placeholder="Client feedback regarding DOZO windows, acoustics, and service..." required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -139,17 +139,17 @@
                 <div class="modal-body p-4">
                     <div class="form-group">
                         <label class="font-weight-bold">Client / Architect Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="test_name" value="{{ $testimonial->test_name }}" required>
+                        <input type="text" class="form-control" name="t_name" value="{{ $testimonial->t_name }}" required>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Designation / Firm <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="test_des" value="{{ $testimonial->test_des }}" required>
+                        <input type="text" class="form-control" name="t_prof" value="{{ $testimonial->t_prof }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">Review Quote <span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="test_desc" rows="5" required>{{ $testimonial->test_desc }}</textarea>
+                        <label class="font-weight-bold">Review / Testimonial Quote <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="t_feedback" rows="5" required>{{ $testimonial->t_feedback }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

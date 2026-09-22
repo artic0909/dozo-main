@@ -43,7 +43,7 @@
             });
         @endif
 
-        @if($errors->any())
+        @if(isset($errors) && $errors->any())
             let errorHtml = '<ul style="text-align: left; margin: 0; padding-left: 20px;">';
             @foreach($errors->all() as $error)
                 errorHtml += '<li>{{ $error }}</li>';

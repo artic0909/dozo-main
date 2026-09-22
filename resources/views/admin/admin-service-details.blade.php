@@ -49,8 +49,8 @@
                             @foreach($services as $service)
                             <tr>
                                 <td>
-                                    @if($service->srv_img)
-                                        <img src="{{ asset('storage/' . $service->srv_img) }}" alt="Service" class="service-thumb">
+                                    @if($service->sr_img)
+                                        <img src="{{ asset('storage/' . $service->sr_img) }}" alt="Service" class="service-thumb">
                                     @else
                                         <div class="service-thumb bg-light d-flex align-items-center justify-content-center text-muted">
                                             <i class="fa-solid fa-screwdriver-wrench"></i>
@@ -58,11 +58,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14px;">{{ $service->srv_title }}</strong>
+                                    <strong class="text-dark" style="font-size: 14px;">{{ $service->sr_title }}</strong>
                                 </td>
                                 <td>
                                     <span class="text-muted" style="font-size: 13px;">
-                                        {{ Str::limit($service->srv_desc, 60) }}
+                                        {{ Str::limit($service->sr_desc, 60) }}
                                     </span>
                                 </td>
                                 <td>
@@ -76,7 +76,7 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteServiceForm{{ $service->id }}', '{{ addslashes($service->srv_title) }}')" title="Delete Service" style="padding: 5px 9px; border-radius: 6px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteServiceForm{{ $service->id }}', '{{ addslashes($service->sr_title) }}')" title="Delete Service" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
 
@@ -119,18 +119,18 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="form-group">
-                        <label for="srv_title" class="font-weight-bold">Service Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="srv_title" id="srv_title" placeholder="e.g. Acoustic & Thermal Glazing Audit" required>
+                        <label for="sr_title" class="font-weight-bold">Service Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="sr_title" id="sr_title" placeholder="e.g. Acoustic & Thermal Glazing Audit" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="srv_img" class="font-weight-bold">Cover Image <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="srv_img" id="srv_img" accept="image/*" required>
+                        <label for="sr_img" class="font-weight-bold">Cover Image <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="sr_img" id="sr_img" accept="image/*" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="srv_desc" class="font-weight-bold">Service Description <span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="srv_desc" id="srv_desc" rows="8" placeholder="Detailed service description..." required></textarea>
+                        <label for="sr_desc" class="font-weight-bold">Service Description <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="sr_desc" id="sr_desc" rows="8" placeholder="Detailed service description..." required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -149,7 +149,7 @@
         <div class="modal-content" style="border-radius: 12px; border: none;">
             <div class="modal-header bg-light">
                 <h5 class="modal-title font-weight-bold" id="editServiceModalLabel{{ $service->id }}" style="color: #111111;">
-                    <i class="fa-solid fa-pen-to-square text-primary mr-2"></i> Edit Service
+                    <i class="fa-solid fa-pen-to-square text-primary mr-2"></i> Edit Window Service
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -159,25 +159,25 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body p-4">
-                    <div class="form-group text-center mb-3">
-                        @if($service->srv_img)
-                            <img src="{{ asset('storage/' . $service->srv_img) }}" style="max-height: 140px; border-radius: 8px; border: 1px solid #e2e8f0;" alt="Service">
-                        @endif
-                    </div>
-
                     <div class="form-group">
                         <label class="font-weight-bold">Service Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="srv_title" value="{{ $service->srv_title }}" required>
+                        <input type="text" class="form-control" name="sr_title" value="{{ $service->sr_title }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">Update Cover Image (Optional)</label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="srv_img" accept="image/*">
+                        <label class="font-weight-bold">Cover Image</label>
+                        @if($service->sr_img)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $service->sr_img) }}" alt="Current Image" class="service-thumb">
+                            </div>
+                        @endif
+                        <input type="file" class="form-control" name="sr_img" accept="image/*">
+                        <small class="form-text text-muted">Leave blank to retain current image.</small>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Service Description <span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="srv_desc" rows="8" required>{{ $service->srv_desc }}</textarea>
+                        <textarea class="form-control" name="sr_desc" rows="8" required>{{ $service->sr_desc }}</textarea>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

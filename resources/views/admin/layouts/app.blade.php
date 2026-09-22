@@ -24,36 +24,100 @@
     <style>
         :root {
             --dozo-primary: #ff5f13;
-            --dozo-dark: #111111;
+            --dozo-primary-hover: #e04e0a;
+            --dozo-dark: #0f172a;
         }
 
         .navbar .navbar-brand-wrapper {
             background: #111111 !important;
         }
 
+        /* Sidebar Navigation & Active States */
+        .sidebar .nav .nav-item {
+            margin-bottom: 2px;
+        }
+
+        .sidebar .nav .nav-item .nav-link {
+            color: #475569 !important;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            margin: 0 8px;
+        }
+
+        .sidebar .nav .nav-item .nav-link i,
+        .sidebar .nav .nav-item .nav-link .menu-title {
+            color: #475569 !important;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar .nav .nav-item .nav-link:hover {
+            background: rgba(255, 95, 19, 0.06) !important;
+            color: #ff5f13 !important;
+        }
+
+        .sidebar .nav .nav-item .nav-link:hover i,
+        .sidebar .nav .nav-item .nav-link:hover .menu-title {
+            color: #ff5f13 !important;
+        }
+
+        .sidebar .nav:not(.sub-menu) > .nav-item.active > .nav-link,
         .sidebar .nav .nav-item.active > .nav-link {
-            background: rgba(255, 95, 19, 0.1);
-            color: #ff5f13;
+            background: rgba(255, 95, 19, 0.12) !important;
+            color: #ff5f13 !important;
+            font-weight: 700 !important;
+            border-left: 4px solid #ff5f13 !important;
         }
 
         .sidebar .nav .nav-item.active > .nav-link i,
         .sidebar .nav .nav-item.active > .nav-link .menu-title {
-            color: #ff5f13;
+            color: #ff5f13 !important;
+            font-weight: 700 !important;
         }
 
-        .sidebar .nav .nav-item .nav-link:hover {
-            color: #ff5f13;
+        /* Sub-menu styling */
+        .sidebar .nav.sub-menu {
+            padding: 4px 0 6px 18px !important;
+            background: transparent !important;
         }
 
+        .sidebar .nav.sub-menu .nav-item .nav-link {
+            color: #64748b !important;
+            font-size: 13.5px !important;
+            font-weight: 500 !important;
+            padding: 8px 14px !important;
+        }
+
+        .sidebar .nav.sub-menu .nav-item .nav-link:hover {
+            color: #ff5f13 !important;
+            background: rgba(255, 95, 19, 0.08) !important;
+        }
+
+        .sidebar .nav.sub-menu .nav-item .nav-link.active-sub,
+        .sidebar .nav.sub-menu .nav-item .nav-link.active {
+            color: #ff5f13 !important;
+            font-weight: 700 !important;
+            background: rgba(255, 95, 19, 0.12) !important;
+            border-radius: 6px;
+        }
+
+        .sidebar .nav.sub-menu .nav-item .nav-link.active-sub::before,
+        .sidebar .nav.sub-menu .nav-item .nav-link.active::before {
+            background: #ff5f13 !important;
+        }
+
+        /* Primary Button Styles */
         .btn-primary, .btn-success.dozo-btn {
             background-color: #ff5f13 !important;
             border-color: #ff5f13 !important;
             color: #ffffff !important;
+            font-weight: 600;
         }
 
         .btn-primary:hover, .btn-success.dozo-btn:hover {
             background-color: #e04e0a !important;
             border-color: #e04e0a !important;
+            color: #ffffff !important;
         }
 
         .badge-dozo {
@@ -66,20 +130,20 @@
         /* Modern Table Styles */
         .table thead th {
             background-color: #f8fafc;
-            color: #1e293b;
-            font-weight: 700;
-            font-size: 13px;
+            color: #0f172a !important;
+            font-weight: 700 !important;
+            font-size: 13px !important;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             border-top: none;
             border-bottom: 2px solid #e2e8f0;
-            padding: 12px 14px;
+            padding: 13px 14px;
         }
 
         .table td {
             vertical-align: middle;
             font-size: 13.5px;
-            color: #334155;
+            color: #1e293b !important;
             padding: 12px 14px;
             border-bottom: 1px solid #f1f5f9;
         }
@@ -94,6 +158,8 @@
             padding: 6px 12px;
             margin-left: 8px;
             outline: none;
+            color: #0f172a !important;
+            background: #ffffff !important;
         }
 
         .dataTables_wrapper .dataTables_filter input:focus {
@@ -106,11 +172,99 @@
             border-radius: 6px;
             padding: 4px 8px;
             outline: none;
+            color: #0f172a !important;
+            background: #ffffff !important;
         }
 
         .page-item.active .page-link {
             background-color: #ff5f13;
             border-color: #ff5f13;
+            color: #ffffff !important;
+        }
+
+        /* Modal & Form Text Color Fixes */
+        .modal-content {
+            border-radius: 12px !important;
+            border: none !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+            background-color: #ffffff !important;
+        }
+
+        .modal-header {
+            background: #f8fafc !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+            padding: 16px 24px !important;
+            border-top-left-radius: 12px !important;
+            border-top-right-radius: 12px !important;
+        }
+
+        .modal-title {
+            color: #0f172a !important;
+            font-weight: 700 !important;
+            font-size: 1.15rem !important;
+        }
+
+        .modal-body {
+            padding: 24px !important;
+            background: #ffffff !important;
+            color: #0f172a !important;
+        }
+
+        .modal-footer {
+            background: #f8fafc !important;
+            border-top: 1px solid #e2e8f0 !important;
+            padding: 14px 24px !important;
+            border-bottom-left-radius: 12px !important;
+            border-bottom-right-radius: 12px !important;
+        }
+
+        .modal-body label,
+        .form-group label,
+        label {
+            color: #0f172a !important;
+            font-weight: 600 !important;
+            font-size: 13.5px !important;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .form-control,
+        .form-control:not(:focus),
+        .modal-body .form-control,
+        .modal-body input.form-control,
+        .modal-body textarea.form-control,
+        .modal-body select.form-control {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+            border: 1.5px solid #cbd5e1 !important;
+            border-radius: 6px !important;
+            padding: 9px 13px !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+        }
+
+        .form-control:focus,
+        .modal-body .form-control:focus,
+        .modal-body input.form-control:focus,
+        .modal-body textarea.form-control:focus,
+        .modal-body select.form-control:focus {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+            border-color: #ff5f13 !important;
+            box-shadow: 0 0 0 3px rgba(255, 95, 19, 0.18) !important;
+            outline: none !important;
+        }
+
+        .form-control::placeholder,
+        .modal-body .form-control::placeholder {
+            color: #94a3b8 !important;
+            opacity: 1 !important;
+        }
+
+        select.form-control option {
+            color: #0f172a !important;
+            background-color: #ffffff !important;
+            padding: 6px !important;
         }
 
         /* Floating Add Button */
@@ -166,7 +320,7 @@
 
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item">
-                        <a href="/" target="_blank" class="nav-link text-primary font-weight-bold" title="View Live Website">
+                        <a href="/" target="_blank" class="nav-link font-weight-bold" style="color: #ff5f13;" title="View Live Website">
                             <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Live Site
                         </a>
                     </li>
@@ -217,38 +371,50 @@
                         </a>
                         <div class="collapse {{ request()->is('product-*') ? 'show' : '' }}" id="ui-products">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('product-main-category') ? 'text-primary font-weight-bold' : '' }}" href="/product-main-category">Main Category</a></li>
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('product-sub-category') ? 'text-primary font-weight-bold' : '' }}" href="/product-sub-category">Sub Category</a></li>
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('product-details') ? 'text-primary font-weight-bold' : '' }}" href="/product-details">Product Details</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('product-main-category*') ? 'active-sub' : '' }}" href="/product-main-category">Main Category</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('product-sub-category*') ? 'active-sub' : '' }}" href="/product-sub-category">Sub Category</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('product-details*') ? 'active-sub' : '' }}" href="/product-details">Product Details</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
 
                     <!-- Inquiries & AMC -->
-                    <li class="nav-item {{ request()->is('window-inquiry') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('window-inquiry*') ? 'active' : '' }}">
                         <a class="nav-link" href="/window-inquiry">
                             <img src="{{ asset('admin/images/wen.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Window Inquiries</span>
                         </a>
                     </li>
 
-                    <li class="nav-item {{ request()->is('amc-*') || request()->is('window-service') ? 'active' : '' }}">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-services" aria-expanded="{{ request()->is('amc-*') || request()->is('window-service') ? 'true' : 'false' }}" aria-controls="ui-services">
+                    <li class="nav-item {{ request()->is('amc-*') || request()->is('window-service*') ? 'active' : '' }}">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-services" aria-expanded="{{ request()->is('amc-*') || request()->is('window-service*') ? 'true' : 'false' }}" aria-controls="ui-services">
                             <img src="{{ asset('admin/images/srv.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Service & AMC</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse {{ request()->is('amc-*') || request()->is('window-service') ? 'show' : '' }}" id="ui-services">
+                        <div class="collapse {{ request()->is('amc-*') || request()->is('window-service*') ? 'show' : '' }}" id="ui-services">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('window-service') ? 'text-primary font-weight-bold' : '' }}" href="/window-service">Service Details</a></li>
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('amc-offers') ? 'text-primary font-weight-bold' : '' }}" href="/amc-offers">AMC Offers</a></li>
-                                <li class="nav-item"> <a class="nav-link {{ request()->is('amc-request') ? 'text-primary font-weight-bold' : '' }}" href="/amc-request">AMC Requests</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('window-service*') ? 'active-sub' : '' }}" href="/window-service">Service Details</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('amc-offers*') ? 'active-sub' : '' }}" href="/amc-offers">AMC Offers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('amc-request*') ? 'active-sub' : '' }}" href="/amc-request">AMC Requests</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
 
                     <!-- Customer Support -->
-                    <li class="nav-item {{ request()->is('customer-support') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('customer-support*') ? 'active' : '' }}">
                         <a class="nav-link" href="/customer-support">
                             <img src="{{ asset('admin/images/spt.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Support Tickets</span>
@@ -256,7 +422,7 @@
                     </li>
 
                     <!-- Blogs -->
-                    <li class="nav-item {{ request()->is('admin-blogs') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('admin-blogs*') ? 'active' : '' }}">
                         <a class="nav-link" href="/admin-blogs">
                             <img src="{{ asset('admin/images/blog.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Blogs</span>
@@ -264,37 +430,45 @@
                     </li>
 
                     <!-- Banners -->
-                    <li class="nav-item {{ request()->is('admin-*-banner') ? 'active' : '' }}">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-banners" aria-expanded="{{ request()->is('admin-*-banner') ? 'true' : 'false' }}" aria-controls="ui-banners">
+                    <li class="nav-item {{ request()->is('admin-*-banner*') ? 'active' : '' }}">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-banners" aria-expanded="{{ request()->is('admin-*-banner*') ? 'true' : 'false' }}" aria-controls="ui-banners">
                             <img src="{{ asset('admin/images/banner.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Banners</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse {{ request()->is('admin-*-banner') ? 'show' : '' }}" id="ui-banners">
+                        <div class="collapse {{ request()->is('admin-*-banner*') ? 'show' : '' }}" id="ui-banners">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-home-banner">Home Banner</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-other-banner">Other Pages Banner</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin-home-banner*') ? 'active-sub' : '' }}" href="/admin-home-banner">Home Banner</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin-other-banner*') ? 'active-sub' : '' }}" href="/admin-other-banner">Other Pages Banner</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
 
                     <!-- About & Numbers -->
-                    <li class="nav-item {{ request()->is('admin-about') || request()->is('admin-numbers') ? 'active' : '' }}">
-                        <a class="nav-link" data-toggle="collapse" href="#ui-about" aria-expanded="{{ request()->is('admin-about') || request()->is('admin-numbers') ? 'true' : 'false' }}" aria-controls="ui-about">
+                    <li class="nav-item {{ request()->is('admin-about*') || request()->is('admin-numbers*') ? 'active' : '' }}">
+                        <a class="nav-link" data-toggle="collapse" href="#ui-about" aria-expanded="{{ request()->is('admin-about*') || request()->is('admin-numbers*') ? 'true' : 'false' }}" aria-controls="ui-about">
                             <img src="{{ asset('admin/images/about.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Company Info</span>
                             <i class="menu-arrow"></i>
                         </a>
-                        <div class="collapse {{ request()->is('admin-about') || request()->is('admin-numbers') ? 'show' : '' }}" id="ui-about">
+                        <div class="collapse {{ request()->is('admin-about*') || request()->is('admin-numbers*') ? 'show' : '' }}" id="ui-about">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin-about">About Company</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin-numbers">Counter Numbers</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin-about*') ? 'active-sub' : '' }}" href="/admin-about">About Company</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is('admin-numbers*') ? 'active-sub' : '' }}" href="/admin-numbers">Counter Numbers</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
 
                     <!-- Testimonials -->
-                    <li class="nav-item {{ request()->is('admin-testimonial') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('admin-testimonial*') ? 'active' : '' }}">
                         <a class="nav-link" href="/admin-testimonial">
                             <img src="{{ asset('admin/images/qt.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Testimonials</span>
@@ -302,7 +476,7 @@
                     </li>
 
                     <!-- Expert Team -->
-                    <li class="nav-item {{ request()->is('teams') ? 'active' : '' }}">
+                    <li class="nav-item {{ request()->is('teams*') ? 'active' : '' }}">
                         <a class="nav-link" href="/teams">
                             <img src="{{ asset('admin/images/team.png') }}" alt="" width="20" class="mr-2">
                             <span class="menu-title">Expert Team</span>

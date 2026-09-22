@@ -27,8 +27,9 @@
                         <thead>
                             <tr>
                                 <th style="width: 80px;">ID</th>
-                                <th>Count / Number</th>
+                                <th>Count / Metric Value</th>
                                 <th>Metric Title</th>
+                                <th>Subtitle / Definition</th>
                                 <th>Created Date</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
                             </tr>
@@ -39,11 +40,14 @@
                                 <td class="font-weight-bold">#{{ $number->id }}</td>
                                 <td>
                                     <span class="badge badge-dozo p-2 px-3" style="font-size: 15px;">
-                                        {{ $number->num }}
+                                        {{ $number->an_number }}
                                     </span>
                                 </td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $number->title }}</strong>
+                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $number->an_t }}</strong>
+                                </td>
+                                <td>
+                                    <span class="text-muted" style="font-size: 13px;">{{ $number->an_define ?? '—' }}</span>
                                 </td>
                                 <td>
                                     <span class="text-muted" style="font-size: 12.5px;">
@@ -56,7 +60,7 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteNumberForm{{ $number->id }}', '{{ addslashes($number->title) }}')" title="Delete Stat" style="padding: 5px 9px; border-radius: 6px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteNumberForm{{ $number->id }}', '{{ addslashes($number->an_t) }}')" title="Delete Stat" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
 
@@ -99,13 +103,18 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="form-group">
-                        <label for="num" class="font-weight-bold">Number / Count <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="num" id="num" placeholder="e.g. 500+, 25+, 100K" required>
+                        <label for="an_number" class="font-weight-bold">Number / Count <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="an_number" id="an_number" placeholder="e.g. 500+, 25+, 100K" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="title" class="font-weight-bold">Metric Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="title" id="title" placeholder="e.g. Completed Projects, Happy Architects" required>
+                        <label for="an_t" class="font-weight-bold">Metric Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="an_t" id="an_t" placeholder="e.g. Completed Projects, Happy Architects" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="an_define" class="font-weight-bold">Subtitle / Context</label>
+                        <input type="text" class="form-control" name="an_define" id="an_define" placeholder="e.g. Across Residential & Commercial">
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -136,12 +145,17 @@
                 <div class="modal-body p-4">
                     <div class="form-group">
                         <label class="font-weight-bold">Number / Count <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="num" value="{{ $number->num }}" required>
+                        <input type="text" class="form-control" name="an_number" value="{{ $number->an_number }}" required>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Metric Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="title" value="{{ $number->title }}" required>
+                        <input type="text" class="form-control" name="an_t" value="{{ $number->an_t }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold">Subtitle / Context</label>
+                        <input type="text" class="form-control" name="an_define" value="{{ $number->an_define }}">
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

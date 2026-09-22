@@ -42,8 +42,9 @@
                     <table class="table table-hover dataTable-modern" id="otherBannerTable">
                         <thead>
                             <tr>
-                                <th style="width: 140px;">Banner Image</th>
-                                <th>Heading</th>
+                                <th style="width: 80px;">ID</th>
+                                <th style="width: 160px;">Banner Preview</th>
+                                <th>File Name / Path</th>
                                 <th>Created Date</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
                             </tr>
@@ -51,15 +52,18 @@
                         <tbody>
                             @foreach($banners as $banner)
                             <tr>
+                                <td class="font-weight-bold">#{{ $banner->id }}</td>
                                 <td>
-                                    @if($banner->banner_img)
-                                        <img src="{{ asset('storage/' . $banner->banner_img) }}" alt="Banner" class="banner-thumb">
+                                    @if($banner->other_banner)
+                                        <img src="{{ asset('storage/' . $banner->other_banner) }}" alt="Banner" class="banner-thumb">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $banner->banner_heading }}</strong>
+                                    <span class="text-dark font-weight-500" style="font-size: 13.5px;">
+                                        {{ $banner->other_banner ? basename($banner->other_banner) : '—' }}
+                                    </span>
                                 </td>
                                 <td>
                                     <span class="text-muted" style="font-size: 12.5px;">
@@ -72,7 +76,7 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteOtherBannerForm{{ $banner->id }}', '{{ addslashes($banner->banner_heading) }}')" title="Delete Banner" style="padding: 5px 9px; border-radius: 6px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteOtherBannerForm{{ $banner->id }}', 'Banner #{{ $banner->id }}')" title="Delete Banner" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
 
@@ -115,13 +119,9 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="form-group">
-                        <label for="banner_heading" class="font-weight-bold">Heading Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="banner_heading" id="banner_heading" placeholder="e.g. Architectural Project Showcase" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="banner_img" class="font-weight-bold">Banner Image <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="banner_img" id="banner_img" accept="image/*" required>
+                        <label for="other_banner" class="font-weight-bold">Banner Image <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="other_banner" id="other_banner" accept="image/*" required>
+                        <small class="form-text text-muted">Recommended: 1920x450px high-resolution banner image.</small>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -150,20 +150,15 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body p-4">
-                    <div class="form-group text-center mb-3">
-                        @if($banner->banner_img)
-                            <img src="{{ asset('storage/' . $banner->banner_img) }}" style="max-height: 120px; border-radius: 6px; border: 1px solid #e2e8f0;" alt="Current Banner">
+                    <div class="form-group">
+                        <label class="font-weight-bold">Banner Image</label>
+                        @if($banner->other_banner)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $banner->other_banner) }}" alt="Current Banner" class="banner-thumb">
+                            </div>
                         @endif
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Heading Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="banner_heading" value="{{ $banner->banner_heading }}" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="font-weight-bold">Update Banner Image (Optional)</label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="banner_img" accept="image/*">
+                        <input type="file" class="form-control" name="other_banner" accept="image/*">
+                        <small class="form-text text-muted">Select a new file if you want to replace the current banner.</small>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

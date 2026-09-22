@@ -45,7 +45,8 @@
                                 <th style="width: 140px;">Banner Image</th>
                                 <th>Sub Heading</th>
                                 <th>Main Heading</th>
-                                <th>Video / Link</th>
+                                <th>Action Label / Project</th>
+                                <th>Link / URL</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
                             </tr>
                         </thead>
@@ -53,22 +54,27 @@
                             @foreach($banners as $banner)
                             <tr>
                                 <td>
-                                    @if($banner->banner_img)
-                                        <img src="{{ asset('storage/' . $banner->banner_img) }}" alt="Banner" class="banner-thumb">
+                                    @if($banner->home_banner)
+                                        <img src="{{ asset('storage/' . $banner->home_banner) }}" alt="Banner" class="banner-thumb">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <span class="badge badge-dozo">{{ $banner->banner_sub_heading }}</span>
+                                    <span class="badge badge-dozo">{{ $banner->h_s_desc }}</span>
                                 </td>
                                 <td>
-                                    <strong class="text-dark">{{ $banner->banner_heading }}</strong>
+                                    <strong class="text-dark">{{ $banner->h_title }}</strong>
                                 </td>
                                 <td>
-                                    @if($banner->banner_video_link)
-                                        <a href="{{ $banner->banner_video_link }}" target="_blank" class="text-primary font-weight-bold">
-                                            <i class="fa-solid fa-circle-play mr-1"></i> Watch Video
+                                    <span class="text-muted" style="font-size: 13px;">
+                                        {{ $banner->h_a_title ? $banner->h_a_title : ($banner->h_p_name ?? '—') }}
+                                    </span>
+                                </td>
+                                <td>
+                                    @if($banner->h_p_url)
+                                        <a href="{{ $banner->h_p_url }}" target="_blank" class="text-primary font-weight-bold">
+                                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> Link
                                         </a>
                                     @else
                                         <span class="text-muted">—</span>
@@ -122,25 +128,32 @@
             <form action="{{ route('addHomeBanner') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body p-4">
-                    <div class="form-group">
-                        <label for="banner_sub_heading" class="font-weight-bold">Sub-Heading <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="banner_sub_heading" id="banner_sub_heading" placeholder="e.g. ULTRA-LUXURY SLIM SYSTEM WINDOWS" required>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="h_s_desc" class="font-weight-bold">Sub-Heading / Tagline <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="h_s_desc" id="h_s_desc" placeholder="e.g. ULTRA-LUXURY SLIM SYSTEM WINDOWS" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="banner_heading" class="font-weight-bold">Main Heading <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="banner_heading" id="banner_heading" placeholder="e.g. Engineered For High-Rise Storms" required>
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label for="h_title" class="font-weight-bold">Main Heading / Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="h_title" id="h_title" placeholder="e.g. Engineered For High-Rise Storms" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="banner_video_link" class="font-weight-bold">Video URL (Optional)</label>
-                        <input type="url" class="form-control" name="banner_video_link" id="banner_video_link" placeholder="https://youtube.com/watch?v=...">
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label for="h_a_title" class="font-weight-bold">Action Button Label</label>
+                            <input type="text" class="form-control" name="h_a_title" id="h_a_title" placeholder="e.g. Explore Systems">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="banner_img" class="font-weight-bold">Banner Image <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="banner_img" id="banner_img" accept="image/*" required>
-                        <small class="form-text text-muted">Recommended: 1920x800px high-resolution landscape.</small>
+                        <div class="col-md-6 form-group">
+                            <label for="h_p_url" class="font-weight-bold">Button / Target URL</label>
+                            <input type="text" class="form-control" name="h_p_url" id="h_p_url" placeholder="e.g. /product-details">
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label for="home_banner" class="font-weight-bold">Banner Image <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control" name="home_banner" id="home_banner" accept="image/*" required>
+                            <small class="form-text text-muted">Recommended: 1920x800px high-resolution landscape.</small>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -169,30 +182,37 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body p-4">
-                    <div class="form-group text-center mb-3">
-                        @if($banner->banner_img)
-                            <img src="{{ asset('storage/' . $banner->banner_img) }}" style="max-height: 120px; border-radius: 6px; border: 1px solid #e2e8f0;" alt="Current Banner">
-                        @endif
-                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Sub-Heading / Tagline <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="h_s_desc" value="{{ $banner->h_s_desc }}" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Sub-Heading <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="banner_sub_heading" value="{{ $banner->banner_sub_heading }}" required>
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Main Heading / Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="h_title" value="{{ $banner->h_title }}" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Main Heading <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="banner_heading" value="{{ $banner->banner_heading }}" required>
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Action Button Label</label>
+                            <input type="text" class="form-control" name="h_a_title" value="{{ $banner->h_a_title }}">
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Video URL (Optional)</label>
-                        <input type="url" class="form-control" name="banner_video_link" value="{{ $banner->banner_video_link }}">
-                    </div>
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Button / Target URL</label>
+                            <input type="text" class="form-control" name="h_p_url" value="{{ $banner->h_p_url }}">
+                        </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Update Banner Image (Optional)</label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="banner_img" accept="image/*">
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Banner Image</label>
+                            @if($banner->home_banner)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $banner->home_banner) }}" alt="Current Banner" class="banner-thumb">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control" name="home_banner" accept="image/*">
+                            <small class="form-text text-muted">Leave blank to retain current image.</small>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

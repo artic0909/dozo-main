@@ -39,8 +39,8 @@
                         <thead>
                             <tr>
                                 <th style="width: 80px;">Photo</th>
-                                <th>Name</th>
-                                <th>Position / Designation</th>
+                                <th>Member Name</th>
+                                <th>Designation / Role</th>
                                 <th>Date Added</th>
                                 <th style="width: 120px; text-align: center;">Actions</th>
                             </tr>
@@ -49,8 +49,8 @@
                             @foreach($teams as $team)
                             <tr>
                                 <td>
-                                    @if($team->team_image)
-                                        <img src="{{ asset('storage/' . $team->team_image) }}" alt="Team" class="team-thumb">
+                                    @if($team->m_img)
+                                        <img src="{{ asset('storage/' . $team->m_img) }}" alt="Team" class="team-thumb">
                                     @else
                                         <div class="team-thumb bg-light d-flex align-items-center justify-content-center text-muted">
                                             <i class="fa-solid fa-user"></i>
@@ -58,10 +58,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $team->team_name }}</strong>
+                                    <strong class="text-dark" style="font-size: 14.5px;">{{ $team->m_name }}</strong>
                                 </td>
                                 <td>
-                                    <span class="badge badge-dozo">{{ $team->team_position }}</span>
+                                    <span class="badge badge-dozo">{{ $team->m_prof }}</span>
                                 </td>
                                 <td>
                                     <span class="text-muted" style="font-size: 12.5px;">
@@ -74,7 +74,7 @@
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteTeamForm{{ $team->id }}', '{{ addslashes($team->team_name) }}')" title="Delete Member" style="padding: 5px 9px; border-radius: 6px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete('deleteTeamForm{{ $team->id }}', '{{ addslashes($team->m_name) }}')" title="Delete Member" style="padding: 5px 9px; border-radius: 6px;">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </button>
 
@@ -117,18 +117,18 @@
                 @csrf
                 <div class="modal-body p-4">
                     <div class="form-group">
-                        <label for="team_name" class="font-weight-bold">Member Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="team_name" id="team_name" placeholder="e.g. Rahul Sharma" required>
+                        <label for="m_name" class="font-weight-bold">Member Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="m_name" id="m_name" placeholder="e.g. Rahul Sharma" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="team_position" class="font-weight-bold">Position / Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="team_position" id="team_position" placeholder="e.g. Lead Façade Engineer" required>
+                        <label for="m_prof" class="font-weight-bold">Position / Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="m_prof" id="m_prof" placeholder="e.g. Lead Façade Engineer" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="team_image" class="font-weight-bold">Profile Photo <span class="text-danger">*</span></label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="team_image" id="team_image" accept="image/*" required>
+                        <label for="m_img" class="font-weight-bold">Profile Photo <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="m_img" id="m_img" accept="image/*" required>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">
@@ -157,25 +157,25 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body p-4">
-                    <div class="form-group text-center mb-3">
-                        @if($team->team_image)
-                            <img src="{{ asset('storage/' . $team->team_image) }}" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid #ff5f13;" alt="Photo">
-                        @endif
-                    </div>
-
                     <div class="form-group">
                         <label class="font-weight-bold">Member Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="team_name" value="{{ $team->team_name }}" required>
+                        <input type="text" class="form-control" name="m_name" value="{{ $team->m_name }}" required>
                     </div>
 
                     <div class="form-group">
                         <label class="font-weight-bold">Position / Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="team_position" value="{{ $team->team_position }}" required>
+                        <input type="text" class="form-control" name="m_prof" value="{{ $team->m_prof }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="font-weight-bold">Update Profile Photo (Optional)</label>
-                        <input type="file" class="form-control-file border p-2 rounded w-100" name="team_image" accept="image/*">
+                        <label class="font-weight-bold">Profile Photo</label>
+                        @if($team->m_img)
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $team->m_img) }}" alt="Current Photo" class="team-thumb">
+                            </div>
+                        @endif
+                        <input type="file" class="form-control" name="m_img" accept="image/*">
+                        <small class="form-text text-muted">Leave blank to keep existing photo.</small>
                     </div>
                 </div>
                 <div class="modal-footer bg-light">

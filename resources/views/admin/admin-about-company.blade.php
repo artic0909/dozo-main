@@ -53,8 +53,8 @@
                             @foreach($abouts as $about)
                             <tr>
                                 <td>
-                                    @if($about->ab_image)
-                                        <img src="{{ asset('storage/' . $about->ab_image) }}" alt="About" class="about-thumb">
+                                    @if($about->ab_img)
+                                        <img src="{{ asset('storage/' . $about->ab_img) }}" alt="About" class="about-thumb">
                                     @else
                                         <span class="text-muted">No Image</span>
                                     @endif
@@ -131,13 +131,23 @@
                             <input type="email" class="form-control" name="ab_email" id="ab_email" placeholder="e.g. info@dozo.in" required>
                         </div>
 
-                        <div class="col-12 form-group">
-                            <label for="ab_image" class="font-weight-bold">Company Showcase Image <span class="text-danger">*</span></label>
-                            <input type="file" class="form-control-file border p-2 rounded w-100" name="ab_image" id="ab_image" accept="image/*" required>
+                        <div class="col-md-6 form-group">
+                            <label for="ab_year" class="font-weight-bold">Established Year</label>
+                            <input type="text" class="form-control" name="ab_year" id="ab_year" placeholder="e.g. 2012">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label for="ab_b_desc" class="font-weight-bold">Short Sub-Heading</label>
+                            <input type="text" class="form-control" name="ab_b_desc" id="ab_b_desc" placeholder="e.g. Architectural Façade Excellence">
                         </div>
 
                         <div class="col-12 form-group">
-                            <label for="ab_desc" class="font-weight-bold">Company Description <span class="text-danger">*</span></label>
+                            <label for="ab_img" class="font-weight-bold">Company Showcase Image <span class="text-danger">*</span></label>
+                            <input type="file" class="form-control" name="ab_img" id="ab_img" accept="image/*" required>
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label for="ab_desc" class="font-weight-bold">Company Full Description <span class="text-danger">*</span></label>
                             <textarea class="form-control" name="ab_desc" id="ab_desc" rows="6" placeholder="About the company, vision, brand heritage..." required></textarea>
                         </div>
                     </div>
@@ -169,12 +179,6 @@
                 @method('PUT')
                 <div class="modal-body p-4">
                     <div class="row">
-                        <div class="col-12 text-center mb-3">
-                            @if($about->ab_image)
-                                <img src="{{ asset('storage/' . $about->ab_image) }}" style="max-height: 120px; border-radius: 6px; border: 1px solid #e2e8f0;" alt="Current Image">
-                            @endif
-                        </div>
-
                         <div class="col-md-6 form-group">
                             <label class="font-weight-bold">Contact Number <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="ab_num" value="{{ $about->ab_num }}" required>
@@ -185,13 +189,29 @@
                             <input type="email" class="form-control" name="ab_email" value="{{ $about->ab_email }}" required>
                         </div>
 
-                        <div class="col-12 form-group">
-                            <label class="font-weight-bold">Update Image (Optional)</label>
-                            <input type="file" class="form-control-file border p-2 rounded w-100" name="ab_image" accept="image/*">
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Established Year</label>
+                            <input type="text" class="form-control" name="ab_year" value="{{ $about->ab_year }}">
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label class="font-weight-bold">Short Sub-Heading</label>
+                            <input type="text" class="form-control" name="ab_b_desc" value="{{ $about->ab_b_desc }}">
                         </div>
 
                         <div class="col-12 form-group">
-                            <label class="font-weight-bold">Company Description <span class="text-danger">*</span></label>
+                            <label class="font-weight-bold">Company Showcase Image</label>
+                            @if($about->ab_img)
+                                <div class="mb-2">
+                                    <img src="{{ asset('storage/' . $about->ab_img) }}" alt="Current Image" class="about-thumb">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control" name="ab_img" accept="image/*">
+                            <small class="form-text text-muted">Leave blank to keep existing image.</small>
+                        </div>
+
+                        <div class="col-12 form-group">
+                            <label class="font-weight-bold">Company Full Description <span class="text-danger">*</span></label>
                             <textarea class="form-control" name="ab_desc" rows="6" required>{{ $about->ab_desc }}</textarea>
                         </div>
                     </div>
