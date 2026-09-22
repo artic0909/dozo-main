@@ -600,6 +600,47 @@ img {
   }
 }
 
+/* ==========================================================================
+   GLOBAL SECTION SPACING & GAP REDUCTION
+   ========================================================================== */
+.section-padding30,
+.section-padding2,
+.services-area1,
+.project-area,
+.catalogue-why-section,
+.catalogue-architecture-section,
+.catalogue-subframe-section,
+.catalogue-coating-section,
+.catalogue-facade-section,
+.catalogue-comparison-section,
+.catalogue-testing-section {
+  padding-top: 45px !important;
+  padding-bottom: 35px !important;
+}
+
+.section-tittle.mb-55,
+.section-tittle.mb-50,
+.section-tittle.mb-45,
+.section-tittle.mb-35 {
+  margin-bottom: 25px !important;
+}
+
+.mb-40 {
+  margin-bottom: 25px !important;
+}
+
+.catalogue-luxury-banner {
+  margin-bottom: 30px !important;
+}
+
+.catalogue-subframe-banner {
+  margin-bottom: 25px !important;
+}
+
+.catalogue-callout-banner {
+  margin-top: 20px !important;
+}
+
 /* --------------------------------------------------------------------------
    11. Catalogue Themed Sections (Why Choose DOZO, Performance & Building Envelope)
    -------------------------------------------------------------------------- */
@@ -941,4 +982,475 @@ img {
   color: #111111;
   font-weight: 700;
 }
+
+/* ==========================================================================
+   12. DOZO SUB FRAME & DURACOAT / FOAM-FILLED PROFILES SECTIONS
+   ========================================================================== */
+.catalogue-subframe-section {
+  background: #fbfbfb;
+  position: relative;
+}
+
+.catalogue-subframe-banner {
+  background: linear-gradient(135deg, #181818 0%, #2b2b2b 100%);
+  border-radius: 14px;
+  padding: 35px 30px;
+  color: #ffffff;
+  border-left: 5px solid #ff5f13;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.catalogue-subframe-banner h3 {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 900;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-family: "Barlow", sans-serif;
+  margin-bottom: 10px;
+}
+
+.catalogue-subframe-banner p {
+  color: #cccccc;
+  font-size: 15px;
+  margin-bottom: 0;
+  line-height: 1.6;
+}
+
+.catalogue-benefit-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 26px 22px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalogue-benefit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(255, 95, 19, 0.12);
+  border-color: rgba(255, 95, 19, 0.35);
+}
+
+.catalogue-benefit-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+.catalogue-benefit-num {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff5f13 0%, #ff8c42 100%);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: "Barlow", sans-serif;
+  box-shadow: 0 4px 12px rgba(255, 95, 19, 0.3);
+}
+
+.catalogue-benefit-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111111;
+  margin-bottom: 0;
+  font-family: "Barlow", sans-serif;
+  line-height: 1.3;
+}
+
+.catalogue-benefit-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.catalogue-benefit-list li {
+  font-size: 13.5px;
+  color: #555555;
+  padding: 6px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.catalogue-benefit-list li i {
+  color: #ff5f13;
+  font-size: 13px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* DURACOAT & Foam-Filled Insulation Section */
+.catalogue-coating-section {
+  background: #ffffff;
+  position: relative;
+}
+
+.catalogue-coating-card {
+  background: linear-gradient(135deg, #121212 0%, #202020 100%);
+  border-radius: 14px;
+  padding: 38px 32px;
+  color: #ffffff;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.catalogue-coating-card:hover {
+  transform: translateY(-4px);
+  border-color: #ff5f13;
+}
+
+.catalogue-coating-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #ff5f13, #ff8c42);
+}
+
+.catalogue-coating-badge {
+  background: rgba(255, 95, 19, 0.15);
+  color: #ff5f13;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 95, 19, 0.3);
+}
+
+.catalogue-coating-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: "Barlow", sans-serif;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.catalogue-coating-subtitle {
+  font-size: 15px;
+  color: #ff8c42;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.catalogue-spec-pill-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.catalogue-spec-pill-box p {
+  color: #ffffff;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.catalogue-spec-pill-box p strong {
+  color: #ff5f13;
+}
+
+/* ==========================================================================
+   13. WINDOW FAÇADE & GLASS GLAZING PERFORMANCE SECTION
+   ========================================================================== */
+.catalogue-facade-section {
+  background: #fbfbfb;
+  position: relative;
+  padding-top: 45px !important;
+  padding-bottom: 35px !important;
+}
+
+.catalogue-glass-matrix-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 30px 25px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+  height: 100%;
+}
+
+.catalogue-glass-header-badge {
+  background: linear-gradient(135deg, #111111 0%, #292929 100%);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid #ff5f13;
+  margin-bottom: 20px;
+}
+
+.catalogue-glass-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eeeeee;
+  margin-bottom: 0;
+}
+
+.catalogue-glass-table thead th {
+  background: #ff5f13;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.catalogue-glass-table tbody td {
+  padding: 10px 14px;
+  font-size: 13.5px;
+  color: #444444;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 1.5;
+}
+
+.catalogue-glass-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.catalogue-glass-table tbody tr:hover {
+  background-color: #fff5ef;
+}
+
+.catalogue-glass-table .metric-val {
+  font-weight: 800;
+  color: #ff5f13;
+  white-space: nowrap;
+  font-size: 14px;
+}
+
+.catalogue-glass-nav .nav-link {
+  background: #ffffff;
+  color: #333333;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 18px;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  transition: all 0.25s ease;
+}
+
+.catalogue-glass-nav .nav-link:hover {
+  border-color: #ff5f13;
+  color: #ff5f13;
+}
+
+.catalogue-glass-nav .nav-link.active {
+  background: #ff5f13 !important;
+  color: #ffffff !important;
+  border-color: #ff5f13 !important;
+  box-shadow: 0 4px 15px rgba(255, 95, 19, 0.3);
+}
+
+/* ==========================================================================
+   14. DOZO ALUMINIUM VS UPVC COMPARISON & TESTED PARAMETERS
+   ========================================================================== */
+.catalogue-comparison-section {
+  background: #ffffff;
+  position: relative;
+  padding-top: 45px !important;
+  padding-bottom: 35px !important;
+}
+
+.catalogue-comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 0;
+}
+
+.catalogue-comp-table thead th {
+  padding: 16px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.catalogue-comp-table thead th.th-feature {
+  background: #191919;
+  color: #ffffff;
+  width: 25%;
+}
+
+.catalogue-comp-table thead th.th-dozo {
+  background: #ff5f13;
+  color: #ffffff;
+  width: 40%;
+}
+
+.catalogue-comp-table thead th.th-upvc {
+  background: #2c2c2c;
+  color: #dddddd;
+  width: 35%;
+}
+
+.catalogue-comp-table tbody td {
+  padding: 14px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.catalogue-comp-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.catalogue-comp-table tbody tr:hover {
+  background-color: #fff7f2;
+}
+
+.catalogue-comp-table td.td-feature {
+  font-weight: 800;
+  color: #111111;
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+}
+
+.catalogue-comp-table td.td-dozo {
+  color: #111111;
+  font-weight: 600;
+  background-color: rgba(255, 95, 19, 0.04);
+}
+
+.catalogue-comp-table td.td-dozo i {
+  color: #ff5f13;
+  margin-right: 6px;
+}
+
+.catalogue-comp-table td.td-upvc {
+  color: #666666;
+}
+
+.catalogue-comp-table td.td-upvc i {
+  color: #999999;
+  margin-right: 6px;
+}
+
+/* Tested Parameters Section */
+.catalogue-testing-section {
+  background: #fbfbfb;
+  position: relative;
+  padding-top: 45px !important;
+  padding-bottom: 35px !important;
+}
+
+.catalogue-test-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.catalogue-test-table thead th {
+  background: #151515;
+  color: #ffffff;
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 3px solid #ff5f13;
+}
+
+.catalogue-test-table tbody td {
+  padding: 13px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.catalogue-test-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.catalogue-test-table tbody tr:hover {
+  background-color: #fff5ef;
+}
+
+.catalogue-test-table td.td-param {
+  font-weight: 800;
+  color: #111111;
+  font-family: "Barlow", sans-serif;
+  font-size: 15px;
+}
+
+.catalogue-test-table td.td-standard {
+  font-weight: 700;
+  color: #ff5f13;
+  white-space: nowrap;
+}
+
+.catalogue-test-table td.td-benchmark {
+  color: #444444;
+}
+
+/* Corporate Brand Credentials Card */
+.catalogue-corp-card {
+  background: linear-gradient(135deg, #111111 0%, #222222 100%);
+  border-radius: 14px;
+  padding: 35px 30px;
+  color: #ffffff;
+  border-left: 5px solid #ff5f13;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  margin-top: 30px;
+}
+
+.catalogue-corp-badge {
+  background: #ff5f13;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+
+
 
