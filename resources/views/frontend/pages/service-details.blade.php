@@ -31,7 +31,7 @@
 
         <!-- Services Details Start -->
 
-        <div class="services-details-area">
+        <div class="services-details-area bg-watermark-subframe">
             <div class="container">
                 <div class="row">
                     <div class="col-12">

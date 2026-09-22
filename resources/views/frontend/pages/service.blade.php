@@ -39,7 +39,7 @@
 
 
         <!-- Services Area Start -->
-        <div class="services-area1 section-padding30">
+        <div class="services-area1 bg-watermark-thermal section-padding30">
             <div class="container">
                 <!-- section tittle -->
                 <div class="row">

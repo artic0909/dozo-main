@@ -592,7 +592,7 @@
 <!-- ==========================================================================
      FULL-WIDTH AMC MULTI-STEP FORM (PLACED DIRECTLY AFTER BREADCRUMB)
      ========================================================================== -->
-<section class="amc-form-section">
+<section class="amc-form-section bg-watermark-thermal">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-11 col-12">
@@ -925,7 +925,7 @@
 </section>
 
 <!-- Scope & Offers Section -->
-<section class="section-padding" style="padding: 55px 0 70px 0; background: #ffffff;">
+<section class="section-padding bg-watermark-subframe" style="padding: 55px 0 70px 0; background: #ffffff;">
     <div class="container">
         <div class="row">
             <!-- Left: What's Covered -->

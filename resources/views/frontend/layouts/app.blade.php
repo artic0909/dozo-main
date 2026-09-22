@@ -86,6 +86,72 @@
                 margin-bottom: 15px !important;
             }
         }
+
+        /* ==========================================================================
+           GLOBAL ARCHITECTURAL WATERMARK BACKGROUND ELEMENTS (SMALL / FADED OPACITY)
+           ========================================================================== */
+        .bg-watermark-thermal {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-watermark-thermal::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            transform: translateY(-50%);
+            width: 360px;
+            height: 360px;
+            background-image: url("{{ asset('products/enhunce-thermal-noise-insulation.png') }}");
+            background-repeat: no-repeat;
+            background-position: center right;
+            background-size: contain;
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 1;
+            filter: grayscale(100%) contrast(110%);
+        }
+
+        .bg-watermark-subframe {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-watermark-subframe::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -15px;
+            transform: translateY(-50%);
+            width: 340px;
+            height: 340px;
+            background-image: url("{{ asset('products/subframe-ins.png') }}");
+            background-repeat: no-repeat;
+            background-position: center left;
+            background-size: contain;
+            opacity: 0.045;
+            pointer-events: none;
+            z-index: 1;
+            filter: grayscale(100%) contrast(110%);
+        }
+
+        .bg-watermark-thermal > .container,
+        .bg-watermark-subframe > .container,
+        .bg-watermark-thermal > div,
+        .bg-watermark-subframe > div {
+            position: relative;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .bg-watermark-thermal::before,
+            .bg-watermark-subframe::before {
+                width: 220px;
+                height: 220px;
+                opacity: 0.03;
+            }
+        }
     </style>
 
     @stack('styles')

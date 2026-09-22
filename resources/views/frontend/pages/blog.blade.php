@@ -410,7 +410,7 @@
 </section>
 
 <!-- Blog List Area -->
-<section class="blog_area section-padding" style="padding: 45px 0 55px 0; background: #fafbfc;">
+<section class="blog_area section-padding bg-watermark-subframe" style="padding: 45px 0 55px 0; background: #fafbfc;">
     <div class="container">
         <div class="row">
             <!-- Left Blog List -->

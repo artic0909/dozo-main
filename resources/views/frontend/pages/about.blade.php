@@ -58,7 +58,7 @@
 
 
         <!-- About Area Start -->
-        <section class="support-company-area fix pt-10 section-padding30">
+        <section class="support-company-area bg-watermark-thermal fix pt-10 section-padding30">
             @foreach ($aboutDetails as $about)
             <div class="support-wrapper align-items-end">
                 <div class="left-content">

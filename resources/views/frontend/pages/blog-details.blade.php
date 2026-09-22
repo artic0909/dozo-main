@@ -418,7 +418,7 @@
 </section>
 
 <!-- Blog Details Area -->
-<section class="section-padding" style="padding: 45px 0 55px 0; background: #fafbfc;">
+<section class="section-padding bg-watermark-thermal" style="padding: 45px 0 55px 0; background: #fafbfc;">
     <div class="container">
         <div class="row">
             <!-- Main Post Content -->

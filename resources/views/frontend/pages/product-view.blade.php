@@ -395,7 +395,7 @@
 </section>
 
 <!-- Product Details & Elevation Drawings Showcase -->
-<section class="product-details-section">
+<section class="product-details-section bg-watermark-thermal">
     <div class="container">
         <div class="row">
             <!-- Left: Interactive Technical Elevation & Drawings Viewer -->

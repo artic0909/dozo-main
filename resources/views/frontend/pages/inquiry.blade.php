@@ -27,7 +27,7 @@
 <!-- slider Area End-->
 
 <!-- Inquiry Section Start -->
-<section class="blog_area section-padding">
+<section class="blog_area section-padding bg-watermark-subframe">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">

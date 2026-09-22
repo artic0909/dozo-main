@@ -313,7 +313,7 @@
 </section>
 
 <!-- Product Grid Section -->
-<section class="product-showcase-section">
+<section class="product-showcase-section bg-watermark-subframe">
     <div class="container">
         <div class="product-section-title-wrap">
             <span class="sub-title">Engineered Perfection</span>
