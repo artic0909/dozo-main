@@ -46,11 +46,13 @@ img {
 /* --------------------------------------------------------------------------
    2. Catalogue PDF Buttons Styling
    -------------------------------------------------------------------------- */
-/* Header Catalogue Button */
-.header-right-btn {
-  display: flex !important;
-  align-items: center !important;
-  gap: 14px !important;
+/* Header Catalogue & AMC Buttons */
+@media (min-width: 992px) {
+  .header-right-btn {
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+  }
 }
 
 .header-cat-btn {
@@ -70,6 +72,7 @@ img {
   cursor: pointer;
   white-space: nowrap;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-decoration: none !important;
 }
 
 .header-cat-btn:hover {
@@ -106,6 +109,7 @@ img {
   transition: all 0.3s ease !important;
   border: 2px solid #111111 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  text-decoration: none !important;
 }
 
 .header-amc-btn:hover {
@@ -177,7 +181,7 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   3. Navigation & SlickNav Mobile Menu
+   3. Navigation, Mobile Header & Off-Canvas Sidebar Drawer
    -------------------------------------------------------------------------- */
 .header-area .header-bottom {
   position: relative;
@@ -194,68 +198,418 @@ img {
   transition: transform 0.3s ease;
 }
 
-.slicknav_menu {
-  background: transparent !important;
+/* ==========================================================================
+   Mobile Responsive Header Layout (< 992px)
+   ========================================================================== */
+/* ==========================================================================
+   Mobile Responsive Header Layout (< 992px)
+   ========================================================================== */
+/* ==========================================================================
+   Mobile Responsive Header Layout (< 992px)
+   ========================================================================== */
+@media (max-width: 991px) {
+  .header-bottom {
+    padding: 14px 0 14px 0 !important;
+    position: relative !important;
+    background-color: #ff5f13 !important;
+  }
+
+  .header-bottom .container,
+  .header-bottom .container-fluid {
+    position: relative !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .header-bottom .row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    position: relative !important;
+  }
+
+  /* 1. Center the Logo in the Middle & Make it Big */
+  .main-header .logo,
+  .header-bottom .logo {
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 2px 55px 2px 55px !important; /* Space for the right-aligned burger menu */
+  }
+
+  .main-header .logo .big-logo,
+  .header-bottom .logo .big-logo {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .main-header .logo .small-logo,
+  .header-bottom .logo .small-logo {
+    display: none !important;
+  }
+
+  .main-header .logo .big-logo img,
+  .header-bottom .logo .big-logo img,
+  .logo img {
+    height: 48px !important;
+    max-height: 52px !important;
+    width: auto !important;
+    max-width: 190px !important;
+    object-fit: contain !important;
+    filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.45)) !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  /* 2. No buttons in mobile header (kept inside the sidebar instead) */
+  .header-right-btn {
+    display: none !important;
+  }
+
+  /* 3. Hamburger Menu Toggle Button (Clean White Bars, No Black Background) */
+  .header-bottom .col-12,
+  .mobile_menu {
+    position: static !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  .slicknav_menu {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .slicknav_btn {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    right: 15px !important;
+    z-index: 1000 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 6px !important;
+    margin: 0 !important;
+    float: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .slicknav_btn:hover,
+  .slicknav_btn:focus {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: translateY(-50%) scale(1.08) !important;
+  }
+
+  .slicknav_btn .slicknav_menutxt {
+    display: none !important;
+  }
+
+  .slicknav_menu .slicknav_icon {
+    margin: 0 !important;
+    float: none !important;
+    width: 26px !important;
+    height: 18px !important;
+    position: relative !important;
+  }
+
+  .slicknav_menu .slicknav_icon-bar {
+    background-color: #ffffff !important;
+    width: 26px !important;
+    height: 3px !important;
+    margin: 4px 0 !important;
+    border-radius: 2px !important;
+    transition: all 0.3s ease !important;
+  }
+
+  /* Hide SlickNav default inline dropdown */
+  .slicknav_nav {
+    display: none !important;
+  }
+}
+
+/* Extra Small Phones (< 576px adjustments) */
+@media (max-width: 575px) {
+  .main-header .logo .big-logo img,
+  .header-bottom .logo .big-logo img {
+    height: 44px !important;
+    max-height: 46px !important;
+  }
+}
+
+/* ==========================================================================
+   DOZO Off-Canvas Mobile Sidebar Drawer (Clean White Background)
+   ========================================================================== */
+/* Dark Backdrop Overlay */
+.dozo-drawer-backdrop {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.65) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  z-index: 999998 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  pointer-events: none !important;
+}
+
+.dozo-drawer-backdrop.active,
+body.dozo-sidebar-active .dozo-drawer-backdrop {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+body.dozo-sidebar-active {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+
+/* Hide Scroll to Top arrow button when sidebar is active */
+#scrollUp {
+  z-index: 999 !important;
+}
+
+body.dozo-sidebar-active #scrollUp,
+body.dozo-sidebar-active a#scrollUp {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Standalone Off-Canvas Sidebar Drawer Container (White Background) */
+.dozo-mobile-drawer {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: min(320px, 85vw) !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+  z-index: 999999 !important;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.25) !important;
+  border-left: 1px solid #e2e8f0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: translateX(105%) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Active State */
+.dozo-mobile-drawer.active,
+body.dozo-sidebar-active .dozo-mobile-drawer {
+  transform: translateX(0) !important;
+}
+
+/* Drawer Top Header (Logo & Close Button on White) */
+.dozo-drawer-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 18px 20px !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+}
+
+.dozo-drawer-logo a {
+  display: inline-block !important;
+}
+
+.dozo-drawer-logo img {
+  height: 38px !important;
+  width: auto !important;
+  max-width: 150px !important;
+  object-fit: contain !important;
+}
+
+.dozo-drawer-close-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  transition: all 0.25s ease !important;
   padding: 0 !important;
 }
 
-.slicknav_btn {
-  background: #222222 !important;
-  border-radius: 4px !important;
-  padding: 10px 12px !important;
-  float: right !important;
-  margin-top: 5px !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-.slicknav_menu .slicknav_icon-bar {
-  background-color: #ffffff !important;
-  width: 22px !important;
-  height: 3px !important;
-  margin: 4px 0 !important;
-}
-
-.slicknav_nav {
-  background: #1e1e1e !important;
-  border-radius: 8px !important;
-  padding: 10px 0 !important;
-  margin-top: 15px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  overflow: hidden;
-}
-
-.slicknav_nav a {
+.dozo-drawer-close-btn:hover,
+.dozo-drawer-close-btn:focus {
+  background: #ff5f13 !important;
+  border-color: #ff5f13 !important;
   color: #ffffff !important;
-  padding: 12px 20px !important;
-  font-size: 15px !important;
+  transform: rotate(90deg) !important;
+}
+
+/* Drawer Body & Navigation Items on White */
+.dozo-drawer-body {
+  flex: 1 1 auto !important;
+  padding: 10px 0 !important;
+  background: #ffffff !important;
+  overflow-y: auto !important;
+}
+
+.dozo-drawer-nav-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dozo-drawer-item {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dozo-drawer-item a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  color: #1e293b !important;
+  padding: 15px 22px !important;
+  font-size: 15.5px !important;
   font-weight: 600 !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-bottom: 1px solid #f1f5f9 !important;
   transition: all 0.2s ease !important;
+  text-decoration: none !important;
 }
 
-.slicknav_nav a:hover,
-.slicknav_nav a:active {
-  background: #2a2a2a !important;
+.dozo-drawer-item a:hover,
+.dozo-drawer-item a:active {
+  background: #fff7ed !important;
   color: #ff5f13 !important;
-  padding-left: 25px !important;
+  padding-left: 28px !important;
+  border-left: 4px solid #ff5f13 !important;
 }
 
-.slicknav_nav ul {
-  padding-left: 0 !important;
-  background: #161616 !important;
+/* Drawer Footer with CTAs & Contact on Light/White */
+.dozo-drawer-footer {
+  padding: 20px !important;
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+  margin-top: auto !important;
 }
 
-.slicknav_nav ul a {
-  padding-left: 35px !important;
-  font-size: 14px !important;
-  color: #cccccc !important;
+.dozo-drawer-btn-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
 }
 
-.slicknav_nav ul a:hover {
-  padding-left: 40px !important;
+.dozo-drawer-btn-cat {
+  background: #ffffff !important;
+  color: #ff5f13 !important;
+  border: 2px solid #ff5f13 !important;
+  padding: 11px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 2px 8px rgba(255, 95, 19, 0.12) !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+
+.dozo-drawer-btn-cat:hover {
+  background: #ff5f13 !important;
+  color: #ffffff !important;
+  border-color: #ff5f13 !important;
+  transform: translateY(-2px) !important;
+}
+
+.dozo-drawer-btn-amc {
+  background: #ff5f13 !important;
+  color: #ffffff !important;
+  border: 2px solid #ff5f13 !important;
+  padding: 11px 16px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 14px rgba(255, 95, 19, 0.25) !important;
+  text-decoration: none !important;
+  transition: all 0.25s ease !important;
+}
+
+.dozo-drawer-btn-amc:hover {
+  background: #e04a00 !important;
+  border-color: #e04a00 !important;
+  transform: translateY(-2px) !important;
+}
+
+.dozo-drawer-contact {
+  margin-top: 14px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+}
+
+.dozo-drawer-contact a {
+  color: #475569 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.dozo-drawer-contact a:hover {
   color: #ff5f13 !important;
 }
+
+.dozo-drawer-contact a i {
+  color: #ff5f13 !important;
+  width: 16px !important;
+  text-align: center !important;
+}
+
+
 
 /* --------------------------------------------------------------------------
    4. Section Titles & Watermark Responsiveness

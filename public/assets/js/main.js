@@ -10,14 +10,118 @@
   });
 
 
-  /* 2. slick Nav */
-  // mobile_menu
+  /* 2. Mobile Responsive Off-Canvas Sidebar Drawer & SlickNav */
   var menu = $('ul#navigation');
   if (menu.length) {
     menu.slicknav({
       prependTo: ".mobile_menu",
       closedSymbol: '+',
-      openedSymbol: '-'
+      openedSymbol: '-',
+      allowParentLinks: true
+    });
+
+    // Detect actual DOZO logo source from the page
+    var logoImg = $('.main-header .logo .big-logo img').first().attr('src') ||
+                  $('.main-header .logo img').first().attr('src') ||
+                  'assets/img/logo/logo.png';
+
+    // Clone nav items HTML
+    var navItemsHtml = '';
+    menu.children('li').each(function () {
+      var $li = $(this).clone();
+      // Remove any unwanted desktop dropdown formatting
+      navItemsHtml += '<li class="dozo-drawer-item">' + $li.html() + '</li>';
+    });
+
+    // Build the standalone Mobile Sidebar Drawer & Backdrop attached directly to body
+    if (!$('#dozo-mobile-drawer').length) {
+      var drawerMarkup = 
+        '<div class="dozo-drawer-backdrop" id="dozo-drawer-backdrop"></div>' +
+        '<aside class="dozo-mobile-drawer" id="dozo-mobile-drawer" aria-label="Mobile Navigation Drawer">' +
+          '<div class="dozo-drawer-header">' +
+            '<div class="dozo-drawer-logo">' +
+              '<a href="/"><img src="' + logoImg + '" alt="DOZO Logo"></a>' +
+            '</div>' +
+            '<button type="button" class="dozo-drawer-close-btn" id="dozo-drawer-close-btn" aria-label="Close Menu">' +
+              '<i class="fa-solid fa-xmark"></i>' +
+            '</button>' +
+          '</div>' +
+          '<div class="dozo-drawer-body">' +
+            '<ul class="dozo-drawer-nav-list">' +
+              navItemsHtml +
+            '</ul>' +
+          '</div>' +
+          '<div class="dozo-drawer-footer">' +
+            '<div class="dozo-drawer-btn-group">' +
+              '<a href="/catelogue.pdf" target="_blank" class="dozo-drawer-btn-cat">' +
+                '<i class="fa-solid fa-file-pdf"></i> Download Catalogue' +
+              '</a>' +
+              '<a href="/amc" class="dozo-drawer-btn-amc">' +
+                '<i class="fa-solid fa-shield-halved"></i> Window AMC' +
+              '</a>' +
+            '</div>' +
+            '<div class="dozo-drawer-contact">' +
+              '<a href="tel:8981444141"><i class="fa-solid fa-phone"></i> +(91)-8981444141</a>' +
+              '<a href="mailto:info@dozowindows.com"><i class="fa-solid fa-envelope"></i> info@dozowindows.com</a>' +
+            '</div>' +
+          '</div>' +
+        '</aside>';
+
+      $('body').append(drawerMarkup);
+    }
+
+    // Function to open sidebar
+    function openMobileSidebar() {
+      $('body').addClass('dozo-sidebar-active');
+      $('#dozo-mobile-drawer').addClass('active');
+      $('#dozo-drawer-backdrop').addClass('active');
+      $('.slicknav_btn').addClass('slicknav_open').removeClass('slicknav_collapsed');
+      $('#scrollUp').hide();
+    }
+
+    // Function to close sidebar
+    function closeMobileSidebar() {
+      $('body').removeClass('dozo-sidebar-active');
+      $('#dozo-mobile-drawer').removeClass('active');
+      $('#dozo-drawer-backdrop').removeClass('active');
+      $('.slicknav_btn').removeClass('slicknav_open').addClass('slicknav_collapsed');
+      $('#scrollUp').show();
+    }
+
+    // Toggle sidebar when clicking the hamburger button
+    $(document).on('click', '.slicknav_btn', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if ($('body').hasClass('dozo-sidebar-active')) {
+        closeMobileSidebar();
+      } else {
+        openMobileSidebar();
+      }
+    });
+
+    // Close on close button click
+    $(document).on('click', '#dozo-drawer-close-btn', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMobileSidebar();
+    });
+
+    // Close on backdrop click
+    $(document).on('click', '#dozo-drawer-backdrop', function (e) {
+      e.preventDefault();
+      closeMobileSidebar();
+    });
+
+    // Close on clicking any navigation link
+    $(document).on('click', '.dozo-drawer-nav-list a', function () {
+      closeMobileSidebar();
+    });
+
+    // Close on Escape key
+    $(document).on('keydown', function (e) {
+      if (e.key === 'Escape' && $('body').hasClass('dozo-sidebar-active')) {
+        closeMobileSidebar();
+      }
     });
   };
 
